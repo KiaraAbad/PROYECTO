@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesión - Tutorías entre pares</title>
+  <link rel="stylesheet" href="estilos.css">
+
+</head>
+<body>
+  <header>
+    <h2 class="logo">Tutorías entre pares</h2>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="#">Directorio</a>
+      <a href="index.html#como-funciona">Cómo funciona</a>
+      <a href="registro.html" class="boton-principal">
+        Crear cuenta
+      </a>
+    </nav>
+  </header>
+  <main class="main-login">
+    <section class="contenedor-login">
+      <div class="informacion-login">
+        <h1>Vuelve a tus sesiones de tutoría</h1>
+        <p>
+          Ingresa con tu correo institucional para solicitar sesiones,
+          revisar tu agenda y calificar a tus tutores.
+        </p>
+        <p>
+          <strong>¿Aún no tienes cuenta?</strong>
+          <a href="registro.html">Crear cuenta</a>
+        </p>
+      </div>
+
+      <div class="formulario-login">
+        <h2>Inicia sesión</h2>
+        <form>
+          <label for="correo">
+            CORREO INSTITUCIONAL
+          </label>
+          <input
+            type="email"
+            id="correo"
+            name="correo"
+            placeholder="tucorreo@aloe.ulima.edu.pe"
+            required>
+          <label for="contrasena">
+            CONTRASEÑA
+          </label>
+          <input
+            type="password"
+            id="contrasena"
+            name="contrasena"
+            placeholder="Ingresa tu contraseña"
+            required>
+          <div class="opciones-login">
+            <div>
+              <input
+                type="checkbox"
+                id="recordar"
+                name="recordar">
+              <label for="recordar">
+                Recordarme en este equipo
+              </label>
+            </div>
+            <a href="recuperar.html">
+              ¿Olvidaste tu contraseña?
+            </a>
+          </div>
+          <button type="submit" class="boton-ingresar">
+            Ingresar
+          </button>
+        </form>
+        <p class="mensaje-correo">
+          Solo se admiten correos @aloe.ulima.edu.pe y @ulima.edu.pe.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Programa de Tutorías entre Pares · Universidad de Lima
+    </p>
+    <div>
+      <a href="#">Términos del programa</a>
+      <a href="#">tutorias@ulima.edu.pe</a>
+    </div>
+  </footer>
+</body>
+</html>
+
+
+
