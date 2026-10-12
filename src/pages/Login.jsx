@@ -1,19 +1,10 @@
 import { Link } from 'react-router-dom';
+import Header from '../components/Header';
 
 export function Login() {
   return (
     <div className="login-container">
-      <header>
-        <h2 className="logo">Tutorías entre pares</h2>
-        <nav>
-          <Link to="/">Inicio</Link>
-          <Link to="/tutores">Directorio</Link>
-          <a href="/#como-funciona">Cómo funciona</a>
-          <Link to="/registro" className="boton-principal">
-            Crear cuenta
-          </Link>
-        </nav>
-      </header>
+      <Header/> 
 
       <main className="main-login">
         <section className="contenedor-login">
@@ -25,7 +16,7 @@ export function Login() {
             </p>
             <p>
               <strong>¿Aún no tienes cuenta?</strong>{' '}
-              <Link to="/registro">Crear cuenta</Link>
+              <Link to="/Registro">Crear cuenta</Link>
             </p>
           </div>
 
