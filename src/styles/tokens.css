@@ -1,0 +1,19 @@
+:root {
+  --primary: #3B3596;
+  --primary-dark: #2B2670;
+  --primary-soft: #EAE8F7;
+  --accent: #E0A03A;
+  --bg: #FAFAFD;
+  --surface: #FFFFFF;
+  --border: #E2E1EC;
+  --text: #1C1B2E;
+  --text-muted: #6E6C82;
+  --success: #1E7F4D;
+  --warning: #B7791F;
+  --danger: #B4322B;
+  --info: #3B6FA8;
+  --radius: 8px;
+  --radius-chip: 999px;
+  --shadow-card: 0 1px 4px rgba(28, 27, 46, .08);
+  --font-base: 'Source Sans 3', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
