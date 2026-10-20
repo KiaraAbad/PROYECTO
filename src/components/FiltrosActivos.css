@@ -1,0 +1,64 @@
+.filtros-activos {
+  display: flex;
+  align-items: center;
+  margin: 14px 0 20px 0;
+}
+
+.filtros-activos__chips {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filtros-activos__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--primary-soft);
+  color: var(--primary);
+  border: none;
+  border-radius: var(--radius-chip);
+  padding: 6px 14px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.filtros-activos__chip:hover {
+  background-color: #dfdcf5;
+}
+
+.filtros-activos__cruz {
+  font-size: 0.75rem;
+  font-weight: 700;
+  opacity: 0.8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.15s ease;
+}
+
+.filtros-activos__chip:hover .filtros-activos__cruz {
+  opacity: 1;
+}
+
+.filtros-activos__limpiar {
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 10px;
+  margin-left: 2px;
+  transition: opacity 0.15s ease;
+}
+
+.filtros-activos__limpiar:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}

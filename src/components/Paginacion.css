@@ -1,0 +1,67 @@
+.paginacion-mockup {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 32px;
+  padding-top: 8px;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+}
+
+.paginacion-mockup__info {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.paginacion-mockup__controles {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.paginacion-mockup__btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.paginacion-mockup__btn:hover:not(:disabled):not(.paginacion-mockup__btn--activo) {
+  border-color: #c4c2d4;
+  background-color: #f7f7fc;
+}
+
+.paginacion-mockup__btn--activo {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.paginacion-mockup__btn--flecha {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.paginacion-mockup__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .paginacion-mockup {
+    flex-direction: column;
+    align-items: center;
+  }
+}

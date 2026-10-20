@@ -320,8 +320,6 @@ proyecto/
 
 ### Estrategia de ramas
 - `main` ← protegida; solo recibe PRs aprobados.
-- `develop` ← integración continua.
-- `feature/HU-x-<nombre>` ← una rama por integrante/historia.
 - Todo merge mediante **pull request revisado por otro miembro**. El historial de commits es evidencia de participación individual.
 
 ---

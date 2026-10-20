@@ -1,0 +1,2121 @@
+[
+  {
+    "id": "u-001",
+    "nombres": "Ariana",
+    "apellidos": "Flores Bustamante",
+    "correo": "ariana.flores@aloe.ulima.edu.pe",
+    "carrera": "Ingeniería de Sistemas",
+    "ciclo": 7,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de Ingeniería de Sistemas. Apasionada por algoritmos y desarrollo web.",
+      "modalidad": "remota",
+      "sedePreferencia": null,
+      "cursos": [
+        {
+          "codigo": "MA101",
+          "nombre": "Cálculo I",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-1"
+        },
+        {
+          "codigo": "SI401",
+          "nombre": "Programación Web",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-2"
+        }
+      ],
+      "promedio": 4.9,
+      "totalResenas": 40,
+      "publicadoDesde": "2026-03-01"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-001",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "09:00",
+        "horaFin": "11:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-001",
+        "tipo": "recurrente",
+        "dia": "miercoles",
+        "horaInicio": "15:00",
+        "horaFin": "17:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-001",
+        "tipo": "recurrente",
+        "dia": "viernes",
+        "horaInicio": "10:00",
+        "horaFin": "12:00",
+        "fecha": null,
+        "estado": "libre"
+      }
+    ]
+  },
+  {
+    "id": "u-002",
+    "nombres": "Camila",
+    "apellidos": "Quispe Andrade",
+    "correo": "camila.quispe@aloe.ulima.edu.pe",
+    "carrera": "Ingeniería Industrial",
+    "ciclo": 8,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de Ingeniería Industrial. Refuerzo Cálculo I y Estadística con enfoque práctico.",
+      "modalidad": "ambas",
+      "sedePreferencia": "Pabellón C",
+      "cursos": [
+        {
+          "codigo": "MA101",
+          "nombre": "Cálculo I",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "ES210",
+          "nombre": "Estadística Aplicada",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        }
+      ],
+      "promedio": 4.8,
+      "totalResenas": 31,
+      "publicadoDesde": "2026-03-26"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-002",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "14:00",
+        "horaFin": "16:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-002",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "10:00",
+        "horaFin": "12:00",
+        "fecha": null,
+        "estado": "libre"
+      }
+    ]
+  },
+  {
+    "id": "u-003",
+    "nombres": "Sebastián",
+    "apellidos": "Rojas Mendoza",
+    "correo": "sebastian.rojas@aloe.ulima.edu.pe",
+    "carrera": "Ingeniería Civil",
+    "ciclo": 9,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de Ingeniería Civil. Especializado en ciencias básicas y física.",
+      "modalidad": "remota",
+      "sedePreferencia": "Sede Monterrico",
+      "cursos": [
+        {
+          "codigo": "MA101",
+          "nombre": "Cálculo I",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-1"
+        },
+        {
+          "codigo": "FI202",
+          "nombre": "Física II",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-1"
+        }
+      ],
+      "promedio": 4.7,
+      "totalResenas": 28,
+      "publicadoDesde": "2026-02-15"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-003",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "16:00",
+        "horaFin": "18:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-003",
+        "tipo": "recurrente",
+        "dia": "martes",
+        "horaInicio": "14:00",
+        "horaFin": "16:00",
+        "fecha": null,
+        "estado": "libre"
+      }
+    ]
+  },
+  {
+    "id": "u-004",
+    "nombres": "Valeria",
+    "apellidos": "Ccahuana Rivas",
+    "correo": "valeria.ccahuana@aloe.ulima.edu.pe",
+    "carrera": "Contabilidad",
+    "ciclo": 6,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de Contabilidad. Ayudo con finanzas y matemática básica.",
+      "modalidad": "remota",
+      "sedePreferencia": null,
+      "cursos": [
+        {
+          "codigo": "CO105",
+          "nombre": "Contabilidad de Costos",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "MA101",
+          "nombre": "Cálculo I",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        }
+      ],
+      "promedio": 4.6,
+      "totalResenas": 19,
+      "publicadoDesde": "2026-04-10"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-004",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "11:00",
+        "horaFin": "13:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-004",
+        "tipo": "recurrente",
+        "dia": "viernes",
+        "horaInicio": "15:00",
+        "horaFin": "17:00",
+        "fecha": null,
+        "estado": "libre"
+      }
+    ]
+  },
+  {
+    "id": "u-005",
+    "nombres": "Diego",
+    "apellidos": "Huamán Salcedo",
+    "correo": "diego.huaman@aloe.ulima.edu.pe",
+    "carrera": "Economía",
+    "ciclo": 7,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de Economía. Apoyo en métodos cuantitativos y cálculo.",
+      "modalidad": "remota",
+      "sedePreferencia": null,
+      "cursos": [
+        {
+          "codigo": "EC201",
+          "nombre": "Microeconomía Intermedia",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-1"
+        },
+        {
+          "codigo": "MA101",
+          "nombre": "Cálculo I",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        }
+      ],
+      "promedio": 4.5,
+      "totalResenas": 22,
+      "publicadoDesde": "2026-03-12"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-005",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "18:00",
+        "horaFin": "20:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-005",
+        "tipo": "recurrente",
+        "dia": "miercoles",
+        "horaInicio": "09:00",
+        "horaFin": "11:00",
+        "fecha": null,
+        "estado": "libre"
+      }
+    ]
+  },
+  {
+    "id": "u-006",
+    "nombres": "Lucía",
+    "apellidos": "Paredes Ynga",
+    "correo": "lucia.paredes@aloe.ulima.edu.pe",
+    "carrera": "Psicología",
+    "ciclo": 8,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de Psicología. Apoyo en estadística y razonamiento cuantitativo.",
+      "modalidad": "remota",
+      "sedePreferencia": null,
+      "cursos": [
+        {
+          "codigo": "ES210",
+          "nombre": "Estadística Aplicada",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-1"
+        },
+        {
+          "codigo": "MA101",
+          "nombre": "Cálculo I",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        }
+      ],
+      "promedio": 4.5,
+      "totalResenas": 16,
+      "publicadoDesde": "2026-03-20"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-006",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "10:00",
+        "horaFin": "12:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-006",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "14:00",
+        "horaFin": "16:00",
+        "fecha": null,
+        "estado": "libre"
+      }
+    ]
+  },
+  {
+    "id": "u-007",
+    "nombres": "Mateo",
+    "apellidos": "Chávez Ríos",
+    "correo": "mateo.chavez@aloe.ulima.edu.pe",
+    "carrera": "Ingeniería de Sistemas",
+    "ciclo": 9,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de 9no ciclo de Sistemas. Experiencia en arquitectura de software y cálculo.",
+      "modalidad": "remota",
+      "sedePreferencia": null,
+      "cursos": [
+        {
+          "codigo": "SI401",
+          "nombre": "Programación Web",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2024-2"
+        },
+        {
+          "codigo": "MA101",
+          "nombre": "Cálculo I",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-1"
+        }
+      ],
+      "promedio": 4.4,
+      "totalResenas": 25,
+      "publicadoDesde": "2026-01-18"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-007",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "13:00",
+        "horaFin": "15:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-007",
+        "tipo": "recurrente",
+        "dia": "sabado",
+        "horaInicio": "10:00",
+        "horaFin": "12:00",
+        "fecha": null,
+        "estado": "libre"
+      }
+    ]
+  },
+  {
+    "id": "u-008",
+    "nombres": "Fabiana",
+    "apellidos": "Loayza Vera",
+    "correo": "fabiana.loayza@aloe.ulima.edu.pe",
+    "carrera": "Química",
+    "ciclo": 6,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de Química. Refuerzo en cálculo para ciencias y química experimental.",
+      "modalidad": "remota",
+      "sedePreferencia": null,
+      "cursos": [
+        {
+          "codigo": "QU102",
+          "nombre": "Química Orgánica",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "MA101",
+          "nombre": "Cálculo I",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        }
+      ],
+      "promedio": 4.3,
+      "totalResenas": 14,
+      "publicadoDesde": "2026-04-05"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-008",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "17:00",
+        "horaFin": "19:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-008",
+        "tipo": "recurrente",
+        "dia": "martes",
+        "horaInicio": "11:00",
+        "horaFin": "13:00",
+        "fecha": null,
+        "estado": "libre"
+      }
+    ]
+  },
+  {
+    "id": "u-009",
+    "nombres": "Renato",
+    "apellidos": "Alcántara Núñez",
+    "correo": "renato.alcantara@aloe.ulima.edu.pe",
+    "carrera": "Administración",
+    "ciclo": 7,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de Administración. Refuerzo en matemáticas y finanzas.",
+      "modalidad": "remota",
+      "sedePreferencia": null,
+      "cursos": [
+        {
+          "codigo": "MA101",
+          "nombre": "Cálculo I",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "AD101",
+          "nombre": "Contabilidad General",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-1"
+        }
+      ],
+      "promedio": 4.2,
+      "totalResenas": 20,
+      "publicadoDesde": "2026-03-10"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-009",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "08:00",
+        "horaFin": "10:00",
+        "fecha": null,
+        "estado": "libre"
+      }
+    ]
+  },
+  {
+    "id": "u-010",
+    "nombres": "Daniela",
+    "apellidos": "Ramírez Ayala",
+    "correo": "daniela.ramirez@aloe.ulima.edu.pe",
+    "carrera": "Ingeniería Industrial",
+    "ciclo": 8,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de Ingeniería Industrial. Pasión por la enseñanza y métodos cuantitativos.",
+      "modalidad": "remota",
+      "sedePreferencia": null,
+      "cursos": [
+        {
+          "codigo": "MA101",
+          "nombre": "Cálculo I",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "IN101",
+          "nombre": "Programación I",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        }
+      ],
+      "promedio": 4.1,
+      "totalResenas": 18,
+      "publicadoDesde": "2026-02-28"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-010",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "15:00",
+        "horaFin": "17:00",
+        "fecha": null,
+        "estado": "libre"
+      }
+    ]
+  },
+  {
+    "id": "u-011",
+    "nombres": "Mariana",
+    "apellidos": "Mendoza Ruiz",
+    "correo": "mariana.mendoza@aloe.ulima.edu.pe",
+    "carrera": "Ingeniería Ambiental",
+    "ciclo": 8,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de Ingeniería Ambiental. Refuerzo Física II con ejercicios paso a paso.",
+      "modalidad": "remota",
+      "sedePreferencia": null,
+      "cursos": [
+        {
+          "codigo": "FI202",
+          "nombre": "Física II",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "EC201",
+          "nombre": "Microeconomía Intermedia",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-2"
+        }
+      ],
+      "promedio": 3.6,
+      "totalResenas": 23,
+      "publicadoDesde": "2026-07-21"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-011",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "18:00",
+        "horaFin": "19:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-011",
+        "tipo": "recurrente",
+        "dia": "sabado",
+        "horaInicio": "12:00",
+        "horaFin": "13:00",
+        "fecha": null,
+        "estado": "ocupado"
+      },
+      {
+        "tutorId": "u-011",
+        "tipo": "recurrente",
+        "dia": "martes",
+        "horaInicio": "09:00",
+        "horaFin": "10:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-011",
+        "tipo": "recurrente",
+        "dia": "miercoles",
+        "horaInicio": "11:00",
+        "horaFin": "12:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-011",
+        "tipo": "recurrente",
+        "dia": "martes",
+        "horaInicio": "11:00",
+        "horaFin": "12:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-011",
+        "tipo": "recurrente",
+        "dia": "miercoles",
+        "horaInicio": "12:00",
+        "horaFin": "13:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-011",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "17:00",
+        "horaFin": "18:00",
+        "fecha": null,
+        "estado": "libre"
+      }
+    ]
+  },
+  {
+    "id": "u-012",
+    "nombres": "Emilio",
+    "apellidos": "Cárdenas Solís",
+    "correo": "emilio.cárdenas@aloe.ulima.edu.pe",
+    "carrera": "Finanzas",
+    "ciclo": 5,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de Finanzas. Refuerzo Química General con ejercicios paso a paso.",
+      "modalidad": "ambas",
+      "sedePreferencia": "Pabellón C",
+      "cursos": [
+        {
+          "codigo": "QU101",
+          "nombre": "Química General",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "SI401",
+          "nombre": "Programación Web",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-2"
+        }
+      ],
+      "promedio": 3.6,
+      "totalResenas": 3,
+      "publicadoDesde": "2026-03-23"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-012",
+        "tipo": "recurrente",
+        "dia": "sabado",
+        "horaInicio": "08:00",
+        "horaFin": "09:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-012",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "14:00",
+        "horaFin": "15:00",
+        "fecha": null,
+        "estado": "ocupado"
+      },
+      {
+        "tutorId": "u-012",
+        "tipo": "recurrente",
+        "dia": "sabado",
+        "horaInicio": "13:00",
+        "horaFin": "14:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-012",
+        "tipo": "recurrente",
+        "dia": "martes",
+        "horaInicio": "09:00",
+        "horaFin": "10:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-012",
+        "tipo": "recurrente",
+        "dia": "sabado",
+        "horaInicio": "10:00",
+        "horaFin": "11:00",
+        "fecha": null,
+        "estado": "ocupado"
+      },
+      {
+        "tutorId": "u-012",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "15:00",
+        "horaFin": "16:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-012",
+        "tipo": "recurrente",
+        "dia": "miercoles",
+        "horaInicio": "14:00",
+        "horaFin": "15:00",
+        "fecha": null,
+        "estado": "no-disponible"
+      },
+      {
+        "tutorId": "u-012",
+        "tipo": "recurrente",
+        "dia": "martes",
+        "horaInicio": "15:00",
+        "horaFin": "16:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-012",
+        "tipo": "recurrente",
+        "dia": "miercoles",
+        "horaInicio": "09:00",
+        "horaFin": "10:00",
+        "fecha": null,
+        "estado": "libre"
+      }
+    ]
+  },
+  {
+    "id": "u-013",
+    "nombres": "Paula",
+    "apellidos": "Aguilar Peña",
+    "correo": "paula.aguilar@aloe.ulima.edu.pe",
+    "carrera": "Bioingeniería",
+    "ciclo": 8,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": false,
+      "biografia": "Estudiante de Bioingeniería. Refuerzo Cálculo II con ejercicios paso a paso.",
+      "modalidad": "presencial",
+      "sedePreferencia": "Biblioteca",
+      "cursos": [
+        {
+          "codigo": "MA102",
+          "nombre": "Cálculo II",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "ES201",
+          "nombre": "Estadística",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "FI202",
+          "nombre": "Física II",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        }
+      ],
+      "promedio": 4.6,
+      "totalResenas": 14,
+      "publicadoDesde": "2026-06-27"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-013",
+        "tipo": "recurrente",
+        "dia": "martes",
+        "horaInicio": "15:00",
+        "horaFin": "16:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-013",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "15:00",
+        "horaFin": "16:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-013",
+        "tipo": "recurrente",
+        "dia": "sabado",
+        "horaInicio": "11:00",
+        "horaFin": "12:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-013",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "08:00",
+        "horaFin": "09:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-013",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "09:00",
+        "horaFin": "10:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-013",
+        "tipo": "recurrente",
+        "dia": "viernes",
+        "horaInicio": "09:00",
+        "horaFin": "10:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-013",
+        "tipo": "recurrente",
+        "dia": "miercoles",
+        "horaInicio": "12:00",
+        "horaFin": "13:00",
+        "fecha": null,
+        "estado": "no-disponible"
+      }
+    ]
+  },
+  {
+    "id": "u-014",
+    "nombres": "Andrés",
+    "apellidos": "Navarro Gil",
+    "correo": "andrés.navarro@aloe.ulima.edu.pe",
+    "carrera": "Arquitectura",
+    "ciclo": 8,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de Arquitectura. Refuerzo Programación I con ejercicios paso a paso.",
+      "modalidad": "remota",
+      "sedePreferencia": null,
+      "cursos": [
+        {
+          "codigo": "IN101",
+          "nombre": "Programación I",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "IN201",
+          "nombre": "Estructura de Datos",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "CO105",
+          "nombre": "Contabilidad de Costos",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        }
+      ],
+      "promedio": 3.9,
+      "totalResenas": 40,
+      "publicadoDesde": "2026-02-10"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-014",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "11:00",
+        "horaFin": "12:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-014",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "15:00",
+        "horaFin": "16:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-014",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "14:00",
+        "horaFin": "15:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-014",
+        "tipo": "recurrente",
+        "dia": "martes",
+        "horaInicio": "15:00",
+        "horaFin": "16:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-014",
+        "tipo": "recurrente",
+        "dia": "sabado",
+        "horaInicio": "12:00",
+        "horaFin": "13:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-014",
+        "tipo": "recurrente",
+        "dia": "martes",
+        "horaInicio": "17:00",
+        "horaFin": "18:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-014",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "13:00",
+        "horaFin": "14:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-014",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "17:00",
+        "horaFin": "18:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-014",
+        "tipo": "recurrente",
+        "dia": "martes",
+        "horaInicio": "14:00",
+        "horaFin": "15:00",
+        "fecha": null,
+        "estado": "libre"
+      }
+    ]
+  },
+  {
+    "id": "u-015",
+    "nombres": "Fernanda",
+    "apellidos": "Reyes Morales",
+    "correo": "fernanda.reyes@aloe.ulima.edu.pe",
+    "carrera": "Ingeniería de Telecomunicaciones",
+    "ciclo": 9,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de Ingeniería de Telecomunicaciones. Refuerzo Microeconomía Intermedia con ejercicios paso a paso.",
+      "modalidad": "ambas",
+      "sedePreferencia": "Pabellón C",
+      "cursos": [
+        {
+          "codigo": "EC201",
+          "nombre": "Microeconomía Intermedia",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-2"
+        }
+      ],
+      "promedio": 3.7,
+      "totalResenas": 29,
+      "publicadoDesde": "2026-02-12"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-015",
+        "tipo": "recurrente",
+        "dia": "viernes",
+        "horaInicio": "12:00",
+        "horaFin": "13:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-015",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "09:00",
+        "horaFin": "10:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-015",
+        "tipo": "recurrente",
+        "dia": "martes",
+        "horaInicio": "15:00",
+        "horaFin": "16:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-015",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "14:00",
+        "horaFin": "15:00",
+        "fecha": null,
+        "estado": "libre"
+      }
+    ]
+  },
+  {
+    "id": "u-016",
+    "nombres": "Renzo",
+    "apellidos": "Alcántara Núñez",
+    "correo": "renzo.alcántara@aloe.ulima.edu.pe",
+    "carrera": "Psicología",
+    "ciclo": 5,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de Psicología. Refuerzo Contabilidad General con ejercicios paso a paso.",
+      "modalidad": "presencial",
+      "sedePreferencia": "Biblioteca",
+      "cursos": [
+        {
+          "codigo": "AD101",
+          "nombre": "Contabilidad General",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "ES201",
+          "nombre": "Estadística",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-2"
+        }
+      ],
+      "promedio": 4.4,
+      "totalResenas": 25,
+      "publicadoDesde": "2026-05-18"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-016",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "11:00",
+        "horaFin": "12:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-016",
+        "tipo": "recurrente",
+        "dia": "martes",
+        "horaInicio": "11:00",
+        "horaFin": "12:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-016",
+        "tipo": "recurrente",
+        "dia": "martes",
+        "horaInicio": "17:00",
+        "horaFin": "18:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-016",
+        "tipo": "recurrente",
+        "dia": "miercoles",
+        "horaInicio": "14:00",
+        "horaFin": "15:00",
+        "fecha": null,
+        "estado": "no-disponible"
+      },
+      {
+        "tutorId": "u-016",
+        "tipo": "recurrente",
+        "dia": "viernes",
+        "horaInicio": "16:00",
+        "horaFin": "17:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-016",
+        "tipo": "recurrente",
+        "dia": "sabado",
+        "horaInicio": "09:00",
+        "horaFin": "10:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-016",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "08:00",
+        "horaFin": "09:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-016",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "11:00",
+        "horaFin": "12:00",
+        "fecha": null,
+        "estado": "ocupado"
+      },
+      {
+        "tutorId": "u-016",
+        "tipo": "recurrente",
+        "dia": "miercoles",
+        "horaInicio": "08:00",
+        "horaFin": "09:00",
+        "fecha": null,
+        "estado": "libre"
+      }
+    ]
+  },
+  {
+    "id": "u-017",
+    "nombres": "Lucía",
+    "apellidos": "Ríos Camacho",
+    "correo": "lucía.ríos@aloe.ulima.edu.pe",
+    "carrera": "Derecho",
+    "ciclo": 10,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de Derecho. Refuerzo Física II con ejercicios paso a paso.",
+      "modalidad": "remota",
+      "sedePreferencia": null,
+      "cursos": [
+        {
+          "codigo": "FI202",
+          "nombre": "Física II",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "SI401",
+          "nombre": "Programación Web",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        }
+      ],
+      "promedio": 4.9,
+      "totalResenas": 25,
+      "publicadoDesde": "2026-03-24"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-017",
+        "tipo": "recurrente",
+        "dia": "miercoles",
+        "horaInicio": "17:00",
+        "horaFin": "18:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-017",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "18:00",
+        "horaFin": "19:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-017",
+        "tipo": "recurrente",
+        "dia": "sabado",
+        "horaInicio": "17:00",
+        "horaFin": "18:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-017",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "11:00",
+        "horaFin": "12:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-017",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "10:00",
+        "horaFin": "11:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-017",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "12:00",
+        "horaFin": "13:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-017",
+        "tipo": "recurrente",
+        "dia": "martes",
+        "horaInicio": "18:00",
+        "horaFin": "19:00",
+        "fecha": null,
+        "estado": "ocupado"
+      },
+      {
+        "tutorId": "u-017",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "13:00",
+        "horaFin": "14:00",
+        "fecha": null,
+        "estado": "libre"
+      }
+    ]
+  },
+  {
+    "id": "u-018",
+    "nombres": "Gonzalo",
+    "apellidos": "Zegarra Prado",
+    "correo": "gonzalo.zegarra@aloe.ulima.edu.pe",
+    "carrera": "Ingeniería Química",
+    "ciclo": 7,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de Ingeniería Química. Refuerzo Microeconomía con ejercicios paso a paso.",
+      "modalidad": "ambas",
+      "sedePreferencia": "Pabellón A",
+      "cursos": [
+        {
+          "codigo": "EC101",
+          "nombre": "Microeconomía",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "IN101",
+          "nombre": "Programación I",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-2"
+        }
+      ],
+      "promedio": 3.6,
+      "totalResenas": 8,
+      "publicadoDesde": "2026-07-27"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-018",
+        "tipo": "recurrente",
+        "dia": "sabado",
+        "horaInicio": "10:00",
+        "horaFin": "11:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-018",
+        "tipo": "recurrente",
+        "dia": "martes",
+        "horaInicio": "18:00",
+        "horaFin": "19:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-018",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "12:00",
+        "horaFin": "13:00",
+        "fecha": null,
+        "estado": "no-disponible"
+      },
+      {
+        "tutorId": "u-018",
+        "tipo": "recurrente",
+        "dia": "miercoles",
+        "horaInicio": "18:00",
+        "horaFin": "19:00",
+        "fecha": null,
+        "estado": "libre"
+      }
+    ]
+  },
+  {
+    "id": "u-019",
+    "nombres": "Micaela",
+    "apellidos": "Flores Bustamante",
+    "correo": "micaela.flores@aloe.ulima.edu.pe",
+    "carrera": "Ingeniería Biomédica",
+    "ciclo": 10,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de Ingeniería Biomédica. Refuerzo Programación I con ejercicios paso a paso.",
+      "modalidad": "presencial",
+      "sedePreferencia": "Biblioteca",
+      "cursos": [
+        {
+          "codigo": "IN101",
+          "nombre": "Programación I",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-2"
+        }
+      ],
+      "promedio": 4.1,
+      "totalResenas": 25,
+      "publicadoDesde": "2026-04-22"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-019",
+        "tipo": "recurrente",
+        "dia": "martes",
+        "horaInicio": "14:00",
+        "horaFin": "15:00",
+        "fecha": null,
+        "estado": "ocupado"
+      },
+      {
+        "tutorId": "u-019",
+        "tipo": "recurrente",
+        "dia": "martes",
+        "horaInicio": "14:00",
+        "horaFin": "15:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-019",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "09:00",
+        "horaFin": "10:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-019",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "13:00",
+        "horaFin": "14:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-019",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "10:00",
+        "horaFin": "11:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-019",
+        "tipo": "recurrente",
+        "dia": "sabado",
+        "horaInicio": "10:00",
+        "horaFin": "11:00",
+        "fecha": null,
+        "estado": "ocupado"
+      },
+      {
+        "tutorId": "u-019",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "14:00",
+        "horaFin": "15:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-019",
+        "tipo": "recurrente",
+        "dia": "sabado",
+        "horaInicio": "13:00",
+        "horaFin": "14:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-019",
+        "tipo": "recurrente",
+        "dia": "miercoles",
+        "horaInicio": "10:00",
+        "horaFin": "11:00",
+        "fecha": null,
+        "estado": "libre"
+      }
+    ]
+  },
+  {
+    "id": "u-020",
+    "nombres": "Piero",
+    "apellidos": "Ccahuana Rivas",
+    "correo": "piero.ccahuana@aloe.ulima.edu.pe",
+    "carrera": "Negocios Internacionales",
+    "ciclo": 9,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de Negocios Internacionales. Refuerzo Cálculo II con ejercicios paso a paso.",
+      "modalidad": "remota",
+      "sedePreferencia": null,
+      "cursos": [
+        {
+          "codigo": "MA102",
+          "nombre": "Cálculo II",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "CO105",
+          "nombre": "Contabilidad de Costos",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "QU101",
+          "nombre": "Química General",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        }
+      ],
+      "promedio": 3.7,
+      "totalResenas": 4,
+      "publicadoDesde": "2026-08-20"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-020",
+        "tipo": "recurrente",
+        "dia": "viernes",
+        "horaInicio": "08:00",
+        "horaFin": "09:00",
+        "fecha": null,
+        "estado": "ocupado"
+      },
+      {
+        "tutorId": "u-020",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "14:00",
+        "horaFin": "15:00",
+        "fecha": null,
+        "estado": "ocupado"
+      },
+      {
+        "tutorId": "u-020",
+        "tipo": "recurrente",
+        "dia": "sabado",
+        "horaInicio": "17:00",
+        "horaFin": "18:00",
+        "fecha": null,
+        "estado": "ocupado"
+      },
+      {
+        "tutorId": "u-020",
+        "tipo": "recurrente",
+        "dia": "sabado",
+        "horaInicio": "10:00",
+        "horaFin": "11:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-020",
+        "tipo": "recurrente",
+        "dia": "viernes",
+        "horaInicio": "11:00",
+        "horaFin": "12:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-020",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "11:00",
+        "horaFin": "12:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-020",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "11:00",
+        "horaFin": "12:00",
+        "fecha": null,
+        "estado": "libre"
+      }
+    ]
+  },
+  {
+    "id": "u-021",
+    "nombres": "Daniela",
+    "apellidos": "Chávez Ríos",
+    "correo": "daniela.chávez@aloe.ulima.edu.pe",
+    "carrera": "Publicidad",
+    "ciclo": 7,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de Publicidad. Refuerzo Programación Web con ejercicios paso a paso.",
+      "modalidad": "ambas",
+      "sedePreferencia": "Pabellón A",
+      "cursos": [
+        {
+          "codigo": "SI401",
+          "nombre": "Programación Web",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "IN201",
+          "nombre": "Estructura de Datos",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        }
+      ],
+      "promedio": 4.8,
+      "totalResenas": 45,
+      "publicadoDesde": "2026-01-20"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-021",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "09:00",
+        "horaFin": "10:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-021",
+        "tipo": "recurrente",
+        "dia": "sabado",
+        "horaInicio": "16:00",
+        "horaFin": "17:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-021",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "18:00",
+        "horaFin": "19:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-021",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "11:00",
+        "horaFin": "12:00",
+        "fecha": null,
+        "estado": "libre"
+      }
+    ]
+  },
+  {
+    "id": "u-022",
+    "nombres": "Ariana",
+    "apellidos": "Huamán Salcedo",
+    "correo": "ariana.huamán@aloe.ulima.edu.pe",
+    "carrera": "Ingeniería de Minas",
+    "ciclo": 5,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de Ingeniería de Minas. Refuerzo Química General con ejercicios paso a paso.",
+      "modalidad": "presencial",
+      "sedePreferencia": "Pabellón A",
+      "cursos": [
+        {
+          "codigo": "QU101",
+          "nombre": "Química General",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "ES201",
+          "nombre": "Estadística",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "CO105",
+          "nombre": "Contabilidad de Costos",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        }
+      ],
+      "promedio": 4.2,
+      "totalResenas": 41,
+      "publicadoDesde": "2026-08-15"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-022",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "15:00",
+        "horaFin": "16:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-022",
+        "tipo": "recurrente",
+        "dia": "miercoles",
+        "horaInicio": "10:00",
+        "horaFin": "11:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-022",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "09:00",
+        "horaFin": "10:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-022",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "18:00",
+        "horaFin": "19:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-022",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "10:00",
+        "horaFin": "11:00",
+        "fecha": null,
+        "estado": "ocupado"
+      }
+    ]
+  },
+  {
+    "id": "u-023",
+    "nombres": "Valeria",
+    "apellidos": "Ramírez Ayala",
+    "correo": "valeria.ramírez@aloe.ulima.edu.pe",
+    "carrera": "Ingeniería Agroindustrial",
+    "ciclo": 5,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de Ingeniería Agroindustrial. Refuerzo Álgebra Lineal con ejercicios paso a paso.",
+      "modalidad": "remota",
+      "sedePreferencia": null,
+      "cursos": [
+        {
+          "codigo": "MA201",
+          "nombre": "Álgebra Lineal",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "AD101",
+          "nombre": "Contabilidad General",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "ES201",
+          "nombre": "Estadística",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        }
+      ],
+      "promedio": 4.8,
+      "totalResenas": 41,
+      "publicadoDesde": "2026-02-16"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-023",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "10:00",
+        "horaFin": "11:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-023",
+        "tipo": "recurrente",
+        "dia": "sabado",
+        "horaInicio": "10:00",
+        "horaFin": "11:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-023",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "11:00",
+        "horaFin": "12:00",
+        "fecha": null,
+        "estado": "ocupado"
+      },
+      {
+        "tutorId": "u-023",
+        "tipo": "recurrente",
+        "dia": "miercoles",
+        "horaInicio": "17:00",
+        "horaFin": "18:00",
+        "fecha": null,
+        "estado": "libre"
+      }
+    ]
+  },
+  {
+    "id": "u-024",
+    "nombres": "Mateo",
+    "apellidos": "Loayza Vera",
+    "correo": "mateo.loayza@aloe.ulima.edu.pe",
+    "carrera": "Gestión Humana",
+    "ciclo": 7,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de Gestión Humana. Refuerzo Contabilidad de Costos con ejercicios paso a paso.",
+      "modalidad": "ambas",
+      "sedePreferencia": "Biblioteca",
+      "cursos": [
+        {
+          "codigo": "CO105",
+          "nombre": "Contabilidad de Costos",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "QU101",
+          "nombre": "Química General",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        }
+      ],
+      "promedio": 4.4,
+      "totalResenas": 41,
+      "publicadoDesde": "2026-04-20"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-024",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "13:00",
+        "horaFin": "14:00",
+        "fecha": null,
+        "estado": "ocupado"
+      },
+      {
+        "tutorId": "u-024",
+        "tipo": "recurrente",
+        "dia": "martes",
+        "horaInicio": "14:00",
+        "horaFin": "15:00",
+        "fecha": null,
+        "estado": "no-disponible"
+      },
+      {
+        "tutorId": "u-024",
+        "tipo": "recurrente",
+        "dia": "sabado",
+        "horaInicio": "12:00",
+        "horaFin": "13:00",
+        "fecha": null,
+        "estado": "no-disponible"
+      },
+      {
+        "tutorId": "u-024",
+        "tipo": "excepcion",
+        "dia": "lunes",
+        "horaInicio": "08:00",
+        "horaFin": "20:00",
+        "fecha": "2026-10-19",
+        "estado": "no-disponible"
+      },
+      {
+        "tutorId": "u-024",
+        "tipo": "excepcion",
+        "dia": "miercoles",
+        "horaInicio": "08:00",
+        "horaFin": "20:00",
+        "fecha": "2026-10-21",
+        "estado": "no-disponible"
+      },
+      {
+        "tutorId": "u-024",
+        "tipo": "excepcion",
+        "dia": "viernes",
+        "horaInicio": "08:00",
+        "horaFin": "20:00",
+        "fecha": "2026-10-23",
+        "estado": "no-disponible"
+      }
+    ]
+  },
+  {
+    "id": "u-025",
+    "nombres": "Fabiana",
+    "apellidos": "Ccori Ramos",
+    "correo": "fabiana.ccori@aloe.ulima.edu.pe",
+    "carrera": "Actuaria",
+    "ciclo": 10,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": true,
+      "biografia": "Estudiante de Actuaria. Refuerzo Física I con ejercicios paso a paso.",
+      "modalidad": "presencial",
+      "sedePreferencia": "Pabellón A",
+      "cursos": [
+        {
+          "codigo": "FI101",
+          "nombre": "Física I",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "MA201",
+          "nombre": "Álgebra Lineal",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "IN101",
+          "nombre": "Programación I",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        }
+      ],
+      "promedio": 3.9,
+      "totalResenas": 36,
+      "publicadoDesde": "2026-07-21"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-025",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "12:00",
+        "horaFin": "13:00",
+        "fecha": null,
+        "estado": "no-disponible"
+      },
+      {
+        "tutorId": "u-025",
+        "tipo": "recurrente",
+        "dia": "martes",
+        "horaInicio": "17:00",
+        "horaFin": "18:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-025",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "09:00",
+        "horaFin": "10:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-025",
+        "tipo": "recurrente",
+        "dia": "sabado",
+        "horaInicio": "17:00",
+        "horaFin": "18:00",
+        "fecha": null,
+        "estado": "no-disponible"
+      },
+      {
+        "tutorId": "u-025",
+        "tipo": "excepcion",
+        "dia": "martes",
+        "horaInicio": "08:00",
+        "horaFin": "20:00",
+        "fecha": "2026-10-27",
+        "estado": "no-disponible"
+      },
+      {
+        "tutorId": "u-025",
+        "tipo": "excepcion",
+        "dia": "viernes",
+        "horaInicio": "08:00",
+        "horaFin": "20:00",
+        "fecha": "2026-10-30",
+        "estado": "no-disponible"
+      }
+    ]
+  },
+  {
+    "id": "u-026",
+    "nombres": "Renato",
+    "apellidos": "Paredes Díaz",
+    "correo": "renato.paredes@aloe.ulima.edu.pe",
+    "carrera": "Física",
+    "ciclo": 8,
+    "fotoUrl": "",
+    "rol": [
+      "estudiante",
+      "tutor"
+    ],
+    "perfilTutor": {
+      "activo": false,
+      "biografia": "Estudiante de Física. Refuerzo Contabilidad de Costos con ejercicios paso a paso.",
+      "modalidad": "remota",
+      "sedePreferencia": null,
+      "cursos": [
+        {
+          "codigo": "CO105",
+          "nombre": "Contabilidad de Costos",
+          "nivel": "avanzado",
+          "experiencia": "Tutoría desde 2025-2"
+        },
+        {
+          "codigo": "ES201",
+          "nombre": "Estadística",
+          "nivel": "intermedio",
+          "experiencia": "Tutoría desde 2025-2"
+        }
+      ],
+      "promedio": 4.6,
+      "totalResenas": 16,
+      "publicadoDesde": "2026-03-19"
+    },
+    "disponibilidad": [
+      {
+        "tutorId": "u-026",
+        "tipo": "recurrente",
+        "dia": "sabado",
+        "horaInicio": "17:00",
+        "horaFin": "18:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-026",
+        "tipo": "recurrente",
+        "dia": "miercoles",
+        "horaInicio": "16:00",
+        "horaFin": "17:00",
+        "fecha": null,
+        "estado": "ocupado"
+      },
+      {
+        "tutorId": "u-026",
+        "tipo": "recurrente",
+        "dia": "jueves",
+        "horaInicio": "10:00",
+        "horaFin": "11:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-026",
+        "tipo": "recurrente",
+        "dia": "lunes",
+        "horaInicio": "18:00",
+        "horaFin": "19:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-026",
+        "tipo": "recurrente",
+        "dia": "viernes",
+        "horaInicio": "08:00",
+        "horaFin": "09:00",
+        "fecha": null,
+        "estado": "libre"
+      },
+      {
+        "tutorId": "u-026",
+        "tipo": "recurrente",
+        "dia": "viernes",
+        "horaInicio": "09:00",
+        "horaFin": "10:00",
+        "fecha": null,
+        "estado": "libre"
+      }
+    ]
+  }
+]
