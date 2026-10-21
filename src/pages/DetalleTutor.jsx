@@ -195,13 +195,12 @@ function DetalleTutor() {
           </div>
 
           <div className="detalle-tutor__perfil-der">
-            <button
-              type="button"
+            <Link
+              to={`/tutor/${id}`}
               className="detalle-tutor__btn-ver-resenas"
-              onClick={() => alert(`Reseñas de ${nombreCompleto}: promedio ${promedio} con 28 opiniones.`)}
             >
               Ver reseñas
-            </button>
+            </Link>
           </div>
         </section>
 

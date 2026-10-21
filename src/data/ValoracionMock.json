@@ -1,0 +1,32 @@
+[
+  {
+    "idCalificacion": 1,
+    "idSesion": "SES-001",
+    "idTutor": 101,
+    "nombreTutor": "Carlos Mendoza",
+    "curso": "Cálculo II",
+    "puntajeGeneral": 5,
+    "aspectos": {
+      "claridad": 5,
+      "puntualidad": 5,
+      "dominio": 5
+    },
+    "comentario": "Excelente explicación, resolvió todas mis dudas para el parcial.",
+    "fecha": "2026-10-15"
+  },
+  {
+    "idCalificacion": 2,
+    "idSesion": "SES-002",
+    "idTutor": 102,
+    "nombreTutor": "Ana Torres",
+    "curso": "Programación Web",
+    "puntajeGeneral": 4,
+    "aspectos": {
+      "claridad": 4,
+      "puntualidad": 5,
+      "dominio": 4
+    },
+    "comentario": "Muy buena predisposición y paciencia.",
+    "fecha": "2026-10-18"
+  }
+]

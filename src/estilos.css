@@ -263,3 +263,241 @@ footer a {
   color: #6E6C82;
   font-size: 12px;
 }
+
+  /* HU-6*/
+
+
+.main-ranking, 
+.main-mis-calificaciones, 
+.main-calificacion {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: 'Source Sans 3', sans-serif;
+}
+
+.contenedor-ranking h2, 
+.contenedor-mis-reseñas h2, 
+.contenedor-formulario-calificacion h2 {
+  color: #8B0000; /* Color institucional Ulima */
+  margin-bottom: 10px;
+}
+
+.contenedor-ranking p, 
+.contenedor-mis-reseñas p, 
+.contenedor-formulario-calificacion p {
+  color: #555;
+  margin-bottom: 25px;
+}
+
+/* Componente de Estrellas */
+.estrellas-container {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.estrella {
+  transition: transform 0.2s ease;
+}
+
+.estrella:hover {
+  transform: scale(1.1);
+}
+
+/* Barra de filtros */
+.filtros-busqueda input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-bottom: 25px;
+}
+
+/* Tarjetas de Ranking */
+.tabla-ranking {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.tarjeta-ranking-item {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  border-left: 5px solid #8B0000;
+}
+
+.posicion {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #8B0000;
+  margin-right: 20px;
+  min-width: 35px;
+}
+
+.info-tutor-ranking {
+  flex-grow: 1;
+}
+
+.info-tutor-ranking h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.info-tutor-ranking p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.calificacion-ranking {
+  text-align: right;
+}
+
+.calificacion-ranking span {
+  display: block;
+  font-size: 0.85rem;
+  color: #777;
+  margin-top: 4px;
+}
+
+/* Listado de Mis Calificaciones */
+.lista-reseñas {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tarjeta-reseña-usuario {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  border: 1px solid #eaeaea;
+}
+
+.encabezado-reseña {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.encabezado-reseña h4 {
+  margin: 0;
+  color: #333;
+}
+
+.fecha {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.comentario-texto {
+  font-style: italic;
+  color: #444;
+  margin: 15px 0;
+}
+
+.acciones-reseña {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.btn-editar, 
+.btn-eliminar {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.btn-editar {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-eliminar {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-editar:hover { background-color: #0056b3; }
+.btn-eliminar:hover { background-color: #a71d2a; }
+
+/* Formulario de Calificación y Aspectos */
+.formulario-reseña {
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.campo {
+  margin-bottom: 20px;
+}
+
+.campo label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.campo select, 
+.campo textarea, 
+.campo input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.aspectos-calificacion {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #fafafa;
+}
+
+.aspecto-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.aspecto-item:last-child {
+  margin-bottom: 0;
+}
+
+.aspecto-item label {
+  font-size: 0.95rem;
+  color: #444;
+  margin: 0;
+}
+
+.aspecto-item input {
+  width: 70px;
+  padding: 6px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.estado-vacio {
+  text-align: center;
+  color: #777;
+  font-style: italic;
+  padding: 30px;
+}

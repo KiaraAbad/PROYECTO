@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { useTutores } from "../hooks/useTutores";
+import { Link, useSearchParams } from "react-router-dom";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -9,11 +10,13 @@ import FiltrosActivos from "../components/FiltrosActivos";
 import Paginacion from "../components/Paginacion";
 import EstadoVacio from "../components/EstadoVacio";
 import EsqueletoCarga from "../components/EsqueletoCarga";
+import EstrellasRating from "../components/EstrellasRating";
 import "../styles/directorio.css";
 
 const POR_PAGINA = 8;
+const MINIMO_CALIFICACIONES_RANKING = 5;
 
-// Filtros iniciales configurados para reflejar fielmente el mockup de referencia
+
 const FILTROS_INICIALES = {
   carrera: "",
   curso: "MA101",
@@ -92,7 +95,13 @@ function obtenerProximaDisponibilidad(tutor) {
 
 function Directorio() {
   const { tutores, cargando } = useTutores();
+  const [searchParams, setSearchParams] = useSearchParams();
 
+  const [seccionDirectorio, setSeccionDirectorio] = useState(() =>
+    searchParams.get("vista") === "ranking" ? "ranking" : "todos"
+  );
+  const [cursoRanking, setCursoRanking] = useState("MA101");
+  const [carreraRanking, setCarreraRanking] = useState("");
   const [orden, setOrden] = useState("promedio");
   const [filtrosBorrador, setFiltrosBorrador] = useState(FILTROS_INICIALES);
   const [filtrosAplicados, setFiltrosAplicados] = useState(FILTROS_INICIALES);
@@ -150,6 +159,45 @@ function Directorio() {
       dias: DIAS.filter((dia) => dias.has(dia)),
     };
   }, [tutoresActivos]);
+
+  const tutoresRanking = useMemo(
+    () =>
+      tutoresActivos
+        .filter((tutor) => {
+          const perfil = tutor.perfilTutor ?? {};
+          const tieneCalificacionesSuficientes =
+            Number(perfil.totalResenas ?? 0) >= MINIMO_CALIFICACIONES_RANKING;
+          const coincideCurso =
+            !cursoRanking ||
+            (perfil.cursos ?? []).some((curso) => curso.codigo === cursoRanking);
+          const coincideCarrera =
+            !carreraRanking || tutor.carrera === carreraRanking;
+
+          return (
+            tieneCalificacionesSuficientes &&
+            coincideCurso &&
+            coincideCarrera
+          );
+        })
+        .sort(
+          (a, b) =>
+            Number(b.perfilTutor?.promedio ?? 0) -
+              Number(a.perfilTutor?.promedio ?? 0) ||
+            nombreCompleto(a).localeCompare(nombreCompleto(b), "es")
+        ),
+    [tutoresActivos, cursoRanking, carreraRanking]
+  );
+
+  function cambiarSeccion(seccion) {
+    setSeccionDirectorio(seccion);
+    const nuevosParametros = new URLSearchParams(searchParams);
+    if (seccion === "ranking") {
+      nuevosParametros.set("vista", "ranking");
+    } else {
+      nuevosParametros.delete("vista");
+    }
+    setSearchParams(nuevosParametros, { replace: true });
+  }
 
   // Filtrado y ordenamiento de tutores
   const tutoresFiltrados = useMemo(() => {
@@ -286,6 +334,26 @@ function Directorio() {
       <Header />
 
       <main className="directorio-layout">
+        <nav className="directorio-secciones" aria-label="Secciones del directorio">
+          <button
+            type="button"
+            className={`directorio-secciones__tab ${seccionDirectorio === "todos" ? "directorio-secciones__tab--activa" : ""}`}
+            aria-current={seccionDirectorio === "todos" ? "page" : undefined}
+            onClick={() => cambiarSeccion("todos")}
+          >
+            Todos los tutores
+          </button>
+          <button
+            type="button"
+            className={`directorio-secciones__tab ${seccionDirectorio === "ranking" ? "directorio-secciones__tab--activa" : ""}`}
+            aria-current={seccionDirectorio === "ranking" ? "page" : undefined}
+            onClick={() => cambiarSeccion("ranking")}
+          >
+            Ranking por curso
+          </button>
+        </nav>
+
+        {seccionDirectorio === "todos" ? (
         <div className="directorio-layout__grid">
           {/* Barra lateral de filtros */}
           <aside className="directorio-layout__sidebar">
@@ -378,6 +446,84 @@ function Directorio() {
             )}
           </section>
         </div>
+        ) : (
+          <section className="directorio-ranking" aria-labelledby="titulo-ranking-directorio">
+            <div className="directorio-ranking__encabezado">
+              <div>
+                <h1 id="titulo-ranking-directorio">Ranking de tutores</h1>
+                <p>Ordenado por promedio recibido. Solo se listan tutores con 5 o más calificaciones.</p>
+              </div>
+              <div className="directorio-ranking__filtros">
+                <label>
+                  <span className="sr-only">Filtrar por curso</span>
+                  <select
+                    value={cursoRanking}
+                    onChange={(event) => setCursoRanking(event.target.value)}
+                  >
+                    <option value="">Cursos: todos</option>
+                    {opciones.cursos.map((curso) => (
+                      <option key={curso.codigo} value={curso.codigo}>
+                        {curso.codigo} {curso.nombre}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label>
+                  <span className="sr-only">Filtrar por carrera</span>
+                  <select
+                    value={carreraRanking}
+                    onChange={(event) => setCarreraRanking(event.target.value)}
+                  >
+                    <option value="">Carreras: todas</option>
+                    {opciones.carreras.map((carrera) => (
+                      <option key={carrera} value={carrera}>{carrera}</option>
+                    ))}
+                  </select>
+                </label>
+              </div>
+            </div>
+
+            {cargando ? (
+              <EsqueletoCarga cantidad={4} />
+            ) : tutoresRanking.length > 0 ? (
+              <ol className="directorio-ranking__lista">
+                {tutoresRanking.map((tutor, index) => {
+                  const perfil = tutor.perfilTutor ?? {};
+                  const nombre = nombreCompleto(tutor);
+                  const promedio = Number(perfil.promedio ?? 0);
+                  const cursos = (perfil.cursos ?? [])
+                    .map((curso) => curso.codigo)
+                    .filter(Boolean)
+                    .join(" · ");
+
+                  return (
+                    <li className="directorio-ranking__fila" key={tutor.id}>
+                      <span className="directorio-ranking__puesto">{index + 1}</span>
+                      <div className="directorio-ranking__avatar" aria-hidden="true">
+                        {tutor.fotoUrl ? <img src={tutor.fotoUrl} alt="" /> : null}
+                      </div>
+                      <Link className="directorio-ranking__tutor" to={`/tutores/${tutor.id}`}>
+                        <strong>{nombre}</strong>
+                        <span>
+                          {tutor.carrera} · {cursos} · {perfil.modalidad ?? "remota"}
+                        </span>
+                      </Link>
+                      <EstrellasRating rating={Math.round(promedio)} readonly />
+                      <strong className="directorio-ranking__promedio">{promedio.toFixed(1)}</strong>
+                      <span className="directorio-ranking__total">
+                        {perfil.totalResenas} calificaciones
+                      </span>
+                    </li>
+                  );
+                })}
+              </ol>
+            ) : (
+              <p className="directorio-ranking__vacio">
+                No hay tutores con 5 o más calificaciones para los filtros seleccionados.
+              </p>
+            )}
+          </section>
+        )}
       </main>
 
       <Footer />
