@@ -1,0 +1,58 @@
+.solicitudes__encabezado {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.solicitudes__contadores {
+  display: flex;
+  gap: 12px;
+}
+
+.solicitudes__contador {
+  min-width: 96px;
+  padding: 10px 18px;
+  border: 1px solid;
+  border-radius: var(--radius);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.solicitudes__contador--pendientes {
+  background-color: #fbf3e3;
+  border-color: var(--warning);
+  color: var(--warning);
+}
+
+.solicitudes__contador--aceptadas {
+  background-color: var(--primary-soft);
+  border-color: var(--primary-soft);
+  color: var(--primary);
+}
+
+.solicitudes__contador--rechazadas {
+  background-color: #f1f0f5;
+  border-color: var(--border);
+  color: var(--text-muted);
+}
+
+.solicitudes__contador-numero {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.solicitudes__contador-texto {
+  display: block;
+  font-size: 0.78rem;
+}
+
+.solicitudes__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

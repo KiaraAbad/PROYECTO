@@ -1,0 +1,83 @@
+.mis-sesiones__encabezado {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.mis-sesiones__filtros {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.mis-sesiones__filtro {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 14px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  color: var(--text);
+  box-sizing: border-box;
+}
+
+.mis-sesiones__filtro select,
+.mis-sesiones__filtro input {
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.mis-sesiones__filtro select:focus-visible,
+.mis-sesiones__filtro input:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.mis-sesiones__filtro-error {
+  margin: 0 0 16px 0;
+  font-size: 0.85rem;
+  color: var(--danger);
+  text-align: right;
+}
+
+.mis-sesiones__seccion {
+  margin-bottom: 32px;
+}
+
+.mis-sesiones__seccion-titulo {
+  margin: 0 0 12px 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.mis-sesiones__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mis-sesiones__lista--compacta {
+  gap: 8px;
+}
+
+.mis-sesiones__vacio-seccion {
+  margin: 0;
+  padding: 18px 24px;
+  background-color: var(--surface);
+  border: 1px dashed #d6d4e5;
+  border-radius: var(--radius);
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}

@@ -1,0 +1,585 @@
+[
+  {
+    "codigo": "TU-2026-0184",
+    "tutorId": "u-003",
+    "estudianteId": "u-101",
+    "curso": {
+      "codigo": "MA101",
+      "nombre": "Cálculo I"
+    },
+    "tema": "Ejercicios de integrales por partes",
+    "fecha": "2026-09-14",
+    "horaInicio": "16:00",
+    "horaFin": "17:00",
+    "modalidad": "remota",
+    "enlaceSesion": "meet.ulima.edu.pe/tu-0184",
+    "estado": "programada",
+    "motivoRechazo": null,
+    "horarioAlternativo": null,
+    "canceladaPor": null,
+    "calificacion": null,
+    "trazabilidad": [
+      {
+        "fecha": "2026-09-10T19:42:00",
+        "evento": "Solicitud enviada",
+        "actor": "Joaquín Medina"
+      },
+      {
+        "fecha": "2026-09-11T08:15:00",
+        "evento": "Horario alternativo propuesto",
+        "actor": "Sebastián Rojas"
+      },
+      {
+        "fecha": "2026-09-11T12:03:00",
+        "evento": "Propuesta aceptada",
+        "actor": "Joaquín Medina"
+      },
+      {
+        "fecha": "2026-09-11T12:03:00",
+        "evento": "Sesión programada",
+        "actor": "sistema"
+      }
+    ]
+  },
+  {
+    "codigo": "TU-2026-0198",
+    "tutorId": "u-001",
+    "estudianteId": "u-101",
+    "curso": {
+      "codigo": "SI401",
+      "nombre": "Programación Web"
+    },
+    "tema": "Dudas sobre el proyecto final",
+    "fecha": "2026-09-16",
+    "horaInicio": "10:00",
+    "horaFin": "11:00",
+    "modalidad": "presencial",
+    "enlaceSesion": null,
+    "estado": "horario-propuesto",
+    "motivoRechazo": null,
+    "horarioAlternativo": {
+      "fecha": "2026-09-17",
+      "horaInicio": "10:00",
+      "horaFin": "11:00",
+      "propuestoPor": "tutor",
+      "estadoPrevio": "pendiente",
+      "mensaje": "Ese día tengo clases hasta las 11:00. ¿Te sirve el jueves a la misma hora?"
+    },
+    "canceladaPor": null,
+    "calificacion": null,
+    "trazabilidad": [
+      {
+        "fecha": "2026-09-11T22:05:00",
+        "evento": "Solicitud enviada",
+        "actor": "Joaquín Medina"
+      },
+      {
+        "fecha": "2026-09-12T08:20:00",
+        "evento": "Horario alternativo propuesto",
+        "actor": "Ariana Flores",
+        "detalle": "Propone jueves 17/09/2026, 10:00 a 11:00"
+      }
+    ]
+  },
+  {
+    "codigo": "TU-2026-0203",
+    "tutorId": "u-004",
+    "estudianteId": "u-101",
+    "curso": {
+      "codigo": "CO105",
+      "nombre": "Contabilidad General"
+    },
+    "tema": "Preparación para el examen parcial",
+    "fecha": "2026-09-18",
+    "horaInicio": "19:00",
+    "horaFin": "20:00",
+    "modalidad": "remota",
+    "enlaceSesion": "meet.ulima.edu.pe/tu-0203",
+    "estado": "programada",
+    "motivoRechazo": null,
+    "horarioAlternativo": null,
+    "canceladaPor": null,
+    "calificacion": null,
+    "trazabilidad": [
+      {
+        "fecha": "2026-09-09T18:00:00",
+        "evento": "Solicitud enviada",
+        "actor": "Joaquín Medina"
+      },
+      {
+        "fecha": "2026-09-09T20:30:00",
+        "evento": "Solicitud aceptada",
+        "actor": "Valeria Ccahuana"
+      },
+      {
+        "fecha": "2026-09-09T20:30:00",
+        "evento": "Sesión programada",
+        "actor": "sistema"
+      }
+    ]
+  },
+  {
+    "codigo": "TU-2026-0191",
+    "tutorId": "u-002",
+    "estudianteId": "u-101",
+    "curso": {
+      "codigo": "ES210",
+      "nombre": "Estadística Aplicada"
+    },
+    "tema": "Repaso para la práctica calificada 2",
+    "fecha": "2026-09-05",
+    "horaInicio": "17:00",
+    "horaFin": "18:00",
+    "modalidad": "remota",
+    "enlaceSesion": "meet.ulima.edu.pe/tu-0191",
+    "estado": "realizada",
+    "motivoRechazo": null,
+    "horarioAlternativo": null,
+    "canceladaPor": null,
+    "calificacion": null,
+    "trazabilidad": [
+      {
+        "fecha": "2026-09-02T10:15:00",
+        "evento": "Solicitud enviada",
+        "actor": "Joaquín Medina"
+      },
+      {
+        "fecha": "2026-09-02T10:15:00",
+        "evento": "Solicitud aceptada",
+        "actor": "Camila Quispe"
+      },
+      {
+        "fecha": "2026-09-02T10:15:00",
+        "evento": "Sesión programada",
+        "actor": "sistema"
+      },
+      {
+        "fecha": "2026-09-05T18:00:00",
+        "evento": "Sesión cerrada como realizada",
+        "actor": "Camila Quispe"
+      }
+    ]
+  },
+  {
+    "codigo": "TU-2026-0172",
+    "tutorId": "u-005",
+    "estudianteId": "u-101",
+    "curso": {
+      "codigo": "EC201",
+      "nombre": "Microeconomía"
+    },
+    "tema": "Preparación para el examen parcial",
+    "fecha": "2026-09-02",
+    "horaInicio": "08:00",
+    "horaFin": "09:00",
+    "modalidad": "presencial",
+    "enlaceSesion": null,
+    "estado": "realizada",
+    "motivoRechazo": null,
+    "horarioAlternativo": null,
+    "canceladaPor": null,
+    "calificacion": 5,
+    "trazabilidad": [
+      {
+        "fecha": "2026-08-29T21:00:00",
+        "evento": "Solicitud enviada",
+        "actor": "Joaquín Medina"
+      },
+      {
+        "fecha": "2026-08-29T21:00:00",
+        "evento": "Solicitud aceptada",
+        "actor": "Diego Huamán"
+      },
+      {
+        "fecha": "2026-08-29T21:00:00",
+        "evento": "Sesión programada",
+        "actor": "sistema"
+      },
+      {
+        "fecha": "2026-09-02T09:00:00",
+        "evento": "Sesión cerrada como realizada",
+        "actor": "Diego Huamán"
+      }
+    ]
+  },
+  {
+    "codigo": "TU-2026-0163",
+    "tutorId": "u-007",
+    "estudianteId": "u-101",
+    "curso": {
+      "codigo": "SI401",
+      "nombre": "Programación Web"
+    },
+    "tema": "Dudas sobre el proyecto final",
+    "fecha": "2026-08-28",
+    "horaInicio": "16:00",
+    "horaFin": "17:00",
+    "modalidad": "remota",
+    "enlaceSesion": "meet.ulima.edu.pe/tu-0163",
+    "estado": "no-asistio",
+    "motivoRechazo": null,
+    "horarioAlternativo": null,
+    "canceladaPor": null,
+    "calificacion": null,
+    "trazabilidad": [
+      {
+        "fecha": "2026-08-25T18:20:00",
+        "evento": "Solicitud enviada",
+        "actor": "Joaquín Medina"
+      },
+      {
+        "fecha": "2026-08-25T18:20:00",
+        "evento": "Solicitud aceptada",
+        "actor": "Mateo Chávez"
+      },
+      {
+        "fecha": "2026-08-25T18:20:00",
+        "evento": "Sesión programada",
+        "actor": "sistema"
+      },
+      {
+        "fecha": "2026-08-28T17:00:00",
+        "evento": "Sesión cerrada como no asistió",
+        "actor": "Mateo Chávez"
+      }
+    ]
+  },
+  {
+    "codigo": "TU-2026-0158",
+    "tutorId": "u-006",
+    "estudianteId": "u-101",
+    "curso": {
+      "codigo": "ES210",
+      "nombre": "Estadística Aplicada"
+    },
+    "tema": "Práctica de regresión lineal",
+    "fecha": "2026-08-25",
+    "horaInicio": "10:00",
+    "horaFin": "11:00",
+    "modalidad": "remota",
+    "enlaceSesion": "meet.ulima.edu.pe/tu-0158",
+    "estado": "cancelada",
+    "motivoRechazo": null,
+    "horarioAlternativo": null,
+    "canceladaPor": "estudiante",
+    "calificacion": null,
+    "trazabilidad": [
+      {
+        "fecha": "2026-08-20T09:00:00",
+        "evento": "Solicitud enviada",
+        "actor": "Joaquín Medina"
+      },
+      {
+        "fecha": "2026-08-20T09:00:00",
+        "evento": "Solicitud aceptada",
+        "actor": "Lucía Paredes"
+      },
+      {
+        "fecha": "2026-08-20T09:00:00",
+        "evento": "Sesión programada",
+        "actor": "sistema"
+      },
+      {
+        "fecha": "2026-08-22T11:30:00",
+        "evento": "Sesión cancelada",
+        "actor": "Joaquín Medina",
+        "detalle": "Cancelada por el estudiante"
+      }
+    ]
+  },
+  {
+    "codigo": "TU-2026-0149",
+    "tutorId": "u-001",
+    "estudianteId": "u-101",
+    "curso": {
+      "codigo": "MA101",
+      "nombre": "Cálculo I"
+    },
+    "tema": "Límites y continuidad",
+    "fecha": "2026-08-20",
+    "horaInicio": "18:00",
+    "horaFin": "19:00",
+    "modalidad": "remota",
+    "enlaceSesion": null,
+    "estado": "rechazada",
+    "motivoRechazo": "Esa semana viajo por un trabajo de campo y no podré atender.",
+    "horarioAlternativo": null,
+    "canceladaPor": null,
+    "calificacion": null,
+    "trazabilidad": [
+      {
+        "fecha": "2026-08-17T20:10:00",
+        "evento": "Solicitud enviada",
+        "actor": "Joaquín Medina"
+      },
+      {
+        "fecha": "2026-08-18T09:40:00",
+        "evento": "Solicitud rechazada",
+        "actor": "Ariana Flores",
+        "detalle": "Esa semana viajo por un trabajo de campo y no podré atender."
+      }
+    ]
+  },
+  {
+    "codigo": "TU-2026-0207",
+    "tutorId": "u-003",
+    "estudianteId": "u-101",
+    "curso": {
+      "codigo": "MA101",
+      "nombre": "Cálculo I"
+    },
+    "tema": "Ejercicios de integrales por partes",
+    "fecha": "2026-09-14",
+    "horaInicio": "16:00",
+    "horaFin": "17:00",
+    "modalidad": "remota",
+    "enlaceSesion": null,
+    "estado": "pendiente",
+    "motivoRechazo": null,
+    "horarioAlternativo": null,
+    "canceladaPor": null,
+    "calificacion": null,
+    "trazabilidad": [
+      {
+        "fecha": "2026-09-12T06:10:00",
+        "evento": "Solicitud enviada",
+        "actor": "Joaquín Medina"
+      }
+    ]
+  },
+  {
+    "codigo": "TU-2026-0205",
+    "tutorId": "u-003",
+    "estudianteId": "u-102",
+    "curso": {
+      "codigo": "FI202",
+      "nombre": "Física II"
+    },
+    "tema": "Repaso para la práctica calificada 2",
+    "fecha": "2026-09-16",
+    "horaInicio": "09:00",
+    "horaFin": "10:00",
+    "modalidad": "presencial",
+    "enlaceSesion": null,
+    "estado": "pendiente",
+    "motivoRechazo": null,
+    "horarioAlternativo": null,
+    "canceladaPor": null,
+    "calificacion": null,
+    "trazabilidad": [
+      {
+        "fecha": "2026-09-11T11:00:00",
+        "evento": "Solicitud enviada",
+        "actor": "Antonella Vargas"
+      }
+    ]
+  },
+  {
+    "codigo": "TU-2026-0206",
+    "tutorId": "u-003",
+    "estudianteId": "u-103",
+    "curso": {
+      "codigo": "ES210",
+      "nombre": "Estadística Aplicada"
+    },
+    "tema": "Dudas sobre el proyecto final",
+    "fecha": "2026-09-18",
+    "horaInicio": "17:00",
+    "horaFin": "18:00",
+    "modalidad": "remota",
+    "enlaceSesion": null,
+    "estado": "pendiente",
+    "motivoRechazo": null,
+    "horarioAlternativo": null,
+    "canceladaPor": null,
+    "calificacion": null,
+    "trazabilidad": [
+      {
+        "fecha": "2026-09-10T10:00:00",
+        "evento": "Solicitud enviada",
+        "actor": "Gonzalo Ramírez"
+      }
+    ]
+  },
+  {
+    "codigo": "TU-2026-0212",
+    "tutorId": "u-003",
+    "estudianteId": "u-103",
+    "curso": {
+      "codigo": "FI202",
+      "nombre": "Física II"
+    },
+    "tema": "Repaso de circuitos para el parcial",
+    "fecha": "2026-09-12",
+    "horaInicio": "18:00",
+    "horaFin": "19:00",
+    "modalidad": "remota",
+    "enlaceSesion": "meet.ulima.edu.pe/tu-0212",
+    "estado": "programada",
+    "motivoRechazo": null,
+    "horarioAlternativo": null,
+    "canceladaPor": null,
+    "calificacion": null,
+    "trazabilidad": [
+      {
+        "fecha": "2026-09-10T10:00:00",
+        "evento": "Solicitud enviada",
+        "actor": "Gonzalo Ramírez"
+      },
+      {
+        "fecha": "2026-09-10T15:00:00",
+        "evento": "Solicitud aceptada",
+        "actor": "Sebastián Rojas"
+      },
+      {
+        "fecha": "2026-09-10T15:00:00",
+        "evento": "Sesión programada",
+        "actor": "sistema"
+      }
+    ]
+  },
+  {
+    "codigo": "TU-2026-0176",
+    "tutorId": "u-003",
+    "estudianteId": "u-105",
+    "curso": {
+      "codigo": "FI202",
+      "nombre": "Física II"
+    },
+    "tema": "Campo eléctrico y ley de Gauss",
+    "fecha": "2026-09-18",
+    "horaInicio": "16:00",
+    "horaFin": "17:00",
+    "modalidad": "presencial",
+    "enlaceSesion": null,
+    "estado": "programada",
+    "motivoRechazo": null,
+    "horarioAlternativo": null,
+    "canceladaPor": null,
+    "calificacion": null,
+    "trazabilidad": [
+      {
+        "fecha": "2026-09-08T14:00:00",
+        "evento": "Solicitud enviada",
+        "actor": "Daniela Ríos"
+      },
+      {
+        "fecha": "2026-09-08T19:00:00",
+        "evento": "Solicitud aceptada",
+        "actor": "Sebastián Rojas"
+      },
+      {
+        "fecha": "2026-09-08T19:00:00",
+        "evento": "Sesión programada",
+        "actor": "sistema"
+      }
+    ]
+  },
+  {
+    "codigo": "TU-2026-0177",
+    "tutorId": "u-003",
+    "estudianteId": "u-104",
+    "curso": {
+      "codigo": "MA101",
+      "nombre": "Cálculo I"
+    },
+    "tema": "Integrales trigonométricas",
+    "fecha": "2026-09-17",
+    "horaInicio": "09:00",
+    "horaFin": "10:00",
+    "modalidad": "remota",
+    "enlaceSesion": "meet.ulima.edu.pe/tu-0177",
+    "estado": "programada",
+    "motivoRechazo": null,
+    "horarioAlternativo": null,
+    "canceladaPor": null,
+    "calificacion": null,
+    "trazabilidad": [
+      {
+        "fecha": "2026-09-09T12:00:00",
+        "evento": "Solicitud enviada",
+        "actor": "Piero Alcántara"
+      },
+      {
+        "fecha": "2026-09-09T16:30:00",
+        "evento": "Solicitud aceptada",
+        "actor": "Sebastián Rojas"
+      },
+      {
+        "fecha": "2026-09-09T16:30:00",
+        "evento": "Sesión programada",
+        "actor": "sistema"
+      }
+    ]
+  },
+  {
+    "codigo": "TU-2026-0178",
+    "tutorId": "u-003",
+    "estudianteId": "u-102",
+    "curso": {
+      "codigo": "FI202",
+      "nombre": "Física II"
+    },
+    "tema": "Trabajo y energía",
+    "fecha": "2026-09-19",
+    "horaInicio": "10:00",
+    "horaFin": "11:00",
+    "modalidad": "remota",
+    "enlaceSesion": "meet.ulima.edu.pe/tu-0178",
+    "estado": "programada",
+    "motivoRechazo": null,
+    "horarioAlternativo": null,
+    "canceladaPor": null,
+    "calificacion": null,
+    "trazabilidad": [
+      {
+        "fecha": "2026-09-10T21:00:00",
+        "evento": "Solicitud enviada",
+        "actor": "Antonella Vargas"
+      },
+      {
+        "fecha": "2026-09-11T07:45:00",
+        "evento": "Solicitud aceptada",
+        "actor": "Sebastián Rojas"
+      },
+      {
+        "fecha": "2026-09-11T07:45:00",
+        "evento": "Sesión programada",
+        "actor": "sistema"
+      }
+    ]
+  },
+  {
+    "codigo": "TU-2026-0150",
+    "tutorId": "u-003",
+    "estudianteId": "u-106",
+    "curso": {
+      "codigo": "MA101",
+      "nombre": "Cálculo I"
+    },
+    "tema": "Aplicaciones de la derivada",
+    "fecha": "2026-08-31",
+    "horaInicio": "15:00",
+    "horaFin": "16:00",
+    "modalidad": "remota",
+    "enlaceSesion": null,
+    "estado": "rechazada",
+    "motivoRechazo": "Ese día tengo examen parcial y no podré atender.",
+    "horarioAlternativo": null,
+    "canceladaPor": null,
+    "calificacion": null,
+    "trazabilidad": [
+      {
+        "fecha": "2026-08-28T11:00:00",
+        "evento": "Solicitud enviada",
+        "actor": "Micaela Zegarra"
+      },
+      {
+        "fecha": "2026-08-28T18:00:00",
+        "evento": "Solicitud rechazada",
+        "actor": "Sebastián Rojas",
+        "detalle": "Ese día tengo examen parcial y no podré atender."
+      }
+    ]
+  }
+]
