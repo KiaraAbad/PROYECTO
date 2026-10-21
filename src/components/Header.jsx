@@ -11,7 +11,9 @@ function Header({
   const location = useLocation();
 
   const esHome = variante === "publico" || location.pathname === "/";
-  const esDirectorio = location.pathname.startsWith("/tutores");
+  const esDirectorio =
+    location.pathname.startsWith("/tutores") ||
+    location.pathname.startsWith("/tutor/");
   const esSesiones = location.pathname === "/mis-sesiones";
   const esCalificaciones = location.pathname === "/mis-calificaciones";
 
@@ -26,10 +28,17 @@ function Header({
         </div>
 
         <nav className="app-header__nav app-header__nav--publico" aria-label="Navegación pública">
-          <Link to="/" className="app-header__link app-header__link--activo">
+          <Link
+            to="/"
+            className={`app-header__link ${location.pathname === "/" ? "app-header__link--activo" : ""}`}
+          >
             Inicio
           </Link>
-          <Link to="/tutores" className="app-header__link">
+          <Link
+            to="/tutores"
+            className={`app-header__link ${esDirectorio ? "app-header__link--activo" : ""}`}
+            aria-current={esDirectorio ? "page" : undefined}
+          >
             Directorio
           </Link>
           <a href="/#como-funciona" className="app-header__link">
@@ -77,10 +86,12 @@ function Header({
           </Link>
 
           <Link
-            to="/tutores"
+            to="/mis-calificaciones"
             className={`app-header__link ${esCalificaciones ? "app-header__link--activo" : ""}`}
+            aria-current={esCalificaciones ? "page" : undefined}
           >
             Mis calificaciones
+            {esCalificaciones && <span className="app-header__indicador" />}
           </Link>
         </nav>
       </div>

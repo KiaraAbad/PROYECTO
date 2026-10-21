@@ -1,0 +1,349 @@
+.ficha-resenas-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #fafafd;
+}
+
+.ficha-resenas {
+  flex: 1;
+  width: min(1720px, 100%);
+  margin: 0 auto;
+  padding: 18px 56px 40px;
+}
+
+.ficha-resenas__breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 10px;
+  color: #77758a;
+  font-size: 0.78rem;
+}
+
+.ficha-resenas__breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ficha-resenas__breadcrumb a:hover {
+  color: var(--primary);
+}
+
+.ficha-resenas__perfil,
+.ficha-resenas__resumen,
+.ficha-resenas__comentario {
+  border: 1px solid #e2e1ec;
+  border-radius: 9px;
+  background: #fff;
+}
+
+.ficha-resenas__perfil {
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 16px;
+}
+
+.ficha-resenas__avatar {
+  width: 50px;
+  height: 50px;
+  flex: 0 0 50px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #eae8f7;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.ficha-resenas__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ficha-resenas__datos-tutor {
+  min-width: 0;
+  flex: 1;
+}
+
+.ficha-resenas__datos-tutor h1 {
+  margin: 0 0 3px;
+  color: #1c1b2e;
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+.ficha-resenas__datos-tutor p {
+  margin: 0;
+  color: #77758a;
+  font-size: 0.78rem;
+}
+
+.ficha-resenas__solicitar {
+  flex-shrink: 0;
+  border-radius: 5px;
+  padding: 10px 17px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.ficha-resenas__solicitar:hover {
+  background: var(--primary-dark);
+}
+
+.ficha-resenas__contenido {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.75fr);
+  align-items: stretch;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.ficha-resenas__resumen {
+  padding: 16px;
+}
+
+.ficha-resenas__calificacion {
+  display: grid;
+  grid-template-columns: minmax(105px, 0.9fr) minmax(110px, 1fr);
+  align-items: center;
+  gap: 12px;
+}
+
+.ficha-resenas__promedio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.ficha-resenas__promedio strong {
+  color: #1c1b2e;
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+.ficha-resenas__promedio .estrellas-container {
+  gap: 1px;
+}
+
+.ficha-resenas__promedio .estrella,
+.ficha-resenas__comentario .estrella {
+  font-size: 0.9rem !important;
+}
+
+.ficha-resenas__promedio .estrella.activa,
+.ficha-resenas__comentario .estrella.activa {
+  color: #e99b2e !important;
+}
+
+.ficha-resenas__promedio > span:last-child {
+  color: #77758a;
+  font-size: 0.65rem;
+}
+
+.ficha-resenas__distribucion {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.ficha-resenas__fila-puntaje {
+  display: grid;
+  grid-template-columns: 12px minmax(35px, 1fr) 17px;
+  align-items: center;
+  gap: 7px;
+  color: #77758a;
+  font-size: 0.68rem;
+}
+
+.ficha-resenas__fila-puntaje > span:last-child {
+  text-align: right;
+}
+
+.ficha-resenas__barra {
+  height: 7px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e3e2ec;
+}
+
+.ficha-resenas__barra > span {
+  height: 100%;
+  display: block;
+  border-radius: inherit;
+  background: #4138a5;
+}
+
+.ficha-resenas__aspectos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 26px 0 0;
+}
+
+.ficha-resenas__aspectos div {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 11px;
+  border: 1px solid #e2e1ec;
+  border-radius: 8px;
+  background: #fafafd;
+}
+
+.ficha-resenas__aspectos dt {
+  overflow: hidden;
+  color: #77758a;
+  font-size: 0.68rem;
+  text-overflow: ellipsis;
+}
+
+.ficha-resenas__aspectos dd {
+  margin: 0;
+  color: #1c1b2e;
+  font-weight: 600;
+}
+
+.ficha-resenas__comentarios {
+  min-width: 0;
+}
+
+.ficha-resenas__comentarios-encabezado {
+  min-height: 31px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.ficha-resenas__comentarios-encabezado h2 {
+  margin: 0;
+  color: #3b3596;
+  font-size: 1rem;
+}
+
+.ficha-resenas__filtro select {
+  max-width: 100%;
+  border: 1px solid #e2e1ec;
+  border-radius: 6px;
+  padding: 7px 10px;
+  background: #fff;
+  color: #1c1b2e;
+  font: inherit;
+  font-size: 0.7rem;
+}
+
+.ficha-resenas__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ficha-resenas__comentario {
+  padding: 13px 15px;
+}
+
+.ficha-resenas__comentario-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.ficha-resenas__comentario-cabecera h3 {
+  margin: 0 0 2px;
+  color: #1c1b2e;
+  font-size: 0.78rem;
+}
+
+.ficha-resenas__comentario-cabecera p,
+.ficha-resenas__texto {
+  margin: 0;
+  color: #77758a;
+}
+
+.ficha-resenas__comentario-cabecera p {
+  font-size: 0.68rem;
+}
+
+.ficha-resenas__texto {
+  margin-top: 9px;
+  color: #333244;
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.ficha-resenas__estado {
+  margin: 0;
+  padding: 24px;
+  border: 1px dashed #e2e1ec;
+  border-radius: 8px;
+  color: #77758a;
+  text-align: center;
+}
+
+.ficha-resenas__nota {
+  margin: 9px 0 0;
+  color: #77758a;
+  font-size: 0.7rem;
+}
+
+.ficha-resenas-page .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 850px) {
+  .ficha-resenas {
+    padding: 18px 20px 32px;
+  }
+
+  .ficha-resenas__contenido {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 550px) {
+  .ficha-resenas__perfil {
+    flex-wrap: wrap;
+  }
+
+  .ficha-resenas__solicitar {
+    margin-left: 65px;
+  }
+
+  .ficha-resenas__calificacion {
+    grid-template-columns: minmax(90px, 0.8fr) minmax(90px, 1fr);
+    gap: 8px;
+  }
+
+  .ficha-resenas__aspectos {
+    gap: 5px;
+  }
+
+  .ficha-resenas__aspectos div {
+    padding: 8px;
+  }
+
+  .ficha-resenas__comentario-cabecera {
+    flex-direction: column;
+    gap: 5px;
+  }
+}

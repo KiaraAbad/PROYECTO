@@ -1,10 +1,10 @@
 [
   {
     "id": "u-001",
-    "nombres": "Ariana",
-    "apellidos": "Flores Bustamante",
-    "correo": "ariana.flores@aloe.ulima.edu.pe",
-    "carrera": "Ingeniería de Sistemas",
+    "nombres": "Anita",
+    "apellidos": "Alvarado Hancco",
+    "correo": "analiz@gmail.com",
+    "carrera": "Ingeniería Industrial",
     "ciclo": 7,
     "fotoUrl": "",
     "rol": [
@@ -13,8 +13,8 @@
     ],
     "perfilTutor": {
       "activo": true,
-      "biografia": "Estudiante de Ingeniería de Sistemas. Apasionada por algoritmos y desarrollo web.",
-      "modalidad": "remota",
+      "biografia": "Estudiante de Ingeniería industrial. Apasionada por los procesos logisticos.",
+      "modalidad": "ambas",
       "sedePreferencia": null,
       "cursos": [
         {
@@ -32,7 +32,7 @@
       ],
       "promedio": 4.9,
       "totalResenas": 40,
-      "publicadoDesde": "2026-03-01"
+      "publicadoDesde": "2026-08-06"
     },
     "disponibilidad": [
       {
