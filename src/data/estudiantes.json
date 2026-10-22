@@ -1,0 +1,62 @@
+[
+  {
+    "id": "u-101",
+    "nombres": "Joaquín",
+    "apellidos": "Medina Talledo",
+    "carrera": "Ingeniería Industrial",
+    "ciclo": 5,
+    "rol": [
+      "estudiante"
+    ]
+  },
+  {
+    "id": "u-102",
+    "nombres": "Antonella",
+    "apellidos": "Vargas Ludeña",
+    "carrera": "Administración",
+    "ciclo": 4,
+    "rol": [
+      "estudiante"
+    ]
+  },
+  {
+    "id": "u-103",
+    "nombres": "Gonzalo",
+    "apellidos": "Ramírez Ayala",
+    "carrera": "Economía",
+    "ciclo": 6,
+    "rol": [
+      "estudiante"
+    ]
+  },
+  {
+    "id": "u-104",
+    "nombres": "Piero",
+    "apellidos": "Alcántara Núñez",
+    "carrera": "Ingeniería Industrial",
+    "ciclo": 5,
+    "rol": [
+      "estudiante"
+    ]
+  },
+  {
+    "id": "u-105",
+    "nombres": "Daniela",
+    "apellidos": "Ríos Camacho",
+    "carrera": "Economía",
+    "ciclo": 4,
+    "rol": [
+      "estudiante"
+    ]
+  },
+  {
+    "id": "u-106",
+    "nombres": "Micaela",
+    "apellidos": "Zegarra Prado",
+    "carrera": "Ingeniería Civil",
+    "ciclo": 3,
+    "rol": [
+      "estudiante"
+    ]
+  }
+]

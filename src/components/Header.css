@@ -1,11 +1,15 @@
 .app-header {
   background-color: var(--surface);
   border-bottom: 1px solid var(--border);
-  height: 72px;
-  padding: 0 56px;
+  min-height: 72px;
+  height: auto;
+  padding: 12px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  max-width: 100%;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -15,8 +19,9 @@
 .app-header__izquierda {
   display: flex;
   align-items: center;
-  gap: 48px;
-  height: 100%;
+  gap: 24px;
+  min-width: 0;
+  flex: 1 1 680px;
 }
 
 .app-header__logo {
@@ -25,6 +30,7 @@
   font-weight: 700;
   text-decoration: none;
   letter-spacing: -0.01em;
+  flex-shrink: 0;
 }
 
 .app-header__logo:hover {
@@ -34,8 +40,10 @@
 .app-header__nav {
   display: flex;
   align-items: center;
-  gap: 32px;
-  height: 100%;
+  gap: 24px;
+  min-width: 0;
+  overflow-x: auto;
+  padding: 8px 0;
 }
 
 .app-header__nav--publico {
@@ -53,6 +61,8 @@
   font-weight: 500;
   transition: color 0.15s ease;
   padding: 0 2px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .app-header__link:hover {
@@ -152,6 +162,12 @@
   box-shadow: 0 1px 3px rgba(59, 53, 150, 0.25);
 }
 
+/* En la vista de tutor el botón activo es verde (mockups 4.3 y 4.5) */
+.app-header__rol-btn--tutor {
+  background-color: var(--success);
+  box-shadow: 0 1px 3px rgba(30, 127, 77, 0.3);
+}
+
 .app-header__perfil {
   display: flex;
   align-items: center;
@@ -199,12 +215,28 @@
 
 @media (max-width: 900px) {
   .app-header {
-    padding: 0 20px;
+    padding: 12px 20px;
+    position: static;
   }
+
   .app-header__izquierda {
+    gap: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-basis: 100%;
+    width: 100%;
+  }
+
+  .app-header__nav {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
     gap: 20px;
   }
-  .app-header__nav {
-    display: none;
+
+  .app-header__derecha, .app-header__acciones-publicas {
+    flex-wrap: wrap;
+    gap: 12px;
+    max-width: 100%;
   }
 }

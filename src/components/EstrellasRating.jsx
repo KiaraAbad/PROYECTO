@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function EstrellasRating({ rating, setRating = null, readonly = true }) {
   const estrellas = [1, 2, 3, 4, 5];
 

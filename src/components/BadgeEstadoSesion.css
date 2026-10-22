@@ -1,0 +1,47 @@
+.badge-sesion {
+  display: inline-block;
+  padding: 3px 12px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-chip);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.badge-sesion--programada {
+  background-color: #e8f0f9;
+  border-color: var(--info);
+  color: var(--info);
+}
+
+.badge-sesion--realizada {
+  background-color: #e4f3eb;
+  border-color: var(--success);
+  color: var(--success);
+}
+
+.badge-sesion--no-asistio,
+.badge-sesion--rechazada {
+  background-color: #f8e5e3;
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.badge-sesion--cancelada {
+  background-color: #f1f0f5;
+  border-color: #c9c8d6;
+  color: var(--text-muted);
+}
+
+.badge-sesion--horario-propuesto {
+  background-color: #fbf1dc;
+  border-color: var(--warning);
+  color: var(--warning);
+}
+
+.badge-sesion--pendiente {
+  background-color: var(--primary-soft);
+  border-color: #bdb9e3;
+  color: var(--primary);
+}

@@ -1,0 +1,61 @@
+.notificacion {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  z-index: 1200;
+  width: 460px;
+  max-width: calc(100vw - 48px);
+  box-sizing: border-box;
+  padding: 14px 18px;
+  border: 1.5px solid;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 20px rgba(28, 27, 46, 0.18);
+}
+
+.notificacion--exito {
+  background-color: #e8f4ed;
+  border-color: var(--success);
+  color: var(--success);
+}
+
+.notificacion--error {
+  background-color: #f8e5e3;
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.notificacion__fila {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.notificacion__mensaje {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.notificacion__cerrar {
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 4px;
+}
+
+.notificacion__accion {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.notificacion--info {
+  background-color: #e8f0f9;
+  border-color: var(--info);
+  color: var(--info);
+}

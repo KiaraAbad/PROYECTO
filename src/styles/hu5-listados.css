@@ -1,0 +1,459 @@
+/* Ajustes de las vistas 5.3 y 5.4: se cargan después de hu5.css. */
+.hu5-app .hu5-listado-tabs {
+  gap: 32px;
+  margin: 0 0 22px;
+}
+
+.hu5-app .hu5-listado-tabs a {
+  margin: 0;
+  padding: 0 0 14px;
+}
+
+.hu5-app .hu5-listado-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px 28px;
+  padding: 0;
+  margin: 0 0 24px;
+  border: 0;
+  background: transparent;
+}
+
+.hu5-app .hu5-listado-titulo {
+  min-width: 0;
+}
+
+.hu5-app .hu5-listado-titulo h1 {
+  margin: 0 0 4px;
+}
+
+.hu5-app .hu5-listado-subtitulo {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 18px;
+}
+
+.hu5-app .hu5-listado-filtros {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hu5-app .hu5-selector-compacto {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 48px;
+  max-width: 300px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: white;
+  color: var(--text);
+  font-size: 16px;
+}
+
+.hu5-app .hu5-selector-compacto select {
+  width: auto;
+  max-width: 235px;
+  min-width: 65px;
+  min-height: 46px;
+  padding: 0 18px 0 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-overflow: ellipsis;
+}
+
+.hu5-app .hu5-periodo {
+  position: relative;
+  max-width: 350px;
+  font-size: 16px;
+}
+
+.hu5-app .hu5-periodo > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 48px;
+  padding: 12px 14px;
+  list-style: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+}
+
+.hu5-app .hu5-periodo > summary::-webkit-details-marker {
+  display: none;
+}
+
+.hu5-app .hu5-periodo > summary > span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hu5-app .hu5-periodo > summary::after {
+  content: '▾';
+  flex: 0 0 auto;
+  font-size: 11px;
+}
+
+.hu5-app .hu5-periodo[open] > summary {
+  border-color: var(--primary);
+}
+
+.hu5-app .hu5-periodo[open] > summary::after {
+  content: '▴';
+}
+
+.hu5-app .hu5-periodo:has([aria-invalid="true"]) > summary {
+  border-color: var(--danger);
+}
+
+.hu5-app .hu5-periodo-panel {
+  position: absolute;
+  z-index: 10;
+  top: calc(100% + 8px);
+  right: 0;
+  display: grid;
+  gap: 16px;
+  width: min(390px, calc(100vw - 32px));
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 10px 30px #1c1b2e18;
+}
+
+.hu5-app .hu5-periodo-titulo {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.hu5-app .hu5-periodo-fechas {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+}
+
+.hu5-app .hu5-periodo-panel .hu5-field {
+  margin: 0;
+}
+
+.hu5-app .hu5-periodo-panel input {
+  min-width: 0;
+}
+
+.hu5-app .hu5-periodo-ayuda {
+  margin: -6px 0 0;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.hu5-app .hu5-listado-aviso {
+  margin: -8px 0 16px;
+}
+
+.hu5-app .hu5-listado-vacio {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: white;
+}
+
+.hu5-app .hu5-listado-tabla {
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: white;
+}
+
+.hu5-app .hu5-listado-tabla .hu5-table {
+  min-width: 820px;
+  font-size: 18px;
+}
+
+.hu5-app .hu5-listado-tabla .hu5-table thead {
+  background: #faf9fe;
+}
+
+.hu5-app .hu5-listado-tabla .hu5-table thead th {
+  padding: 15px 18px;
+  font-size: 14px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.hu5-app .hu5-listado-tabla .hu5-table td {
+  padding: 13px 18px;
+  height: 60px;
+}
+
+.hu5-app .hu5-listado-tabla .hu5-table th:first-child {
+  min-width: 155px;
+}
+
+.hu5-app .hu5-listado-tabla .hu5-table th:nth-child(2) {
+  width: 28%;
+}
+
+.hu5-app .hu5-listado-tabla .hu5-table th:nth-child(3) {
+  width: 24%;
+}
+
+.hu5-app .hu5-listado-tabla .hu5-table th:nth-child(4),
+.hu5-app .hu5-listado-tabla .hu5-table td:nth-child(4) {
+  text-align: left;
+}
+
+.hu5-app .hu5-listado-tabla .hu5-table tbody tr:nth-child(even) {
+  background: #faf9fe;
+}
+
+.hu5-app .hu5-listado-tabla .hu5-table tbody tr:hover {
+  background: #f1effa;
+}
+
+.hu5-app .hu5-listado-tabla .hu5-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.hu5-app .hu5-listado-tabla .hu5-badge {
+  padding: 4px 12px;
+  border: 1px solid currentColor;
+  font-size: 16px;
+}
+
+.hu5-app .hu5-listado-tabla .hu5-badge--cancelada {
+  border-color: var(--border);
+}
+
+.hu5-app .hu5-listado-page .hu5-pagination {
+  padding-top: 18px;
+}
+
+.hu5-app .hu5-horas-tarjetas {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.hu5-app .hu5-horas-tarjeta {
+  min-width: 0;
+  min-height: 152px;
+  padding: 22px 24px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: white;
+  font-variant-numeric: tabular-nums;
+}
+
+.hu5-app .hu5-horas-tarjeta-total {
+  border-color: transparent;
+  background: var(--primary-soft);
+}
+
+.hu5-app .hu5-horas-tarjeta h2 {
+  margin: 0 0 3px;
+  color: var(--text-muted);
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.hu5-app .hu5-horas-tarjeta-total h2 {
+  color: var(--primary);
+}
+
+.hu5-app .hu5-horas-valor {
+  margin: 0;
+  color: var(--text);
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.hu5-app .hu5-horas-tarjeta-total .hu5-horas-valor {
+  color: var(--primary-dark);
+}
+
+.hu5-app .hu5-horas-auxiliar {
+  margin: 4px 0 0;
+  color: var(--text-muted);
+  font-size: 17px;
+}
+
+.hu5-app .hu5-grafico-mensual {
+  padding: 28px 30px;
+  box-shadow: none;
+  min-height: 400px;
+}
+
+.hu5-app .hu5-grafico-mensual > h2 {
+  margin: 0;
+  color: var(--primary);
+  font-size: 26px;
+}
+
+.hu5-app .hu5-grafico-desplazable {
+  overflow-x: auto;
+  padding-top: 100px;
+}
+
+.hu5-app .hu5-barras-meses {
+  display: grid;
+  grid-template-columns: repeat(var(--hu5-meses), minmax(110px, 1fr));
+  gap: 28px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.hu5-app .hu5-barra-mes {
+  min-width: 0;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.hu5-app .hu5-barra-area {
+  position: relative;
+  height: 160px;
+  border-bottom: 1px solid var(--border);
+}
+
+.hu5-app .hu5-barra-valor {
+  position: absolute;
+  bottom: calc(var(--hu5-altura) + 9px);
+  left: 0;
+  width: 100%;
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.hu5-app .hu5-barra-columna {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
+  height: var(--hu5-altura);
+  transform: translateX(-50%);
+  border-radius: 9px 9px 0 0;
+  background: var(--primary-soft);
+}
+
+.hu5-app .hu5-barra-columna-maxima {
+  background: var(--primary);
+}
+
+.hu5-app .hu5-barra-etiqueta {
+  display: block;
+  margin-top: 10px;
+  color: var(--text-muted);
+  font-size: 17px;
+}
+
+.hu5-app .hu5-barra-etiqueta::first-letter {
+  text-transform: uppercase;
+}
+
+.hu5-app .hu5-horas-nota {
+  margin: -10px 0 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.hu5-app .hu5-pagina-numero--activa {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+  font-weight: 700;
+}
+
+.hu5-app .hu5-empty-icon > span {
+  font-size: 36px;
+  line-height: 1;
+}
+
+.hu5-app .hu5-material-vacio .hu5-empty {
+  padding: 0;
+}
+
+@media (max-width: 960px) {
+  .hu5-app .hu5-listado-page .hu5-scroll-hint {
+    display: block;
+    margin: 0 0 8px;
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 1150px) {
+  .hu5-app .hu5-horas-tarjetas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .hu5-app .hu5-listado-filtros {
+    position: relative;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .hu5-app .hu5-periodo {
+    position: static;
+  }
+
+  .hu5-app .hu5-periodo-panel {
+    right: auto;
+    left: 0;
+  }
+
+  .hu5-app .hu5-grafico-mensual {
+    padding: 22px 20px;
+  }
+
+  .hu5-app .hu5-grafico-mensual > h2 {
+    font-size: 20px;
+  }
+
+  .hu5-app .hu5-barras-meses {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 550px) {
+  .hu5-app .hu5-selector-compacto,
+  .hu5-app .hu5-periodo {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hu5-app .hu5-selector-compacto select {
+    flex: 1;
+    max-width: none;
+    min-width: 0;
+  }
+
+  .hu5-app .hu5-horas-tarjetas {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .hu5-app .hu5-horas-tarjeta {
+    min-height: 0;
+    padding: 18px 20px;
+  }
+}

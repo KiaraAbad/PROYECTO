@@ -1,0 +1,23 @@
+{
+  "fechaAncla": "2026-10-18",
+  "usuarios": [
+    { "id": "u-001", "nombres": "Sebastián", "apellidos": "Rojas Mendoza", "rol": ["estudiante", "tutor"] },
+    { "id": "u-002", "nombres": "Joaquín", "apellidos": "Medina Talledo", "rol": ["estudiante"] },
+    { "id": "u-003", "nombres": "Camila", "apellidos": "Quispe Andrade", "rol": ["estudiante", "tutor"] },
+    { "id": "u-004", "nombres": "Antonella", "apellidos": "Vargas Ludeña", "rol": ["estudiante"] }
+  ],
+  "sesiones": [
+    { "codigo": "TU-2026-0184", "tutorId": "u-001", "estudianteId": "u-002", "curso": { "codigo": "MA101", "nombre": "Cálculo I" }, "tema": "Ejercicios de integrales por partes", "fecha": "2026-10-18", "horaInicio": "15:00", "horaFin": "16:00", "modalidad": "remota", "estado": "programada", "trazabilidad": [] },
+    { "codigo": "TU-2026-0185", "tutorId": "u-001", "estudianteId": "u-004", "curso": { "codigo": "FI202", "nombre": "Física II" }, "tema": "Circuitos eléctricos", "fecha": "2026-10-19", "horaInicio": "16:00", "horaFin": "17:00", "modalidad": "presencial", "estado": "programada", "trazabilidad": [] },
+    { "codigo": "TU-2026-0183", "tutorId": "u-001", "estudianteId": "u-002", "curso": { "codigo": "ES210", "nombre": "Estadística Aplicada" }, "tema": "Repaso de distribuciones", "fecha": "2026-10-13", "horaInicio": "10:00", "horaFin": "11:00", "modalidad": "remota", "estado": "programada", "trazabilidad": [] },
+    { "codigo": "TU-2026-0182", "tutorId": "u-003", "estudianteId": "u-002", "curso": { "codigo": "SI401", "nombre": "Programación Web" }, "tema": "Funciones de JavaScript", "fecha": "2026-10-17", "horaInicio": "10:00", "horaFin": "11:00", "modalidad": "remota", "estado": "programada", "trazabilidad": [] },
+    { "codigo": "TU-2026-0179", "tutorId": "u-001", "estudianteId": "u-002", "curso": { "codigo": "MA101", "nombre": "Cálculo I" }, "tema": "Integrales definidas", "fecha": "2026-10-16", "horaInicio": "16:00", "horaFin": "17:00", "modalidad": "remota", "estado": "realizada", "trazabilidad": [] },
+    { "codigo": "TU-2026-0178", "tutorId": "u-001", "estudianteId": "u-004", "curso": { "codigo": "FI202", "nombre": "Física II" }, "tema": "Ley de Ohm", "fecha": "2026-10-12", "horaInicio": "16:00", "horaFin": "17:30", "modalidad": "presencial", "estado": "realizada", "trazabilidad": [] },
+    { "codigo": "TU-2026-0177", "tutorId": "u-001", "estudianteId": "u-002", "curso": { "codigo": "ES210", "nombre": "Estadística Aplicada" }, "tema": "Probabilidades", "fecha": "2026-10-10", "horaInicio": "09:00", "horaFin": "10:00", "modalidad": "remota", "estado": "no-asistio", "trazabilidad": [] },
+    { "codigo": "TU-2026-0176", "tutorId": "u-001", "estudianteId": "u-002", "curso": { "codigo": "MA101", "nombre": "Cálculo I" }, "tema": "Límites", "fecha": "2026-10-08", "horaInicio": "16:00", "horaFin": "17:00", "modalidad": "remota", "estado": "cancelada", "trazabilidad": [] },
+    { "codigo": "TU-2026-0175", "tutorId": "u-001", "estudianteId": "u-004", "curso": { "codigo": "MA101", "nombre": "Cálculo I" }, "tema": "Derivadas", "fecha": "2026-09-28", "horaInicio": "16:00", "horaFin": "17:00", "modalidad": "remota", "estado": "realizada", "trazabilidad": [] },
+    { "codigo": "TU-2026-0174", "tutorId": "u-001", "estudianteId": "u-002", "curso": { "codigo": "ES210", "nombre": "Estadística Aplicada" }, "tema": "Medidas de dispersión", "fecha": "2026-09-20", "horaInicio": "16:00", "horaFin": "18:00", "modalidad": "presencial", "estado": "realizada", "trazabilidad": [] },
+    { "codigo": "TU-2026-0173", "tutorId": "u-001", "estudianteId": "u-004", "curso": { "codigo": "FI202", "nombre": "Física II" }, "tema": "Campo magnético", "fecha": "2026-09-12", "horaInicio": "16:00", "horaFin": "17:00", "modalidad": "remota", "estado": "realizada", "trazabilidad": [] },
+    { "codigo": "TU-2026-0172", "tutorId": "u-001", "estudianteId": "u-002", "curso": { "codigo": "MA101", "nombre": "Cálculo I" }, "tema": "Funciones continuas", "fecha": "2026-08-24", "horaInicio": "16:00", "horaFin": "17:00", "modalidad": "remota", "estado": "realizada", "trazabilidad": [] }
+  ]
+}

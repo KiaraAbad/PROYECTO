@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function AspectosCalificacion({ aspectos, setAspectos, readonly = false }) {
   const handleChange = (aspecto, valor) => {
     if (readonly) return;

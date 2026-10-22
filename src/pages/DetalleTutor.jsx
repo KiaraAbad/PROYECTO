@@ -3,6 +3,10 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useTutores } from "../hooks/useTutores";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import ModalSolicitud from "../components/ModalSolicitud";
+import Notificacion from "../components/Notificacion";
+import { useAviso } from "../hooks/useAviso";
+import { useSesiones } from "../hooks/useSesiones";
 import "../styles/detalle-tutor.css";
 
 const DIAS_AGENDA = [
@@ -123,8 +127,15 @@ function DetalleTutor() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { tutores, cargando } = useTutores();
+  const { rol } = useSesiones();
+  const [referencia] = useState(() => new Date());
+  const [semanas] = useState(() => crearSemanas(new Date()));
 
   const [semanaIndice, setSemanaIndice] = useState(0);
+  const [solicitando, setSolicitando] = useState(false);
+  const { aviso, avisar, cerrarAviso } = useAviso(9000);
+
+
   const [bloqueSeleccionado, setBloqueSeleccionado] = useState(null);
 
   const tutor = useMemo(() => {
@@ -220,6 +231,14 @@ function DetalleTutor() {
     .join(" · ");
 
   const handleSeleccionarBloque = (col, fila) => {
+    if (rol !== 'estudiante') {
+      avisar('info', 'Cambia a la vista de estudiante para solicitar una sesión.');
+      return;
+    }
+    if (new Date(`${col.fechaISO}T${fila.hora}:00-05:00`) <= new Date()) {
+      avisar('info', 'Ese bloque ya comenzó. Elige uno posterior.');
+      return;
+    }
     setBloqueSeleccionado({
       diaClave: col.clave,
       nombreDia: col.clave,
@@ -279,16 +298,16 @@ function DetalleTutor() {
           </div>
 
           <div className="detalle-tutor__perfil-der">
-            <Link
-              to={`/tutor/${id}`}
+            <button
+              type="button"
               className="detalle-tutor__btn-ver-resenas"
+              onClick={() => alert(`Reseñas de ${nombreCompleto}: promedio ${promedio} con 28 opiniones.`)}
             >
               Ver reseñas
-            </Link>
+            </button>
           </div>
         </section>
 
-        {/* NUEVA SECCIÓN: información pública del tutor */}
         <section
           className="detalle-tutor__tarjeta-agenda"
           aria-labelledby="detalle-tutor-info-titulo"
@@ -525,6 +544,10 @@ function DetalleTutor() {
                           )
                             ? "libre"
                             : null;
+                           
+                          const fechaHoraBloque = new Date(`${col.fechaISO}T${fila.hora}:00-05:00`);
+                          const vencido = fechaHoraBloque <= referencia;
+
 
                           const esElegido =
                             bloqueSeleccionado?.diaClave === col.clave &&
@@ -553,11 +576,11 @@ function DetalleTutor() {
                                 <button
                                   type="button"
                                   className="detalle-tutor__slot detalle-tutor__slot--libre"
-                                  onClick={() =>
-                                    handleSeleccionarBloque(col, fila)
-                                  }
+                                  disabled={vencido || rol !== 'estudiante'}
+                                  title={vencido ? 'Este bloque ya pasó' : rol !== 'estudiante' ? 'Cambia a la vista de estudiante para solicitar' : undefined}
+                                  onClick={() => handleSeleccionarBloque(col, fila)}
                                 >
-                                  Libre
+                                  {vencido ? 'Pasado' : 'Libre'}
                                 </button>
                               </td>
                             );
@@ -572,8 +595,6 @@ function DetalleTutor() {
                             </td>
                           );
                         })}
-                      </tr>
-                    ))}
                   </tbody>
                 </table>
               </div>
@@ -591,11 +612,8 @@ function DetalleTutor() {
                   <button
                     type="button"
                     className="detalle-tutor__btn-continuar"
-                    onClick={() =>
-                      alert(
-                        `Solicitud de tutoría enviada con éxito para el ${bloqueSeleccionado.nombreDia} a las ${bloqueSeleccionado.horaInicio}`
-                      )
-                    }
+                    onClick={() => setSolicitando(true)}
+                    disabled={rol !== 'estudiante'}
                   >
                     Continuar con la solicitud
                   </button>
@@ -607,6 +625,30 @@ function DetalleTutor() {
       </main>
 
       <Footer />
+
+      {solicitando && bloqueSeleccionado && rol === 'estudiante' && (
+        <ModalSolicitud
+          tutor={tutor}
+          bloque={{
+            fecha: bloqueSeleccionado.fecha.split("/").reverse().join("-"),
+            horaInicio: bloqueSeleccionado.horaInicio,
+            horaFin: bloqueSeleccionado.horaFin,
+          }}
+          onCerrar={() => setSolicitando(false)}
+          onEnviada={() => {
+            setSolicitando(false);
+            avisar(
+              "exito",
+              "Solicitud enviada al tutor. Te avisaremos cuando responda; suele hacerlo en 6 horas.",
+              { texto: "Ir a mis sesiones", ruta: "/mis-sesiones" }
+            );
+          }}
+        />
+      )}
+
+      {aviso && (
+        <Notificacion tipo={aviso.tipo} mensaje={aviso.mensaje} accion={aviso.accion} onCerrar={cerrarAviso} />
+      )}
     </div>
   );
 }
