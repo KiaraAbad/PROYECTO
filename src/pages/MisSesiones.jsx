@@ -8,15 +8,14 @@ import EsqueletoSesiones from "../components/EsqueletoSesiones";
 import Notificacion from "../components/Notificacion";
 import { useSesiones } from "../hooks/useSesiones";
 import { useAviso } from "../hooks/useAviso";
-import { USUARIOS_PRUEBA } from "../utils/usuariosPrueba";
 import { ETIQUETAS_ESTADO, filtrarSesiones, separarProximasHistorial } from "../utils/reglasSesion";
 import "../styles/sesiones-comun.css";
 import "../styles/mis-sesiones.css";
 
 function MisSesiones() {
-  const estudiante = USUARIOS_PRUEBA.estudiante;
+  const { usuario, rol } = useSesiones();
   const [parametros] = useSearchParams();
-  const { sesiones, cargando } = useSesiones(estudiante.id);
+  const { sesiones, cargando } = useSesiones(usuario.id);
   const { aviso, avisar, cerrarAviso } = useAviso();
 
   const [estado, setEstado] = useState("");
@@ -25,7 +24,8 @@ function MisSesiones() {
 
 
   const mostrarVacio = parametros.get("vacio") === "1";
-  const propias = mostrarVacio ? [] : sesiones.filter((sesion) => sesion.estudianteId === estudiante.id);
+  const propias = mostrarVacio ? [] : sesiones.filter((sesion) =>
+    (rol === 'tutor' ? sesion.tutorId : sesion.estudianteId) === usuario.id);
 
   const rangoInvalido = Boolean(desde && hasta && desde > hasta);
   const hayFiltros = Boolean(estado || desde || hasta);
@@ -85,7 +85,7 @@ function MisSesiones() {
           ) : (
             <div className="mis-sesiones__lista">
               {proximas.map((sesion) => (
-                <TarjetaSesion key={sesion.codigo} sesion={sesion} rol="estudiante" onCalificar={calificar} />
+                <TarjetaSesion key={sesion.codigo} sesion={sesion} rol={rol} onCalificar={calificar} />
               ))}
             </div>
           )}
@@ -103,7 +103,7 @@ function MisSesiones() {
                 <TarjetaSesion
                   key={sesion.codigo}
                   sesion={sesion}
-                  rol="estudiante"
+                  rol={rol}
                   compacta
                   onCalificar={calificar}
                 />
@@ -117,7 +117,7 @@ function MisSesiones() {
 
   return (
     <div className="agenda-page">
-      <Header rolInicial="estudiante" usuario={estudiante} />
+      <Header />
 
       <main className="agenda-container">
         <div className="mis-sesiones__encabezado">
@@ -177,7 +177,7 @@ function MisSesiones() {
         {renderContenido()}
       </main>
 
-      <Footer />
+      <Footer rol={rol} />
 
       {aviso && (
         <Notificacion tipo={aviso.tipo} mensaje={aviso.mensaje} accion={aviso.accion} onCerrar={cerrarAviso} />

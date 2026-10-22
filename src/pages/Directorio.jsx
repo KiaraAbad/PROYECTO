@@ -41,14 +41,6 @@ const DIAS = [
   "domingo",
 ];
 
-function normalizar(texto = "") {
-  return String(texto)
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .trim();
-}
-
 function nombreCompleto(tutor) {
   return `${tutor.nombres ?? ""} ${tutor.apellidos ?? ""}`.trim();
 }

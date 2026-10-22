@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import BadgeEstadoSesion from "../components/BadgeEstadoSesion";
@@ -11,7 +11,6 @@ import EsqueletoSesiones from "../components/EsqueletoSesiones";
 import Notificacion from "../components/Notificacion";
 import { useSesiones } from "../hooks/useSesiones";
 import { useAviso } from "../hooks/useAviso";
-import { USUARIOS_PRUEBA } from "../utils/usuariosPrueba";
 import {
   HORAS_LIMITE_CANCELACION,
   HORAS_VENTANA_CIERRE,
@@ -27,9 +26,8 @@ import "../styles/detalle-sesion.css";
 
 function DetalleSesion() {
   const { codigo } = useParams();
-  const location = useLocation();
-  const rol = location.state?.rol === "estudiante" ? "estudiante" : "tutor";
-  const usuario = USUARIOS_PRUEBA[rol];
+  const navigate = useNavigate();
+  const { usuario, rol } = useSesiones();
 
   const { sesiones, todas, cargando, cancelar, proponer, aceptarNuevoHorario, rechazarNuevoHorario } =
     useSesiones(usuario.id);
@@ -38,12 +36,13 @@ function DetalleSesion() {
   const [cancelando, setCancelando] = useState(false);
   const [reprogramando, setReprogramando] = useState(false);
 
-  const sesion = sesiones.find((item) => item.codigo === codigo);
+  const sesion = sesiones.find((item) => item.codigo === codigo
+    && (rol === 'tutor' ? item.tutorId : item.estudianteId) === usuario.id);
 
   function pagina(contenido) {
     return (
       <div className="agenda-page">
-        <Header rolInicial={rol} usuario={usuario} />
+        <Header />
         <main className="agenda-container">{contenido}</main>
         <Footer rol={rol} />
         {aviso && (
@@ -144,6 +143,7 @@ function DetalleSesion() {
                 className="sesion-btn sesion-btn--primario"
                 disabled={!cierre.permitido}
                 title={cierre.motivo ?? undefined}
+                onClick={() => navigate(`/sesiones/${sesion.codigo}/cerrar`)}
               >
                 Cerrar sesión
               </button>
@@ -153,6 +153,15 @@ function DetalleSesion() {
         {rol === "tutor" && sesion.estado === "programada" && !cierre.permitido && (
           <p className="detalle-sesion__ayuda-cierre">{cierre.motivo}</p>
         )}
+      </div>
+
+      <div className="detalle-sesion__acciones">
+        <Link to={`/sesiones/${sesion.codigo}`} className="sesion-btn sesion-btn--contorno">
+          Ver notas y desarrollo
+        </Link>
+        <Link to={`/sesiones/${sesion.codigo}/material`} className="sesion-btn sesion-btn--contorno">
+          Material compartido ({sesion.cierre?.material.length ?? 0})
+        </Link>
       </div>
 
       {tutorConSolicitud && (

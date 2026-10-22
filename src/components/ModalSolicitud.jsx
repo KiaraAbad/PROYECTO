@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Modal from "./Modal";
 import { useSesiones } from "../hooks/useSesiones";
-import { USUARIOS_PRUEBA } from "../utils/usuariosPrueba";
 import {
   buscarSolapamiento,
   mensajeSolapamiento,
@@ -14,7 +13,8 @@ import "./ModalSolicitud.css";
 const MAXIMO_TEMA = 200;
 
 function ModalSolicitud({ tutor, bloque, onCerrar, onEnviada }) {
-  const estudianteId = USUARIOS_PRUEBA.estudiante.id;
+  const { usuario } = useSesiones();
+  const estudianteId = usuario.id;
   const { todas, cargando, solicitar } = useSesiones(estudianteId);
 
   const perfil = tutor.perfilTutor ?? {};

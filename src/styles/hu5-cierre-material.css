@@ -1,0 +1,553 @@
+/* Ajustes de las vistas 5.1 y 5.2; no afectan las otras historias del grupo. */
+.hu5-app .hu5-cierre-grid {
+  grid-template-columns: minmax(0, 2.4fr) minmax(310px, 1fr);
+  gap: 28px;
+}
+
+.hu5-app .hu5-cierre-cabecera {
+  gap: 0;
+  margin-bottom: 20px;
+}
+
+.hu5-app .hu5-cierre-cabecera .hu5-eyebrow {
+  margin-bottom: 14px;
+}
+
+.hu5-app .hu5-cierre-formulario {
+  padding: 24px 30px;
+  margin-bottom: 0;
+}
+
+.hu5-app .hu5-main:has(.hu5-cierre-pagina) {
+  padding-bottom: 0;
+}
+
+.hu5-app .hu5-cierre-etiqueta {
+  margin: 0 0 8px;
+  color: var(--text-muted);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.hu5-app .hu5-cierre-asistencias {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.hu5-app .hu5-cierre-asistencia {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+}
+
+.hu5-app .hu5-cierre-asistencia:has([aria-invalid="true"]) {
+  border-color: var(--danger);
+}
+
+.hu5-app .hu5-cierre-asistencia-fila,
+.hu5-app .hu5-cierre-duracion-fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 76px;
+  padding: 14px 18px;
+}
+
+.hu5-app .hu5-cierre-opciones {
+  display: flex;
+  flex-shrink: 0;
+  gap: 9px;
+}
+
+.hu5-app .hu5-cierre-opcion {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 58px;
+  min-height: 42px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: white;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.hu5-app .hu5-cierre-opcion input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.hu5-app .hu5-cierre-opcion--seleccionada {
+  border-color: var(--success);
+  background: var(--success);
+  color: white;
+  font-weight: 600;
+}
+
+/* La variante de inasistencia usa rojo, como el estado alternativo del mockup. */
+.hu5-app .hu5-cierre-asistencia--ausente {
+  border-color: var(--danger);
+  background: #f8e9e9;
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.hu5-app .hu5-cierre-opcion--ausente {
+  border-color: var(--danger);
+  background: var(--danger);
+  color: white;
+}
+
+.hu5-app .hu5-cierre-campos--inasistencia {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.hu5-app .hu5-cierre-campos--inasistencia .hu5-cierre-participacion {
+  flex: 1.4 1 320px;
+  min-width: 0;
+}
+
+.hu5-app .hu5-cierre-campos--inasistencia .hu5-cierre-contenido {
+  flex: 1 1 250px;
+  min-width: 0;
+}
+
+.hu5-app .hu5-cierre-aviso-ausencia {
+  margin: 0 0 10px;
+  padding: 12px;
+  border: 1px solid var(--danger);
+  border-radius: 8px;
+  background: #f8e9e9;
+  color: var(--danger);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.hu5-app .hu5-cierre-formulario--inasistencia .hu5-cierre-asistencias {
+  gap: 10px;
+  margin-bottom: 0;
+}
+
+.hu5-app .hu5-cierre-formulario--inasistencia .hu5-cierre-asistencia-fila {
+  min-height: 56px;
+  padding: 10px 12px;
+  gap: 10px;
+}
+
+.hu5-app .hu5-cierre-formulario--inasistencia .hu5-cierre-opcion {
+  min-width: 44px;
+  min-height: 36px;
+  padding: 6px 10px;
+}
+
+.hu5-app .hu5-cierre-borrador-ausencia {
+  margin-top: 4px;
+  text-align: right;
+  font-size: 12px;
+}
+
+.hu5-app .hu5-cierre-formulario--inasistencia .hu5-cierre-notas {
+  margin-bottom: 0;
+}
+
+.hu5-app .hu5-cierre-formulario--inasistencia .hu5-cierre-notas > label {
+  color: #8b899a;
+}
+
+.hu5-app .hu5-cierre-formulario--inasistencia .hu5-cierre-notas .hu5-textarea {
+  height: 48px;
+  min-height: 48px;
+  padding: 8px 12px;
+  overflow: hidden;
+  resize: none;
+}
+
+.hu5-app .hu5-cierre-formulario--inasistencia .hu5-cierre-acciones {
+  justify-content: flex-end;
+  gap: 18px;
+  margin-top: 10px;
+}
+
+.hu5-app .hu5-cierre-formulario--inasistencia .hu5-cierre-volver {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.hu5-app .hu5-cierre-formulario [hidden] {
+  display: none !important;
+}
+
+.hu5-app .hu5-cierre-opcion:has(input:focus-visible) {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.hu5-app .hu5-cierre-opcion:has(input:disabled) {
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+.hu5-app .hu5-cierre-asistencia > .hu5-inline-error {
+  margin: 0;
+  padding: 0 18px 12px;
+}
+
+.hu5-app .hu5-cierre-duracion {
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+}
+
+.hu5-app .hu5-cierre-selector {
+  width: 142px;
+  min-width: 142px;
+  min-height: 42px;
+  padding: 9px 11px;
+}
+
+.hu5-app .hu5-cierre-duracion > .hu5-inline-error {
+  padding: 0 18px 12px;
+}
+
+.hu5-app .hu5-cierre-notas > label,
+.hu5-app .hu5-cierre-pendientes > label {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.hu5-app .hu5-cierre-notas,
+.hu5-app .hu5-cierre-pendientes {
+  margin-bottom: 12px;
+}
+
+.hu5-app .hu5-cierre-notas .hu5-textarea {
+  height: 150px;
+  min-height: 150px;
+  padding: 14px 16px;
+}
+
+.hu5-app .hu5-cierre-pendientes .hu5-textarea {
+  height: 110px;
+  min-height: 110px;
+  padding: 14px 16px;
+}
+
+.hu5-app .hu5-cierre-acciones {
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.hu5-app .hu5-cierre-volver {
+  font-size: 13px;
+}
+
+.hu5-app .hu5-cierre-borrador {
+  padding: 10px 6px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.hu5-app .hu5-cierre-borrador:hover:not(:disabled) {
+  background: var(--primary-soft);
+}
+
+.hu5-app .hu5-cierre-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hu5-app .hu5-cierre-estado {
+  padding: 24px;
+  border-radius: 10px;
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+}
+
+.hu5-app .hu5-cierre-estado h2,
+.hu5-app .hu5-cierre-datos h2 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.hu5-app .hu5-cierre-estado .hu5-cierre-transicion {
+  margin: 0 0 6px;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.hu5-app .hu5-cierre-estado > p:last-child {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.hu5-app .hu5-cierre-datos {
+  margin: 0;
+  padding: 22px 24px;
+}
+
+.hu5-app .hu5-cierre-datos h2 {
+  margin-bottom: 16px;
+  color: var(--text-muted);
+}
+
+.hu5-app .hu5-cierre-datos-lista {
+  margin: 0;
+}
+
+.hu5-app .hu5-cierre-datos-lista > div {
+  padding: 4px 0;
+}
+
+.hu5-app .hu5-cierre-plazo {
+  margin: 0;
+  padding: 18px 20px;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  background: #fcf4e7;
+  color: #8b5c12;
+  font-weight: 600;
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+.hu5-app .hu5-material-cabecera {
+  align-items: flex-end;
+  margin-bottom: 24px;
+}
+
+.hu5-app .hu5-material-titulos {
+  min-width: 0;
+  flex: 1;
+}
+
+.hu5-app .hu5-material-titulos .hu5-eyebrow {
+  margin-bottom: 16px;
+}
+
+.hu5-app .hu5-material-titulos .hu5-lead {
+  margin: 0;
+}
+
+.hu5-app .hu5-material-agregar {
+  min-height: 48px;
+  padding-inline: 24px;
+  margin-bottom: 4px;
+}
+
+.hu5-app .hu5-material-editor {
+  margin-bottom: 20px;
+  padding: 24px;
+}
+
+.hu5-app .hu5-material-editor--editando {
+  border-color: var(--primary);
+}
+
+.hu5-app .hu5-material-editor-fila {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(240px, 1.55fr) auto;
+  align-items: start;
+  gap: 14px;
+}
+
+.hu5-app .hu5-material-campo-titulo,
+.hu5-app .hu5-material-campo-url {
+  margin-bottom: 0;
+}
+
+.hu5-app .hu5-material-campo-titulo label,
+.hu5-app .hu5-material-campo-url label {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+}
+
+.hu5-app .hu5-material-campo-titulo input,
+.hu5-app .hu5-material-campo-url input {
+  min-height: 56px;
+}
+
+.hu5-app .hu5-material-guardar {
+  min-width: 112px;
+  min-height: 56px;
+  margin-top: 30px;
+  border-color: var(--primary);
+}
+
+.hu5-app .hu5-material-descripcion-opcional {
+  margin-top: 14px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.hu5-app .hu5-material-descripcion-opcional summary {
+  width: fit-content;
+  cursor: pointer;
+}
+
+.hu5-app .hu5-material-campo-descripcion {
+  max-width: 900px;
+  margin: 16px 0 0;
+}
+
+.hu5-app .hu5-material-tarjetas {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hu5-app .hu5-material-tarjeta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 128px;
+  margin: 0;
+  padding: 20px 24px;
+}
+
+.hu5-app .hu5-material-recurso {
+  min-width: 0;
+  flex: 1;
+}
+
+.hu5-app .hu5-material-recurso h3 {
+  margin: 0 0 2px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.hu5-app .hu5-material-recurso p {
+  margin: 0 0 2px;
+  color: var(--text-muted);
+  font-size: 17px;
+}
+
+.hu5-app .hu5-material-enlace {
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 17px;
+  text-decoration: none;
+}
+
+.hu5-app .hu5-material-enlace:hover {
+  text-decoration: underline;
+}
+
+.hu5-app .hu5-material-controles {
+  display: flex;
+  flex-shrink: 0;
+  gap: 18px;
+}
+
+.hu5-app .hu5-material-accion {
+  padding: 3px 0;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.hu5-app .hu5-material-accion:hover {
+  text-decoration: underline;
+}
+
+.hu5-app .hu5-material-accion--quitar {
+  color: var(--danger);
+}
+
+.hu5-app .hu5-material-cancelar {
+  margin-top: 12px;
+  font-size: 13px;
+}
+
+.hu5-app .hu5-material-volver {
+  margin-top: 20px;
+}
+
+.hu5-app .hu5-material-vacio {
+  margin-bottom: 0;
+}
+
+@media (max-width: 960px) {
+  .hu5-app .hu5-cierre-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 760px) {
+  .hu5-app .hu5-cierre-formulario {
+    padding: 20px;
+  }
+
+  .hu5-app .hu5-material-editor-fila {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hu5-app .hu5-material-guardar {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .hu5-app .hu5-material-cabecera {
+    align-items: stretch;
+  }
+
+  .hu5-app .hu5-material-titulos {
+    flex-basis: 100%;
+  }
+
+  .hu5-app .hu5-material-tarjeta {
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hu5-app .hu5-cierre-asistencia-fila {
+    flex-wrap: wrap;
+  }
+
+  .hu5-app .hu5-cierre-opciones {
+    margin-left: auto;
+  }
+
+  .hu5-app .hu5-cierre-selector {
+    width: 128px;
+    min-width: 128px;
+  }
+
+  .hu5-app .hu5-cierre-estado .hu5-cierre-transicion {
+    font-size: 21px;
+  }
+}

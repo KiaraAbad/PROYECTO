@@ -19,16 +19,12 @@ function TarjetaSesion({ sesion, rol = "estudiante", compacta = false, onCalific
       );
     }
     if (sesion.estado === "realizada" && rol === "estudiante") {
-      return sesion.calificacion !== null ? (
-        <span className="tarjeta-sesion__texto-accion">Calificada {sesion.calificacion.toFixed(1)}</span>
-      ) : (
-        <button type="button" className="sesion-btn sesion-btn--acento" onClick={() => onCalificar(sesion)}>
-          Calificar
-        </button>
-      );
-    }
-    if (sesion.estado === "no-asistio") {
-      return <span className="tarjeta-sesion__texto-accion">—</span>;
+      return <>
+        <Link to={destino} state={{ rol }} className="sesion-btn sesion-btn--texto">Ver detalle</Link>
+        {sesion.calificacion != null
+          ? <span className="tarjeta-sesion__texto-accion">Calificada {sesion.calificacion.toFixed(1)}</span>
+          : <button type="button" className="sesion-btn sesion-btn--acento" onClick={() => onCalificar?.(sesion)}>Calificar</button>}
+      </>;
     }
     return (
       <Link
