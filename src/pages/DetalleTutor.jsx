@@ -3,6 +3,9 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useTutores } from "../hooks/useTutores";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import ModalSolicitud from "../components/ModalSolicitud";
+import Notificacion from "../components/Notificacion";
+import { useAviso } from "../hooks/useAviso";
 import "../styles/detalle-tutor.css";
 
 const SEMANAS = [
@@ -24,7 +27,7 @@ const SEMANAS = [
     indice: 1,
     rango: "21/09/2026 — 26/09/2026",
     fechaSiguiente: "28/09/2026",
-    tieneBloques: false, // Semana con excepción puntual según mockup
+    tieneBloques: false,
     dias: [],
   },
   {
@@ -77,8 +80,10 @@ function DetalleTutor() {
   const { tutores, cargando } = useTutores();
 
   const [semanaIndice, setSemanaIndice] = useState(0);
+  const [solicitando, setSolicitando] = useState(false);
+  const { aviso, avisar, cerrarAviso } = useAviso(9000);
 
-  // Selección de bloque predeterminado para semana 1
+
   const [bloqueSeleccionado, setBloqueSeleccionado] = useState({
     diaClave: "lunes",
     nombreDia: "lunes",
@@ -132,9 +137,9 @@ function DetalleTutor() {
   const cursos = perfil.cursos?.length
     ? perfil.cursos
     : [
-        { codigo: "MA101", nombre: "Cálculo I" },
-        { codigo: "FI202", nombre: "Física II" },
-      ];
+      { codigo: "MA101", nombre: "Cálculo I" },
+      { codigo: "FI202", nombre: "Física II" },
+    ];
 
   const primerCursoCodigo = cursos[0]?.codigo || "MA101";
   const primerCursoNombre = cursos[0]?.nombre || "Cálculo I";
@@ -143,9 +148,8 @@ function DetalleTutor() {
     .map((c) => `${c.codigo} ${c.nombre}`)
     .join(" · ");
 
-  const subtituloCompleto = `${tutor.carrera || "Ingeniería Civil"} · ${
-    tutor.ciclo ? `${tutor.ciclo}.° ciclo` : "9.° ciclo"
-  } · ${subtituloCursos} · ${promedio}`;
+  const subtituloCompleto = `${tutor.carrera || "Ingeniería Civil"} · ${tutor.ciclo ? `${tutor.ciclo}.° ciclo` : "9.° ciclo"
+    } · ${subtituloCursos} · ${promedio}`;
 
   const handleSeleccionarBloque = (col, fila) => {
     setBloqueSeleccionado({
@@ -195,12 +199,13 @@ function DetalleTutor() {
           </div>
 
           <div className="detalle-tutor__perfil-der">
-            <Link
-              to={`/tutor/${id}`}
+            <button
+              type="button"
               className="detalle-tutor__btn-ver-resenas"
+              onClick={() => alert(`Reseñas de ${nombreCompleto}: promedio ${promedio} con 28 opiniones.`)}
             >
               Ver reseñas
-            </Link>
+            </button>
           </div>
         </section>
 
@@ -349,11 +354,7 @@ function DetalleTutor() {
                   <button
                     type="button"
                     className="detalle-tutor__btn-continuar"
-                    onClick={() =>
-                      alert(
-                        `Solicitud de tutoría enviada con éxito para el ${bloqueSeleccionado.nombreDia} a las ${bloqueSeleccionado.horaInicio}`
-                      )
-                    }
+                    onClick={() => setSolicitando(true)}
                   >
                     Continuar con la solicitud
                   </button>
@@ -365,6 +366,30 @@ function DetalleTutor() {
       </main>
 
       <Footer />
+
+      {solicitando && (
+        <ModalSolicitud
+          tutor={tutor}
+          bloque={{
+            fecha: bloqueSeleccionado.fecha.split("/").reverse().join("-"),
+            horaInicio: bloqueSeleccionado.horaInicio,
+            horaFin: bloqueSeleccionado.horaFin,
+          }}
+          onCerrar={() => setSolicitando(false)}
+          onEnviada={() => {
+            setSolicitando(false);
+            avisar(
+              "exito",
+              "Solicitud enviada al tutor. Te avisaremos cuando responda; suele hacerlo en 6 horas.",
+              { texto: "Ir a mis sesiones", ruta: "/mis-sesiones" }
+            );
+          }}
+        />
+      )}
+
+      {aviso && (
+        <Notificacion tipo={aviso.tipo} mensaje={aviso.mensaje} accion={aviso.accion} onCerrar={cerrarAviso} />
+      )}
     </div>
   );
 }

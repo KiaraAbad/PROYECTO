@@ -2,6 +2,20 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Header.css";
 
+const ENLACES_ESTUDIANTE = [
+  { texto: "Directorio", ruta: "/tutores" },
+  { texto: "Mis sesiones", ruta: "/mis-sesiones" },
+  { texto: "Mis calificaciones", ruta: "/mis-calificaciones" },
+];
+
+const ENLACES_TUTOR = [
+  { texto: "Mi perfil de tutor", ruta: "/perfil-tutor" },
+  { texto: "Mis cursos", ruta: "/mis-cursos" },
+  { texto: "Disponibilidad", ruta: "/disponibilidad" },
+  { texto: "Solicitudes", ruta: "/solicitudes" },
+  { texto: "Mis sesiones", ruta: "/mis-sesiones" },
+];
+
 function Header({
   variante,
   usuario = { iniciales: "JM", nombre: "Joaquín M." },
@@ -11,11 +25,9 @@ function Header({
   const location = useLocation();
 
   const esHome = variante === "publico" || location.pathname === "/";
-  const esDirectorio =
-    location.pathname.startsWith("/tutores") ||
-    location.pathname.startsWith("/tutor/");
-  const esSesiones = location.pathname === "/mis-sesiones";
-  const esCalificaciones = location.pathname === "/mis-calificaciones";
+  const enlaces = rol === "tutor" ? ENLACES_TUTOR : ENLACES_ESTUDIANTE;
+  const estaActivo = (ruta) =>
+    location.pathname === ruta || location.pathname.startsWith(`${ruta}/`);
 
   // Encabezado público (Visitante / Landing Page)
   if (esHome) {
@@ -28,17 +40,10 @@ function Header({
         </div>
 
         <nav className="app-header__nav app-header__nav--publico" aria-label="Navegación pública">
-          <Link
-            to="/"
-            className={`app-header__link ${location.pathname === "/" ? "app-header__link--activo" : ""}`}
-          >
+          <Link to="/" className="app-header__link app-header__link--activo">
             Inicio
           </Link>
-          <Link
-            to="/tutores"
-            className={`app-header__link ${esDirectorio ? "app-header__link--activo" : ""}`}
-            aria-current={esDirectorio ? "page" : undefined}
-          >
+          <Link to="/tutores" className="app-header__link">
             Directorio
           </Link>
           <a href="/#como-funciona" className="app-header__link">
@@ -69,30 +74,20 @@ function Header({
         </Link>
 
         <nav className="app-header__nav" aria-label="Navegación principal">
-          <Link
-            to="/tutores"
-            className={`app-header__link ${esDirectorio ? "app-header__link--activo" : ""}`}
-            aria-current={esDirectorio ? "page" : undefined}
-          >
-            Directorio
-            {esDirectorio && <span className="app-header__indicador" />}
-          </Link>
-
-          <Link
-            to="/tutores"
-            className={`app-header__link ${esSesiones ? "app-header__link--activo" : ""}`}
-          >
-            Mis sesiones
-          </Link>
-
-          <Link
-            to="/mis-calificaciones"
-            className={`app-header__link ${esCalificaciones ? "app-header__link--activo" : ""}`}
-            aria-current={esCalificaciones ? "page" : undefined}
-          >
-            Mis calificaciones
-            {esCalificaciones && <span className="app-header__indicador" />}
-          </Link>
+          {enlaces.map((enlace) => {
+            const activo = estaActivo(enlace.ruta);
+            return (
+              <Link
+                key={enlace.ruta}
+                to={enlace.ruta}
+                className={`app-header__link ${activo ? "app-header__link--activo" : ""}`}
+                aria-current={activo ? "page" : undefined}
+              >
+                {enlace.texto}
+                {activo && <span className="app-header__indicador" />}
+              </Link>
+            );
+          })}
         </nav>
       </div>
 
@@ -107,7 +102,7 @@ function Header({
           </button>
           <button
             type="button"
-            className={`app-header__rol-btn ${rol === "tutor" ? "app-header__rol-btn--activo" : ""}`}
+            className={`app-header__rol-btn ${rol === "tutor" ? "app-header__rol-btn--activo app-header__rol-btn--tutor" : ""}`}
             onClick={() => setRol("tutor")}
           >
             Tutor

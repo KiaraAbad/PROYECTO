@@ -152,6 +152,12 @@
   box-shadow: 0 1px 3px rgba(59, 53, 150, 0.25);
 }
 
+/* En la vista de tutor el botón activo es verde (mockups 4.3 y 4.5) */
+.app-header__rol-btn--tutor {
+  background-color: var(--success);
+  box-shadow: 0 1px 3px rgba(30, 127, 77, 0.3);
+}
+
 .app-header__perfil {
   display: flex;
   align-items: center;
@@ -201,9 +207,11 @@
   .app-header {
     padding: 0 20px;
   }
+
   .app-header__izquierda {
     gap: 20px;
   }
+
   .app-header__nav {
     display: none;
   }
