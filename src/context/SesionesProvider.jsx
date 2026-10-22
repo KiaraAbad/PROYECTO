@@ -4,8 +4,8 @@ import {
   cargarDatosDemo,
   crearDatosDemo,
   CLAVE_ALMACEN,
-  usuariosDemo,
 } from '../data/hu5-almacen';
+import { useAutenticacion } from '../hooks/useAutenticacion';
 import { validarCierre, validarMaterial, ventanaCierre } from '../utils/sesiones';
 import { crearCierreVacio, enriquecerSesion, actualizarRegistro, aplicarResultadoAgenda } from '../utils/estadoCompartido';
 import {
@@ -16,21 +16,21 @@ import {
 // La agenda y los cierres consultan una sola fuente, compartida por toda la app.
 export default function SesionesProvider({ children }) {
   const [datos, setDatos] = useState(cargarDatosDemo);
-  const [rol, setRol] = useState('tutor');
-  const [usuarioId, setUsuarioId] = useState('u-003');
+  const { usuario, usuarios, rol, cambiarRol, salir } = useAutenticacion();
+  const usuarioId = usuario?.id;
   const [notificacion, setNotificacion] = useState(null);
 
   // Un ref conserva el último valor sin esperar el siguiente render de React.
   // Así, dos operaciones seguidas no trabajan con una versión anterior del cierre.
   const datosActuales = useRef(datos);
   const avisoAlmacenamientoMostrado = useRef(false);
-  const usuario = usuariosDemo.find(usuarioDemo => usuarioDemo.id === usuarioId);
 
   const sesiones = datos.sesiones.map(sesionBase => (
-    enriquecerSesion(sesionBase, datos.cierres, usuariosDemo)
+    enriquecerSesion(sesionBase, datos.cierres, usuarios)
   ));
 
   const sesionesUsuario = sesiones.filter(sesion => {
+    if (!usuario) return false;
     if (rol === 'tutor') {
       return sesion.tutorId === usuarioId;
     }
@@ -56,33 +56,10 @@ export default function SesionesProvider({ children }) {
   }, [datos]);
 
   function notificar(mensaje, tipo = 'success') {
-    setNotificacion({ id: crypto.randomUUID(), mensaje, tipo });
+    setNotificacion({ id: crypto.randomUUID(), mensaje, tipo, usuarioId });
   }
 
   function cerrarNotificacion() {
-    setNotificacion(null);
-  }
-
-  function cambiarRol(nuevoRol) {
-    if (!['tutor', 'estudiante'].includes(nuevoRol)) {
-      return;
-    }
-
-    setRol(nuevoRol);
-    setUsuarioId(nuevoRol === 'tutor' ? 'u-003' : 'u-101');
-    setNotificacion(null);
-  }
-
-  function cambiarUsuario(id) {
-    const usuarioPermitido = usuariosDemo.some(usuarioDemo => {
-      return usuarioDemo.id === id && usuarioDemo.rol.includes(rol);
-    });
-
-    if (!usuarioPermitido) {
-      return;
-    }
-
-    setUsuarioId(id);
     setNotificacion(null);
   }
 
@@ -90,8 +67,6 @@ export default function SesionesProvider({ children }) {
     const nuevosDatos = crearDatosDemo();
     datosActuales.current = nuevosDatos;
     setDatos(nuevosDatos);
-    setRol('tutor');
-    setUsuarioId('u-003');
     notificar('Datos de ejemplo restablecidos. Ya puedes probar otro cierre.');
   }
 
@@ -100,7 +75,7 @@ export default function SesionesProvider({ children }) {
   function comprobarAccesoTutor(codigo, { cierre = false } = {}) {
     const sesionBase = datosActuales.current.sesiones.find(sesion => sesion.codigo === codigo);
 
-    if (!sesionBase || rol !== 'tutor' || sesionBase.tutorId !== usuarioId) {
+    if (!usuario || !sesionBase || rol !== 'tutor' || sesionBase.tutorId !== usuarioId) {
       return {
         ok: false,
         errores: {},
@@ -156,12 +131,12 @@ export default function SesionesProvider({ children }) {
       cancelar: { ejecutar: cancelarSesion },
     };
     const operacion = operaciones[accion];
-    if (!operacion || (operacion.rol && operacion.rol !== rol)) {
+    if (!usuario || !operacion || (operacion.rol && operacion.rol !== rol)) {
       return { ok: false, error: { codigo: 'PERMISO', mensaje: 'Tu rol no permite esta acción.', campos: {} } };
     }
     // Usamos el ref para comprobar siempre el estado más reciente, incluso tras otro evento.
     const actuales = datosActuales.current;
-    const todas = actuales.sesiones.map(sesion => enriquecerSesion(sesion, actuales.cierres, usuariosDemo));
+    const todas = actuales.sesiones.map(sesion => enriquecerSesion(sesion, actuales.cierres, usuarios));
     if (accion !== 'solicitar') {
       const sesion = todas.find(actual => actual.codigo === argumentos[0]);
       const idParticipante = rol === 'tutor' ? sesion?.tutorId : sesion?.estudianteId;
@@ -171,10 +146,20 @@ export default function SesionesProvider({ children }) {
     }
     const resultado = operacion.ejecutar(todas, ...argumentos, usuarioId);
     if (!resultado.ok) return resultado;
+    // La agenda original solo conocía el catálogo JSON. Incluimos al alumno registrado.
+    const anteriores = actuales.sesiones.find(sesion => sesion.codigo === resultado.sesion.codigo)?.trazabilidad?.length ?? 0;
+    resultado.sesion = {
+      ...resultado.sesion,
+      trazabilidad: resultado.sesion.trazabilidad.map((evento, indice) => (
+        indice >= anteriores && evento.actor === 'Usuario'
+          ? { ...evento, actor: `${usuario.nombres} ${usuario.apellidos}` }
+          : evento
+      )),
+    };
     const nuevosDatos = aplicarResultadoAgenda(actuales, resultado);
     datosActuales.current = nuevosDatos;
     setDatos(nuevosDatos);
-    return { ok: true, sesion: enriquecerSesion(resultado.sesion, nuevosDatos.cierres, usuariosDemo) };
+    return { ok: true, sesion: enriquecerSesion(resultado.sesion, nuevosDatos.cierres, usuarios) };
   }
 
   function guardarBorrador(codigo, valores) {
@@ -319,7 +304,7 @@ export default function SesionesProvider({ children }) {
   }
 
   function obtenerUsuario(id) {
-    return usuariosDemo.find(usuarioDemo => usuarioDemo.id === id);
+    return usuarios.find(persona => persona.id === id);
   }
 
   function obtenerSesion(codigo) {
@@ -330,11 +315,11 @@ export default function SesionesProvider({ children }) {
   const valorCompartido = {
     sesiones,
     sesionesUsuario,
-    usuarios: usuariosDemo,
+    usuarios,
     usuario,
     rol,
     cambiarRol,
-    cambiarUsuario,
+    salir,
     reiniciarDemo,
     obtenerUsuario,
     obtenerSesion,
@@ -344,7 +329,7 @@ export default function SesionesProvider({ children }) {
     eliminarMaterial,
     operarAgenda,
     notificar,
-    notificacion,
+    notificacion: notificacion?.usuarioId && notificacion.usuarioId !== usuarioId ? null : notificacion,
     cerrarNotificacion,
   };
 
@@ -352,7 +337,7 @@ export default function SesionesProvider({ children }) {
   // Así no quedan visibles los campos que estaba completando otra persona.
   return (
     <SesionesContext.Provider value={valorCompartido}>
-      <div key={`${rol}-${usuarioId}`}>{children}</div>
+      <div key={`${rol}-${usuarioId ?? 'visitante'}`}>{children}</div>
     </SesionesContext.Provider>
   );
 }

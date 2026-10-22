@@ -1,0 +1,25 @@
+.cuenta-error { color: #a92323; font-size: .94rem; margin: 6px 0 12px; }
+.cuenta-aviso { color: #58536d; background: #f3f1fc; padding: 12px; border-radius: 8px; font-size: .95rem; }
+.cuenta-enlace { border: 0; background: none; color: #3b3596; font: inherit; text-align: left; cursor: pointer; padding: 4px 0; }
+.cuenta-demo { margin-top: 20px; border-top: 1px solid #e2e1ec; padding-top: 16px; }
+.cuenta-demo summary { cursor: pointer; color: #3b3596; font-weight: 600; }
+.cuenta-demo p { margin: 12px 0 4px; overflow-wrap: anywhere; }
+.cuenta-salir, .hu5-app .hu5-logout { border: 1px solid #d9d6ec; border-radius: 8px; background: white; color: #3b3596; padding: 7px 12px; cursor: pointer; font: inherit; }
+.app-header__rol-btn:disabled { opacity: .4; cursor: not-allowed; }
+.acceso-denegado { max-width: 960px; margin: 60px auto; padding: 24px; }
+.main-login input[aria-invalid="true"], .main-registro input[aria-invalid="true"], .main-registro select[aria-invalid="true"] { border-color: #b4322b; }
+.main-registro select { padding: 12px; background: white; border: 1px solid #d9d6ec; border-radius: 8px; font: inherit; width: 100%; }
+.main-login form button:disabled, .main-registro form button:disabled { opacity: .6; cursor: wait; }
+.main-login .opciones-login .cuenta-enlace { font-size: .9rem; }
+@media (max-width: 650px) {
+  .main-registro .fila-nombres { flex-direction: column; }
+  .main-login { padding: 24px 16px; }
+}
+@media (max-width: 760px) {
+  .main-login .contenedor-login { flex-direction: column; }
+  .main-login .informacion-login, .main-login .formulario-login { width: 100%; padding: 24px; }
+  .main-login .informacion-login h1 { font-size: 28px; }
+  .main-login .opciones-login { flex-wrap: wrap; gap: 12px; }
+  .main-registro { padding: 24px 16px; }
+  .main-registro .formulario-registro { padding: 24px; min-width: 0; }
+}

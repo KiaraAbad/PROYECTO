@@ -1,16 +1,16 @@
 # HU-5: desarrollo y cierre
 
-Versión para la Entrega 1: interfaz React con la agenda de HU-4 y el desarrollo y cierre de HU-5 integrados. Ambas partes comparten usuarios, sesiones y almacenamiento del navegador. No incluye servicios web, base de datos ni autenticación real. El cambio de usuario o rol es una simulación para comprobar qué puede ver y editar cada participante.
+Versión para la Entrega 1: interfaz React con el acceso simulado de HU-1, la agenda de HU-4 y el desarrollo y cierre de HU-5 conectados. HU-1 aporta el usuario y rol activos; agenda y cierre comparten las sesiones. No incluye servicios web, base de datos ni autenticación de servidor. La guía de la conexión está en `docs/HU1-integracion-acceso.md`.
 
 La base de HU-4 procede de la rama `h4`, commit `9299f501345230bbef5ae3fccf2c85b153e4263c`, del repositorio del grupo. Al revisar esta integración, el 21 de octubre de 2026, el [PR #8](https://github.com/KiaraAbad/PROYECTO/pull/8) seguía abierto: integrar esa rama localmente no significa que su pull request ya esté aprobado o incorporado a `main`.
 
 ## Qué probar
 
-Abre `http://127.0.0.1:5173/sesiones`. Usa siempre la misma dirección: `localhost` y `127.0.0.1` tienen almacenamientos separados en el navegador. Las vistas normales siguen los mockups, sin la franja «Vista de prueba», el selector «Ver como» ni el botón de reinicio. El selector Tutor / Estudiante se conserva como parte de la demostración de roles.
+Abre `http://127.0.0.1:5173/login`. En **Cuentas de prueba**, elige a Sebastián para tutor o a Joaquín para estudiante y pulsa **Ingresar**. Luego abre `/sesiones`. Usa siempre la misma dirección: `localhost` y `127.0.0.1` tienen almacenamientos separados. Las vistas normales siguen los mockups, sin selector de participantes ni botón de reinicio. El selector Tutor / Estudiante solo cambia entre los roles permitidos de la misma cuenta.
 
 También puedes abrir `http://127.0.0.1:5173/mis-sesiones` para la agenda de HU-4 y `/solicitudes` para las solicitudes del tutor. El usuario y rol seleccionados se comparten al navegar hacia HU-5 y volver; el encabezado no cambia solo el texto del menú.
 
-Para repetir casos durante el desarrollo, abre manualmente `http://127.0.0.1:5173/sesiones/pruebas`. Esta pantalla permite elegir un usuario de ejemplo y restablecer los datos con confirmación. No tiene enlaces en las vistas normales y en la compilación de entrega redirige a Mis sesiones. **Restablecer ejemplo reinicia tanto la agenda de HU-4 como los cierres, borradores y materiales de HU-5**. No lo uses si deseas conservar tus cambios actuales. La copia antigua de HU-5 no se borra al reiniciar la versión compartida.
+Para repetir casos durante el desarrollo, abre manualmente `http://127.0.0.1:5173/sesiones/pruebas`. Muestra la cuenta activa y permite restablecer los datos con confirmación; cambiar de persona requiere salir e ingresar desde el login. No tiene enlaces en las vistas normales y en la compilación de entrega redirige a Mis sesiones. **Restablecer ejemplo reinicia tanto la agenda de HU-4 como los cierres, borradores y materiales de HU-5**. No lo uses si deseas conservar tus cambios actuales. La copia antigua de HU-5 no se borra al reiniciar la versión compartida.
 
 En una demo nueva o restablecida, la sesión `TU-2026-0184` se prepara para que haya terminado hace aproximadamente media hora. Al recuperar un avance anterior se conservan sus fechas y su cierre: esa sesión no se reabre ni cambia de día automáticamente. Los límites de duración y texto descritos abajo son decisiones de esta versión que se deben confirmar con el grupo.
 
@@ -20,7 +20,7 @@ En una demo nueva o restablecida, la sesión `TU-2026-0184` se prepara para que 
 4. Finaliza el cierre. La sesión debe aparecer como **Realizada** y sus minutos deben reflejarse en el resumen y en el curso correspondiente.
 5. En otra sesión, marca la ausencia de alguna de las partes. El resultado debe ser **No asistió** y no debe aumentar las horas acumuladas.
 6. En materiales, agrega un enlace HTTPS con título, edítalo y elimínalo. La eliminación debe pedir confirmación. Prueba una dirección incompleta y una con `javascript:`: deben rechazarse.
-7. Cambia a la vista de estudiante. Debe poder consultar sus sesiones, notas y materiales, sin disponer de los controles de edición del tutor. No debe acceder a sesiones ajenas.
+7. Sal de la cuenta e ingresa como Joaquín. Debe consultar sus notas y materiales sin controles de edición y sin acceso a sesiones ajenas. Cambiar a estudiante desde Sebastián conserva a Sebastián; no lo convierte en Joaquín.
 8. Comprueba una sesión futura, una cancelada y una fuera del plazo de cierre: no deben permitir finalizar un nuevo cierre.
 9. Recarga la página y revisa el aviso de almacenamiento si tu navegador impide guardar datos. La demo no depende de un servidor para almacenar sus cambios.
 10. En HU-4, acepta una solicitud y comprueba que aparece programada en las vistas de sesiones. Desde el detalle de una programada ya terminada y dentro del plazo, abre **Cerrar sesión**: debe mostrar el formulario de HU-5 para ese mismo código.
@@ -99,13 +99,13 @@ Las reglas de ambas HU usan el reloj real y fechas interpretadas en Lima. La sem
 
 ### Qué sigue siendo una simulación
 
-El login de HU-1 no se modificó para autenticar ni aportar una identidad compartida. Las pantallas de inicio, login y registro se conservan; el usuario y rol de esta integración son de demostración. En consecuencia, esta versión no debe presentarse como un sistema con inicio de sesión real, protección de servidor ni autorización segura frente a quien altere el navegador.
+El login de HU-1 ahora identifica la cuenta de la demo y comparte su ID y rol mediante `AutenticacionProvider`. Hay registro local, ingreso, salida, conservación del acceso y rutas restringidas por rol. No hay autenticación de servidor ni autorización segura frente a quien altere el navegador. No deben utilizarse contraseñas reales.
 
-Las páginas de HU-3 y HU-6 presentes en la rama del grupo se conservan. Esta integración no implementa una persistencia completa compartida para calificaciones y reseñas de HU-6 ni una autenticación de HU-1; no debe afirmarse que esos flujos quedaron conectados de extremo a extremo por este trabajo. Las pantallas propias de HU-2 también quedan fuera del alcance de HU-5.
+Las páginas de HU-3 y HU-6 presentes en la rama del grupo se conservan. No se implementa una persistencia completa compartida para calificaciones y reseñas de HU-6. De HU-1 quedan pendientes invitaciones del coordinador, edición de perfil, fotografía y contacto, cambio de contraseña y recuperación. La activación de tutor y las demás pantallas de HU-2 no se implementan en esta conexión.
 
 ### Cómo explicarlo en la exposición
 
-«La agenda de HU-4 y el cierre de HU-5 usan un Provider global. El tutor abre una sesión programada, registra asistencia y confirma el cierre. Se valida que la sesión le pertenezca y esté dentro de las 72 horas. El mismo estado actualiza la agenda, el historial y las horas, y se guarda en el navegador. Un borrador no cierra la sesión; una inasistencia no suma horas. Los datos anteriores se migran conservando los avances. El login todavía es la pantalla de HU-1 sin identidad conectada, por eso mostramos los roles con usuarios de prueba».
+«HU-1 identifica al participante de la demo y comparte su ID y rol. HU-4 y HU-5 usan esa misma identidad y un estado común de sesiones. El tutor registra la asistencia y confirma el cierre; se comprueban el participante y las 72 horas. El cierre actualiza agenda, historial y horas. Un borrador no suma horas y una inasistencia tampoco. Salir elimina el acceso, pero conserva las tutorías. Es una simulación local de la primera entrega, sin servidor».
 
 ## Apariencia y recursos locales
 
@@ -129,6 +129,6 @@ git status
 git diff
 ```
 
-La comprobación automática de esta integración incluye **44 pruebas aprobadas**, compilación y revisión de estilo sin errores. Se verifican límites de 72 horas, asistencia, enlaces, migración sin pérdida del avance, estados de agenda y actualización compartida. Ninguna prueba automática reemplaza recorrer las pantallas en el navegador.
+Las pruebas automáticas incluyen las reglas de HU-4/HU-5 y `tests/hu1-autenticacion.test.mjs`. Se comprueban dominios de correo, validaciones de registro, credenciales locales, conservación y limpieza de la identidad, roles, cierres y migración sin pérdida del avance. Ninguna prueba automática reemplaza recorrer las pantallas en el navegador.
 
 Antes de publicar, revisa el conjunto integrado sobre la base de `h4`, no solamente los archivos antiguos de HU-5: ahora también hay adaptaciones de rutas, encabezado, agenda y almacenamiento que permiten conectarlas. Conserva el respaldo del avance previo. No incluyas `node_modules`, credenciales ni archivos de prueba personales. Preparar esta versión local no hace por sí solo un commit, una subida ni una aprobación del PR de HU-4; la publicación en la rama y la revisión con el equipo son pasos posteriores.

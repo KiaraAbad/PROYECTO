@@ -1,11 +1,12 @@
-import { Link, useLocation } from 'react-router-dom';
-import { useSesiones } from '../hooks/useSesiones';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAutenticacion } from '../hooks/useAutenticacion';
 import './Header.css';
 
 function Header({ children, variante }) {
-  const { usuario, rol, cambiarRol } = useSesiones();
+  const { usuario, rol, cambiarRol, salir } = useAutenticacion();
   const { pathname } = useLocation();
-  const esPublico = variante === 'publico' || pathname === '/';
+  const navegar = useNavigate();
+  const esPublico = !usuario || variante === 'publico' || pathname === '/';
 
   // HU-5 conserva su encabezado compacto; la identidad sigue siendo compartida.
   if (children) return <header className="hu5-header">{children}</header>;
@@ -41,7 +42,7 @@ function Header({ children, variante }) {
           {esPublico && <a href="/#como-funciona" className="app-header__link">Cómo funciona</a>}
         </nav>
       </div>
-      {esPublico ? (
+      {!usuario ? (
         <div className="app-header__acciones-publicas">
           <Link to="/login" className="app-header__btn-login">Iniciar sesión</Link>
           <Link to="/registro" className="app-header__btn-registro">Crear cuenta</Link>
@@ -52,6 +53,7 @@ function Header({ children, variante }) {
           <div className="app-header__rol-switch" role="group" aria-label="Cambio de rol">
             {['estudiante', 'tutor'].map(opcion => (
               <button key={opcion} type="button" aria-pressed={rol === opcion}
+                disabled={!usuario.rol.includes(opcion)}
                 className={`app-header__rol-btn${rol === opcion ? ' app-header__rol-btn--activo' : ''}${rol === opcion && opcion === 'tutor' ? ' app-header__rol-btn--tutor' : ''}`}
                 onClick={() => cambiarRol(opcion)}>
                 {opcion === 'tutor' ? 'Tutor' : 'Estudiante'}
@@ -62,6 +64,9 @@ function Header({ children, variante }) {
             <div className="app-header__avatar" aria-hidden="true">{usuario.nombres[0]}{usuario.apellidos[0]}</div>
             <span className="app-header__usuario-nombre">{usuario.nombres.split(' ')[0]} {usuario.apellidos.split(' ')[0]}</span>
           </div>
+          <button type="button" className="cuenta-salir" aria-label="Salir de mi cuenta" onClick={() => {
+            salir(); navegar('/login', { replace: true });
+          }}>Salir</button>
         </div>
       )}
     </header>

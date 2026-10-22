@@ -5,9 +5,8 @@ import { ModalConfirmacion } from '../components/sesiones/ElementosSesion';
 
 // App permite esta ruta solo en desarrollo. No se enlaza desde la interfaz normal.
 export default function PruebasSesiones() {
-  const { rol, usuario, usuarios, cambiarRol, cambiarUsuario, reiniciarDemo } = useSesiones();
+  const { rol, usuario, cambiarRol, reiniciarDemo, salir } = useSesiones();
   const [confirmando, setConfirmando] = useState(false);
-  const usuariosDelRol = usuarios.filter(persona => persona.rol.includes(rol));
 
   function confirmarRestablecimiento() {
     reiniciarDemo();
@@ -28,29 +27,21 @@ export default function PruebasSesiones() {
       </header>
 
       <section className="hu5-card" aria-labelledby="pruebas-identidad">
-        <h2 id="pruebas-identidad">Elegir participante</h2>
+        <h2 id="pruebas-identidad">Cuenta activa</h2>
         <p className="hu5-help">
-          Cambiar de rol elige a su participante de ejemplo. Después puedes elegir
-          otro usuario de ese rol; los formularios se reinician para no mezclar sus datos.
+          Cambiar de rol conserva tu identidad y solo permite los roles de tu cuenta.
+          Para probar con otra persona, sal de tu cuenta e ingresa desde el login.
         </p>
         <div className="hu5-pruebas-grid">
           <label className="hu5-field">
-            <span>Rol de prueba</span>
+            <span>Rol activo</span>
             <select value={rol} onChange={evento => cambiarRol(evento.target.value)}>
-              <option value="tutor">Tutor</option>
-              <option value="estudiante">Estudiante</option>
+              {usuario.rol.map(opcion => <option key={opcion} value={opcion}>{opcion}</option>)}
             </select>
           </label>
-          <label className="hu5-field">
-            <span>Usuario de prueba</span>
-            <select value={usuario.id} onChange={evento => cambiarUsuario(evento.target.value)}>
-              {usuariosDelRol.map(persona => (
-                <option key={persona.id} value={persona.id}>
-                  {persona.nombres} {persona.apellidos}
-                </option>
-              ))}
-            </select>
-          </label>
+          <div><p>{usuario.nombres} {usuario.apellidos} · {usuario.id}</p>
+            <button type="button" className="hu5-button hu5-button--secondary" onClick={salir}>Cambiar de cuenta</button>
+          </div>
         </div>
       </section>
 

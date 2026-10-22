@@ -12,7 +12,7 @@ export function useSesiones(usuarioId) {
   // Sin argumento: API de HU-5. Con identificador: API de agenda de HU-4.
   // Ambas leen el mismo Context; ya no existe un almacén de agenda separado.
   if (usuarioId === undefined) return contexto;
-  const esUsuarioActivo = usuarioId === contexto.usuario.id;
+  const esUsuarioActivo = usuarioId === contexto.usuario?.id;
   function operar(accion, ...argumentos) {
     if (!esUsuarioActivo) {
       return { ok: false, error: { codigo: 'PERMISO', mensaje: 'Selecciona tu usuario activo.', campos: {} } };

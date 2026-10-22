@@ -11,6 +11,7 @@ export default function SesionesLayout() {
     rol,
     usuario,
     cambiarRol,
+    salir,
     notificacion,
     cerrarNotificacion,
   } = useSesiones();
@@ -56,6 +57,7 @@ export default function SesionesLayout() {
               type="button"
               key={rolDePrueba}
               aria-pressed={rol === rolDePrueba}
+              disabled={!usuario.rol.includes(rolDePrueba)}
               onClick={() => seleccionarRol(rolDePrueba)}
             >
               {rolDePrueba === 'tutor' ? 'Tutor' : 'Estudiante'}
@@ -65,6 +67,7 @@ export default function SesionesLayout() {
         <span className="hu5-avatar" title={`${usuario.nombres} ${usuario.apellidos}`}>
           {usuario.nombres[0]}{usuario.apellidos[0]}
         </span>
+        <button className="hu5-logout" type="button" aria-label="Salir de mi cuenta" onClick={salir}>Salir</button>
       </Header>
       {notificacion && (
         <div
