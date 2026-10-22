@@ -1,0 +1,201 @@
+
+.disponibilidad-tutor {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-base);
+}
+
+.disponibilidad-tutor__contenedor {
+  width: min(100% - 40px, 1000px);
+  margin: 0 auto;
+  padding: 32px 0 48px;
+}
+
+.disponibilidad-tutor__migas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.disponibilidad-tutor__migas a,
+.disponibilidad-tutor__enlace {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.disponibilidad-tutor__encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.disponibilidad-tutor__etiqueta {
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+}
+
+.disponibilidad-tutor__encabezado h1 {
+  margin: 8px 0;
+  font-size: clamp(1.7rem, 4vw, 2.2rem);
+}
+
+.disponibilidad-tutor__encabezado p,
+.disponibilidad-tutor__panel > p {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.disponibilidad-tutor__enlace {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  white-space: nowrap;
+}
+
+.disponibilidad-tutor__panel {
+  padding: 24px;
+  margin-bottom: 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.disponibilidad-tutor__panel h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.disponibilidad-tutor__panel h3 {
+  margin-top: 28px;
+  font-size: 1rem;
+}
+
+.disponibilidad-tutor__rejilla {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.disponibilidad-tutor__campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.disponibilidad-tutor__campo label {
+  font-weight: 600;
+}
+
+.disponibilidad-tutor__campo input,
+.disponibilidad-tutor__campo select {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+}
+
+.disponibilidad-tutor__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.disponibilidad-tutor__boton {
+  padding: 10px 14px;
+  border: 0;
+  border-radius: var(--radius);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.disponibilidad-tutor__boton.es-primario {
+  background: var(--primary);
+  color: white;
+}
+
+.disponibilidad-tutor__boton.es-secundario {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.disponibilidad-tutor__boton.es-peligro {
+  background: #fbe9e8;
+  color: var(--danger);
+}
+
+.disponibilidad-tutor__lista {
+  display: grid;
+  gap: 12px;
+}
+
+.disponibilidad-tutor__elemento {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.disponibilidad-tutor__elemento p {
+  margin: 6px 0;
+  color: var(--text-muted);
+}
+
+.disponibilidad-tutor__elemento small {
+  color: var(--danger);
+}
+
+.disponibilidad-tutor__elemento .disponibilidad-tutor__acciones {
+  margin-top: 0;
+}
+
+.disponibilidad-tutor__mensaje {
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+}
+
+.disponibilidad-tutor__nota {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 700px) {
+  .disponibilidad-tutor__encabezado,
+  .disponibilidad-tutor__elemento {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .disponibilidad-tutor__rejilla {
+    grid-template-columns: 1fr;
+  }
+
+  .disponibilidad-tutor__panel {
+    padding: 18px;
+  }
+}

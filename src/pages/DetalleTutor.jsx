@@ -9,67 +9,119 @@ import { useAviso } from "../hooks/useAviso";
 import { useSesiones } from "../hooks/useSesiones";
 import "../styles/detalle-tutor.css";
 
-function crearSemanas(ahora) {
-  const partes = {};
-  new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'America/Lima', year: 'numeric', month: '2-digit', day: '2-digit',
-  }).formatToParts(ahora).forEach(parte => { partes[parte.type] = parte.value; });
-  const hoy = new Date(`${partes.year}-${partes.month}-${partes.day}T12:00:00Z`);
-  const lunes = new Date(hoy);
-  lunes.setUTCDate(hoy.getUTCDate() - (hoy.getUTCDay() + 6) % 7);
-  const claves = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
-  const nombres = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'];
-  const abreviados = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
-  const fechaEn = desplazamiento => {
-    const fecha = new Date(lunes);
-    fecha.setUTCDate(lunes.getUTCDate() + desplazamiento);
-    return fecha.toISOString().slice(0, 10);
-  };
-  const fechaTexto = fecha => fecha.split('-').reverse().join('/');
-
-  // La disponibilidad sigue siendo de ejemplo, pero las fechas no quedan vencidas.
-  return [0, 1, 2].map(indice => ({
-    indice,
-    rango: `${fechaTexto(fechaEn(indice * 7))} — ${fechaTexto(fechaEn(indice * 7 + 6))}`,
-    fechaSiguiente: fechaTexto(fechaEn((indice + 1) * 7)),
-    tieneBloques: indice !== 1,
-    dias: claves.map((clave, dia) => {
-      const fecha = fechaEn(indice * 7 + dia);
-      return {
-        clave, diaSemana: abreviados[dia], nombreDia: nombres[dia],
-        fechaISO: fecha, fechaCompleta: fechaTexto(fecha), fechaNum: Number(fecha.slice(-2)),
-      };
-    }),
-  }));
-}
-
-const HORAS_FILAS = [
-  { hora: "08:00", fin: "09:00" },
-  { hora: "09:00", fin: "10:00" },
-  { hora: "16:00", fin: "17:00" },
-  { hora: "17:00", fin: "18:00" },
+const DIAS_AGENDA = [
+  { clave: "lunes", etiqueta: "Lun" },
+  { clave: "martes", etiqueta: "Mar" },
+  { clave: "miercoles", etiqueta: "Mié" },
+  { clave: "jueves", etiqueta: "Jue" },
+  { clave: "viernes", etiqueta: "Vie" },
+  { clave: "sabado", etiqueta: "Sáb" },
 ];
 
-const ESTADOS_SEMANA_1 = {
-  "lunes-08:00": "libre",
-  "lunes-09:00": "ocupado",
-  "lunes-16:00": "libre",
-  "lunes-17:00": "libre",
+function fechaISO(fecha) {
+  const anio = fecha.getFullYear();
+  const mes = String(fecha.getMonth() + 1).padStart(2, "0");
+  const dia = String(fecha.getDate()).padStart(2, "0");
+  return `${anio}-${mes}-${dia}`;
+}
 
-  "martes-09:00": "libre",
-  "martes-17:00": "ocupado",
+function fechaVisible(fecha) {
+  return fecha.toLocaleDateString("es-PE", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+}
 
-  "miercoles-08:00": "libre",
-  "miercoles-16:00": "libre",
+function obtenerLunes(fecha, desplazamiento = 0) {
+  const lunes = new Date(
+    fecha.getFullYear(),
+    fecha.getMonth(),
+    fecha.getDate()
+  );
 
-  "jueves-09:00": "libre",
+  const dia = lunes.getDay();
+  lunes.setDate(
+    lunes.getDate() - (dia === 0 ? 6 : dia - 1) + desplazamiento * 7
+  );
 
-  "viernes-08:00": "ocupado",
-  "viernes-16:00": "libre",
-  "viernes-17:00": "libre",
+  return lunes;
+}
 
-  "sabado-09:00": "libre",
-};
+function crearSemana(indice) {
+  const lunes = obtenerLunes(new Date(), indice);
+
+  const dias = DIAS_AGENDA.map((dia, posicion) => {
+    const fecha = new Date(lunes);
+    fecha.setDate(lunes.getDate() + posicion);
+
+    return {
+      ...dia,
+      fechaISO: fechaISO(fecha),
+      fechaNum: fecha.getDate(),
+      fechaCompleta: fechaVisible(fecha),
+    };
+  });
+
+  return {
+    rango: `${dias[0].fechaCompleta} — ${dias[5].fechaCompleta}`,
+    dias,
+    tieneBloques: true,
+  };
+}
+
+function generarHoras(disponibilidad) {
+  const horas = new Set();
+
+  disponibilidad
+    .filter((item) => item.tipo === "recurrente")
+    .forEach((item) => {
+      const inicio = Number(item.horaInicio.slice(0, 2));
+      const fin = Number(item.horaFin.slice(0, 2));
+
+      for (let hora = inicio; hora < fin; hora++) {
+        horas.add(`${String(hora).padStart(2, "0")}:00`);
+      }
+    });
+
+  return [...horas].sort().map((hora) => {
+    const inicio = Number(hora.slice(0, 2));
+
+    return {
+      hora,
+      fin: `${String(inicio + 1).padStart(2, "0")}:00`,
+    };
+  });
+}
+
+function hayDisponibilidad(
+  disponibilidad,
+  dia,
+  fecha,
+  horaInicio,
+  horaFin
+) {
+  const recurrente = disponibilidad.some(
+    (item) =>
+      item.tipo === "recurrente" &&
+      item.dia === dia &&
+      item.estado === "libre" &&
+      horaInicio >= item.horaInicio &&
+      horaFin <= item.horaFin
+  );
+
+  if (!recurrente) return false;
+
+  const tieneExcepcion = disponibilidad.some(
+    (item) =>
+      item.tipo === "excepcion" &&
+      item.fecha === fecha &&
+      horaInicio < item.horaFin &&
+      horaFin > item.horaInicio
+  );
+
+  return !tieneExcepcion;
+}
 
 function DetalleTutor() {
   const { id } = useParams();
@@ -88,6 +140,7 @@ function DetalleTutor() {
 
   const tutor = useMemo(() => {
     if (!tutores.length) return null;
+
     return (
       tutores.find((item) => item.id === id) ||
       tutores.find((item) => item.id === "u-003") ||
@@ -95,7 +148,29 @@ function DetalleTutor() {
     );
   }, [tutores, id]);
 
-  const semanaActual = semanas[semanaIndice] || semanas[0];
+  const disponibilidad = tutor?.disponibilidad || [];
+
+  const semanaActual = useMemo(
+    () => crearSemana(semanaIndice),
+    [semanaIndice]
+  );
+
+  const horasFilas = useMemo(
+    () => generarHoras(disponibilidad),
+    [disponibilidad]
+  );
+
+  const semanaTieneBloquesLibres = horasFilas.some((fila) =>
+  semanaActual.dias.some((col) =>
+    hayDisponibilidad(
+      disponibilidad,
+      col.clave,
+      col.fechaISO,
+      fila.hora,
+      fila.fin
+    )
+  )
+);
 
   if (cargando) {
     return (
@@ -121,29 +196,39 @@ function DetalleTutor() {
       </div>
     );
   }
+  const perfil = tutor.perfilTutor || {};
+  const nombreCompleto = `${tutor.nombres || ""} ${tutor.apellidos || ""}`.trim();
 
-  const perfil = tutor.perfilTutor ?? {};
-  const primerNombre = tutor.nombres?.split(" ")[0] || "El tutor";
-  const nombreCompleto = `${tutor.nombres} ${tutor.apellidos}`.trim();
+  const modalidadTexto = {
+    presencial: "Presencial",
+    remota: "Remota",
+    ambas: "Presencial y remota",
+  };
+
   const modalidad = perfil.modalidad || "remota";
-  const promedio = perfil.promedio != null ? Number(perfil.promedio).toFixed(1) : "4.7";
+  const modalidadVisible = modalidadTexto[modalidad] || modalidad;
 
-  const cursos = perfil.cursos?.length
-    ? perfil.cursos
-    : [
-      { codigo: "MA101", nombre: "Cálculo I" },
-      { codigo: "FI202", nombre: "Física II" },
-    ];
+  const sede = perfil.sedePreferencia?.trim() || "No especificada";
+  const biografia =
+    perfil.biografia?.trim() || "El tutor todavía no ha agregado su biografía.";
 
-  const primerCursoCodigo = cursos[0]?.codigo || "MA101";
-  const primerCursoNombre = cursos[0]?.nombre || "Cálculo I";
+  const promedio =
+    perfil.promedio != null ? Number(perfil.promedio).toFixed(1) : "4.7";
 
-  const subtituloCursos = cursos
-    .map((c) => `${c.codigo} ${c.nombre}`)
+  const cursos = Array.isArray(perfil.cursos) ? perfil.cursos : [];
+
+  const subtituloCursos = cursos.length
+    ? cursos.map((curso) => `${curso.codigo} ${curso.nombre}`).join(" · ")
+    : "Sin cursos registrados";
+
+  const subtituloCompleto = [
+    tutor.carrera,
+    tutor.ciclo ? `${tutor.ciclo}.° ciclo` : null,
+    subtituloCursos,
+    promedio,
+  ]
+    .filter(Boolean)
     .join(" · ");
-
-  const subtituloCompleto = `${tutor.carrera || "Ingeniería Civil"} · ${tutor.ciclo ? `${tutor.ciclo}.° ciclo` : "9.° ciclo"
-    } · ${subtituloCursos} · ${promedio}`;
 
   const handleSeleccionarBloque = (col, fila) => {
     if (rol !== 'estudiante') {
@@ -156,25 +241,22 @@ function DetalleTutor() {
     }
     setBloqueSeleccionado({
       diaClave: col.clave,
-      nombreDia: col.nombreDia,
-      fecha: col.fechaCompleta,
+      nombreDia: col.clave,
+      fecha: col.fechaISO,
+      fechaVisible: col.fechaCompleta,
       horaInicio: fila.hora,
       horaFin: fila.fin,
     });
   };
 
   const irSemanaAnterior = () => {
-    if (semanaIndice > 0) {
-      setSemanaIndice(semanaIndice - 1);
-      setBloqueSeleccionado(null);
-    }
+    setSemanaIndice((actual) => actual - 1);
+    setBloqueSeleccionado(null);
   };
 
   const irSemanaSiguiente = () => {
-    if (semanaIndice < semanas.length - 1) {
-      setSemanaIndice(semanaIndice + 1);
-      setBloqueSeleccionado(null);
-    }
+    setSemanaIndice((actual) => actual + 1);
+    setBloqueSeleccionado(null);
   };
 
   return (
@@ -182,27 +264,36 @@ function DetalleTutor() {
       <Header />
 
       <main className="detalle-tutor-container">
-        {/* Breadcrumb */}
-        <nav className="detalle-tutor__breadcrumb" aria-label="Ruta de navegación">
+        <nav
+          className="detalle-tutor__breadcrumb"
+          aria-label="Ruta de navegación"
+        >
           <Link to="/tutores" className="detalle-tutor__breadcrumb-link">
             Directorio
           </Link>
           <span className="detalle-tutor__breadcrumb-separador">›</span>
-          <span className="detalle-tutor__breadcrumb-actual">{nombreCompleto}</span>
+          <span className="detalle-tutor__breadcrumb-actual">
+            {nombreCompleto}
+          </span>
         </nav>
 
-        {/* Tarjeta 1: Perfil del tutor */}
+        {/* Información principal del tutor */}
         <section className="detalle-tutor__tarjeta-perfil">
           <div className="detalle-tutor__perfil-izq">
             <div className="detalle-tutor__avatar-grande" aria-hidden="true">
-              {perfil.fotoUrl ? (
-                <img src={perfil.fotoUrl} alt={nombreCompleto} />
+              {tutor.fotoUrl || perfil.fotoUrl ? (
+                <img
+                  src={tutor.fotoUrl || perfil.fotoUrl}
+                  alt={nombreCompleto}
+                />
               ) : null}
             </div>
 
             <div className="detalle-tutor__info-principal">
               <h1 className="detalle-tutor__nombre">{nombreCompleto}</h1>
-              <p className="detalle-tutor__subtitulo">{subtituloCompleto}</p>
+              <p className="detalle-tutor__subtitulo">
+                {subtituloCompleto}
+              </p>
             </div>
           </div>
 
@@ -217,7 +308,135 @@ function DetalleTutor() {
           </div>
         </section>
 
-        {/* Tarjeta 2: Disponibilidad semanal */}
+        <section
+          className="detalle-tutor__tarjeta-agenda"
+          aria-labelledby="detalle-tutor-info-titulo"
+        >
+          <h2
+            id="detalle-tutor-info-titulo"
+            className="detalle-tutor__agenda-titulo"
+            style={{ marginBottom: "20px" }}
+          >
+            Sobre el tutor
+          </h2>
+
+          <div style={{ marginBottom: "24px" }}>
+            <h3 style={{ marginBottom: "8px" }}>Biografía y experiencia</h3>
+            <p
+              style={{
+                color: "var(--text-muted)",
+                lineHeight: 1.7,
+                whiteSpace: "pre-wrap",
+                margin: 0,
+              }}
+            >
+              {biografia}
+            </p>
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: "16px",
+              marginBottom: "28px",
+            }}
+          >
+            <div
+              style={{
+                background: "var(--primary-soft)",
+                borderRadius: "10px",
+                padding: "16px",
+              }}
+            >
+              <h3 style={{ margin: "0 0 8px", fontSize: "1rem" }}>
+                Modalidad de atención
+              </h3>
+              <p style={{ margin: 0, color: "var(--text-muted)" }}>
+                {modalidadVisible}
+              </p>
+            </div>
+
+            <div
+              style={{
+                background: "var(--primary-soft)",
+                borderRadius: "10px",
+                padding: "16px",
+              }}
+            >
+              <h3 style={{ margin: "0 0 8px", fontSize: "1rem" }}>
+                Sede de preferencia
+              </h3>
+              <p style={{ margin: 0, color: "var(--text-muted)" }}>{sede}</p>
+            </div>
+          </div>
+
+          <h2
+            className="detalle-tutor__agenda-titulo"
+            style={{ marginBottom: "16px" }}
+          >
+            Cursos que enseña
+          </h2>
+
+          {cursos.length === 0 ? (
+            <p style={{ color: "var(--text-muted)" }}>
+              Este tutor todavía no ha registrado cursos.
+            </p>
+          ) : (
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+                gap: "16px",
+              }}
+            >
+              {cursos.map((curso, indice) => (
+                <article
+                  key={`${curso.codigo || curso.nombre}-${indice}`}
+                  style={{
+                    border: "1px solid var(--border)",
+                    borderRadius: "10px",
+                    padding: "18px",
+                    background: "var(--surface)",
+                  }}
+                >
+                  <p
+                    style={{
+                      color: "var(--primary)",
+                      fontSize: "0.82rem",
+                      fontWeight: 700,
+                      margin: "0 0 6px",
+                    }}
+                  >
+                    {curso.codigo || "Curso"}
+                  </p>
+
+                  <h3 style={{ margin: "0 0 12px", fontSize: "1.05rem" }}>
+                    {curso.nombre || "Nombre no especificado"}
+                  </h3>
+
+                  <p style={{ margin: "0 0 10px" }}>
+                    <strong>Nivel:</strong>{" "}
+                    {curso.nivel || "No especificado"}
+                  </p>
+
+                  <p
+                    style={{
+                      margin: 0,
+                      color: "var(--text-muted)",
+                      lineHeight: 1.6,
+                      whiteSpace: "pre-wrap",
+                    }}
+                  >
+                    {curso.experiencia || "Sin descripción de experiencia."}
+                  </p>
+                </article>
+              ))}
+            </div>
+          )}
+        </section>
+
+        {/* Agenda semanal: se conserva la lógica existente */}
         <section className="detalle-tutor__tarjeta-agenda">
           <div className="detalle-tutor__agenda-encabezado">
             <h2 className="detalle-tutor__agenda-titulo">
@@ -229,59 +448,67 @@ function DetalleTutor() {
                 type="button"
                 className="detalle-tutor__btn-semana"
                 onClick={irSemanaAnterior}
-                disabled={semanaIndice === 0}
               >
                 ‹ Semana anterior
               </button>
+
               <span className="detalle-tutor__rango-fechas">
                 {semanaActual.rango}
               </span>
+
               <button
                 type="button"
                 className="detalle-tutor__btn-semana"
                 onClick={irSemanaSiguiente}
-                disabled={semanaIndice === semanas.length - 1}
               >
                 Semana siguiente ›
               </button>
             </div>
           </div>
 
-          {/* ESTADO CON BLOQUES vs ESTADO SIN BLOQUES LIBRES */}
-          {!semanaActual.tieneBloques ? (
+          {horasFilas.length === 0 || !semanaTieneBloquesLibres ? (
             <div className="detalle-tutor__sin-bloques-caja">
-              <div className="detalle-tutor__sin-bloques-icono" aria-hidden="true">
-                —
-              </div>
-              <h3 className="detalle-tutor__sin-bloques-titulo">
-                No hay bloques libres esta semana
-              </h3>
-              <p className="detalle-tutor__sin-bloques-mensaje">
-                {primerNombre} no tiene bloques disponibles en este periodo ({semanaActual.rango}).
-                Puedes revisar la semana siguiente o ver otros tutores de{" "}
-                {primerCursoNombre}.
-              </p>
+            <div
+              className="detalle-tutor__sin-bloques-icono"
+              aria-hidden="true"
+            >
+              —
+            </div>
 
+            <h3 className="detalle-tutor__sin-bloques-titulo">
+              {horasFilas.length === 0
+                ? "No hay horarios registrados"
+                : "No hay bloques libres esta semana"}
+            </h3>
+
+            <p className="detalle-tutor__sin-bloques-mensaje">
+              {horasFilas.length === 0
+                ? "Este tutor todavía no ha registrado su disponibilidad semanal."
+                : "Este tutor no tiene bloques disponibles en las fechas consultadas. Puedes revisar la siguiente semana o buscar otros tutores."}
+            </p>
+
+            {horasFilas.length > 0 && (
               <div className="detalle-tutor__sin-bloques-acciones">
                 <button
                   type="button"
-                  className="detalle-tutor__btn-accion-primario"
-                  onClick={() => {
-                    setSemanaIndice(2);
-                    setBloqueSeleccionado(null);
-                  }}
+                  className="detalle-tutor__btn-continuar"
+                  onClick={irSemanaSiguiente}
                 >
-                  Ver semana del {semanaActual.fechaSiguiente}
+                  Ver semana siguiente
                 </button>
+
                 <button
                   type="button"
-                  className="detalle-tutor__btn-accion-secundario"
-                  onClick={() => navigate("/tutores")}
+                  className="detalle-tutor__btn-semana"
+                  onClick={() => {
+                    window.location.href = "/tutores";
+                  }}
                 >
-                  Ver 9 tutores de {primerCursoCodigo}
+                  Buscar otros tutores
                 </button>
               </div>
-            </div>
+            )}
+          </div>
           ) : (
             <>
               <div className="detalle-tutor__grilla-wrapper">
@@ -290,27 +517,49 @@ function DetalleTutor() {
                     <tr>
                       <th className="detalle-tutor__th-hora"></th>
                       {semanaActual.dias.map((col) => (
-                        <th key={col.clave} className="detalle-tutor__th-dia">
-                          {col.diaSemana} {col.fechaNum}
+                        <th
+                          key={col.clave}
+                          className="detalle-tutor__th-dia"
+                        >
+                          {col.etiqueta} {col.fechaNum}
                         </th>
                       ))}
                     </tr>
                   </thead>
+
                   <tbody>
-                    {HORAS_FILAS.map((fila) => (
+                    {horasFilas.map((fila) => (
                       <tr key={fila.hora}>
-                        <td className="detalle-tutor__td-hora">{fila.hora}</td>
+                        <td className="detalle-tutor__td-hora">
+                          {fila.hora}
+                        </td>
+
                         {semanaActual.dias.map((col) => {
-                          const celdaKey = `${col.clave}-${fila.hora}`;
-                          const estado = ESTADOS_SEMANA_1[celdaKey];
-                          const vencido = new Date(`${col.fechaISO}T${fila.hora}:00-05:00`) <= referencia;
+                          const estado = hayDisponibilidad(
+                            disponibilidad,
+                            col.clave,
+                            col.fechaISO,
+                            fila.hora,
+                            fila.fin
+                          )
+                            ? "libre"
+                            : null;
+                           
+                          const fechaHoraBloque = new Date(`${col.fechaISO}T${fila.hora}:00-05:00`);
+                          const vencido = fechaHoraBloque <= referencia;
+
+
                           const esElegido =
                             bloqueSeleccionado?.diaClave === col.clave &&
+                            bloqueSeleccionado?.fecha === col.fechaISO &&
                             bloqueSeleccionado?.horaInicio === fila.hora;
 
                           if (esElegido) {
                             return (
-                              <td key={col.clave} className="detalle-tutor__td-slot">
+                              <td
+                                key={col.clave}
+                                className="detalle-tutor__td-slot"
+                              >
                                 <div className="detalle-tutor__slot detalle-tutor__slot--elegido">
                                   Elegido
                                 </div>
@@ -320,7 +569,10 @@ function DetalleTutor() {
 
                           if (estado === "libre") {
                             return (
-                              <td key={col.clave} className="detalle-tutor__td-slot">
+                              <td
+                                key={col.clave}
+                                className="detalle-tutor__td-slot"
+                              >
                                 <button
                                   type="button"
                                   className="detalle-tutor__slot detalle-tutor__slot--libre"
@@ -334,24 +586,15 @@ function DetalleTutor() {
                             );
                           }
 
-                          if (estado === "ocupado") {
-                            return (
-                              <td key={col.clave} className="detalle-tutor__td-slot">
-                                <div className="detalle-tutor__slot detalle-tutor__slot--ocupado">
-                                  Ocupado
-                                </div>
-                              </td>
-                            );
-                          }
-
                           return (
-                            <td key={col.clave} className="detalle-tutor__td-slot">
+                            <td
+                              key={col.clave}
+                              className="detalle-tutor__td-slot"
+                            >
                               <div className="detalle-tutor__slot detalle-tutor__slot--vacio" />
                             </td>
                           );
                         })}
-                      </tr>
-                    ))}
                   </tbody>
                 </table>
               </div>
@@ -360,9 +603,10 @@ function DetalleTutor() {
                 <div className="detalle-tutor__banner-confirmacion">
                   <div className="detalle-tutor__banner-texto">
                     <strong>Bloque elegido:</strong>{" "}
-                    {bloqueSeleccionado.nombreDia} {bloqueSeleccionado.fecha},{" "}
-                    {bloqueSeleccionado.horaInicio} a {bloqueSeleccionado.horaFin} ·
-                    modalidad {modalidad}
+                    {bloqueSeleccionado.nombreDia}{" "}
+                    {bloqueSeleccionado.fechaVisible},{" "}
+                    {bloqueSeleccionado.horaInicio} a{" "}
+                    {bloqueSeleccionado.horaFin} · modalidad {modalidadVisible}
                   </div>
 
                   <button

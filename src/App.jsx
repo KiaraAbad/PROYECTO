@@ -1,8 +1,20 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
+// Vistas públicas
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Registro from './pages/Registro';
+import Directorio from './pages/Directorio';
+import DetalleTutor from './pages/DetalleTutor';
+import NoEncontrada from './pages/NoEncontrada';
+import FichaTutorReseñas from './pages/FichaTutorReseñas';
+
+// Contextos y Protección
+import AutenticacionProvider from './context/AutenticacionProvider';
 import SesionesProvider from './context/SesionesProvider';
+import RutaPrivada from './components/RutaPrivada';
+
+// Vistas protegidas / Sesiones
 import SesionesLayout from './components/sesiones/SesionesLayout';
 import HistorialSesiones from './pages/HistorialSesiones';
 import ResumenHoras from './pages/ResumenHoras';
@@ -11,17 +23,16 @@ import MaterialCompartido from './pages/MaterialCompartido';
 import DetalleCierreSesion from './pages/DetalleCierreSesion';
 import PruebasSesiones from './pages/PruebasSesiones';
 import AyudaSesiones from './pages/AyudaSesiones';
-import Directorio from './pages/Directorio';
-import DetalleTutor from './pages/DetalleTutor';
-import NoEncontrada from './pages/NoEncontrada';
 import MisCalificaciones from './pages/MisCalificaciones';
 import CalificarSesion from './pages/CalificarSesion';
-import FichaTutorReseñas from './pages/FichaTutorReseñas';
 import MisSesiones from './pages/MisSesiones';
 import Solicitudes from './pages/Solicitudes';
 import DetalleSesion from './pages/DetalleSesion';
-import AutenticacionProvider from './context/AutenticacionProvider';
-import RutaPrivada from './components/RutaPrivada';
+
+// Vistas de Tutor
+import MiPerfilTutor from './pages/MiPerfilTutor';
+import MisCursosTutor from './pages/MisCursosTutor.jsx';
+import DisponibilidadTutor from './pages/DisponibilidadTutor.jsx';
 
 function App() {
   return (
@@ -42,11 +53,17 @@ function App() {
                 <Route path="/mis-calificaciones" element={<MisCalificaciones />} />
                 <Route path="/calificar" element={<CalificarSesion />} />
               </Route>
+
               <Route path="/mis-sesiones" element={<MisSesiones />} />
               <Route path="/mis-sesiones/:codigo" element={<DetalleSesion />} />
+
               <Route element={<RutaPrivada roles={['tutor']} />}>
                 <Route path="/solicitudes" element={<Solicitudes />} />
+                <Route path="/mi-perfil-tutor/:id?" element={<MiPerfilTutor />} />
+                <Route path="/mis-cursos-tutor/:id?" element={<MisCursosTutor />} />
+                <Route path="/disponibilidad-tutor/:id?" element={<DisponibilidadTutor />} />
               </Route>
+
               <Route path="/hu5" element={<Navigate to="/sesiones" replace />} />
               <Route path="/sesiones" element={<SesionesLayout />}>
                 <Route index element={<HistorialSesiones />} />

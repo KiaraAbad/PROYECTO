@@ -1,17 +1,22 @@
+
 import { useState, useEffect } from "react";
-import datosTutores from "../data/tutores.json";
+import { useTutoresContext } from "../context/TutoresContext";
 
 export function useTutores() {
-  const [tutores, setTutores] = useState([]);
+  const { tutores, actualizarTutor } = useTutoresContext();
   const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setTutores(datosTutores);
       setCargando(false);
     }, 600);
+
     return () => clearTimeout(timer);
   }, []);
 
-  return { tutores, cargando };
+  return {
+    tutores,
+    cargando,
+    actualizarTutor,
+  };
 }
