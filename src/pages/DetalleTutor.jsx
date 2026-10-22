@@ -6,45 +6,42 @@ import Footer from "../components/Footer";
 import ModalSolicitud from "../components/ModalSolicitud";
 import Notificacion from "../components/Notificacion";
 import { useAviso } from "../hooks/useAviso";
+import { useSesiones } from "../hooks/useSesiones";
 import "../styles/detalle-tutor.css";
 
-const SEMANAS = [
-  {
-    indice: 0,
-    rango: "14/09/2026 — 19/09/2026",
-    fechaSiguiente: "21/09/2026",
-    tieneBloques: true,
-    dias: [
-      { clave: "lunes", diaSemana: "Lun", fechaNum: 14, fechaCompleta: "14/09/2026", nombreDia: "lunes" },
-      { clave: "martes", diaSemana: "Mar", fechaNum: 15, fechaCompleta: "15/09/2026", nombreDia: "martes" },
-      { clave: "miercoles", diaSemana: "Mié", fechaNum: 16, fechaCompleta: "16/09/2026", nombreDia: "miércoles" },
-      { clave: "jueves", diaSemana: "Jue", fechaNum: 17, fechaCompleta: "17/09/2026", nombreDia: "jueves" },
-      { clave: "viernes", diaSemana: "Vie", fechaNum: 18, fechaCompleta: "18/09/2026", nombreDia: "viernes" },
-      { clave: "sabado", diaSemana: "Sáb", fechaNum: 19, fechaCompleta: "19/09/2026", nombreDia: "sábado" },
-    ],
-  },
-  {
-    indice: 1,
-    rango: "21/09/2026 — 26/09/2026",
-    fechaSiguiente: "28/09/2026",
-    tieneBloques: false,
-    dias: [],
-  },
-  {
-    indice: 2,
-    rango: "28/09/2026 — 03/10/2026",
-    fechaSiguiente: "05/10/2026",
-    tieneBloques: true,
-    dias: [
-      { clave: "lunes", diaSemana: "Lun", fechaNum: 28, fechaCompleta: "28/09/2026", nombreDia: "lunes" },
-      { clave: "martes", diaSemana: "Mar", fechaNum: 29, fechaCompleta: "29/09/2026", nombreDia: "martes" },
-      { clave: "miercoles", diaSemana: "Mié", fechaNum: 30, fechaCompleta: "30/09/2026", nombreDia: "miércoles" },
-      { clave: "jueves", diaSemana: "Jue", fechaNum: 1, fechaCompleta: "01/10/2026", nombreDia: "jueves" },
-      { clave: "viernes", diaSemana: "Vie", fechaNum: 2, fechaCompleta: "02/10/2026", nombreDia: "viernes" },
-      { clave: "sabado", diaSemana: "Sáb", fechaNum: 3, fechaCompleta: "03/10/2026", nombreDia: "sábado" },
-    ],
-  },
-];
+function crearSemanas(ahora) {
+  const partes = {};
+  new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/Lima', year: 'numeric', month: '2-digit', day: '2-digit',
+  }).formatToParts(ahora).forEach(parte => { partes[parte.type] = parte.value; });
+  const hoy = new Date(`${partes.year}-${partes.month}-${partes.day}T12:00:00Z`);
+  const lunes = new Date(hoy);
+  lunes.setUTCDate(hoy.getUTCDate() - (hoy.getUTCDay() + 6) % 7);
+  const claves = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
+  const nombres = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'];
+  const abreviados = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+  const fechaEn = desplazamiento => {
+    const fecha = new Date(lunes);
+    fecha.setUTCDate(lunes.getUTCDate() + desplazamiento);
+    return fecha.toISOString().slice(0, 10);
+  };
+  const fechaTexto = fecha => fecha.split('-').reverse().join('/');
+
+  // La disponibilidad sigue siendo de ejemplo, pero las fechas no quedan vencidas.
+  return [0, 1, 2].map(indice => ({
+    indice,
+    rango: `${fechaTexto(fechaEn(indice * 7))} — ${fechaTexto(fechaEn(indice * 7 + 6))}`,
+    fechaSiguiente: fechaTexto(fechaEn((indice + 1) * 7)),
+    tieneBloques: indice !== 1,
+    dias: claves.map((clave, dia) => {
+      const fecha = fechaEn(indice * 7 + dia);
+      return {
+        clave, diaSemana: abreviados[dia], nombreDia: nombres[dia],
+        fechaISO: fecha, fechaCompleta: fechaTexto(fecha), fechaNum: Number(fecha.slice(-2)),
+      };
+    }),
+  }));
+}
 
 const HORAS_FILAS = [
   { hora: "08:00", fin: "09:00" },
@@ -78,19 +75,16 @@ function DetalleTutor() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { tutores, cargando } = useTutores();
+  const { rol } = useSesiones();
+  const [referencia] = useState(() => new Date());
+  const [semanas] = useState(() => crearSemanas(new Date()));
 
   const [semanaIndice, setSemanaIndice] = useState(0);
   const [solicitando, setSolicitando] = useState(false);
   const { aviso, avisar, cerrarAviso } = useAviso(9000);
 
 
-  const [bloqueSeleccionado, setBloqueSeleccionado] = useState({
-    diaClave: "lunes",
-    nombreDia: "lunes",
-    fecha: "14/09/2026",
-    horaInicio: "16:00",
-    horaFin: "17:00",
-  });
+  const [bloqueSeleccionado, setBloqueSeleccionado] = useState(null);
 
   const tutor = useMemo(() => {
     if (!tutores.length) return null;
@@ -101,7 +95,7 @@ function DetalleTutor() {
     );
   }, [tutores, id]);
 
-  const semanaActual = SEMANAS[semanaIndice] || SEMANAS[0];
+  const semanaActual = semanas[semanaIndice] || semanas[0];
 
   if (cargando) {
     return (
@@ -152,6 +146,14 @@ function DetalleTutor() {
     } · ${subtituloCursos} · ${promedio}`;
 
   const handleSeleccionarBloque = (col, fila) => {
+    if (rol !== 'estudiante') {
+      avisar('info', 'Cambia a la vista de estudiante para solicitar una sesión.');
+      return;
+    }
+    if (new Date(`${col.fechaISO}T${fila.hora}:00-05:00`) <= new Date()) {
+      avisar('info', 'Ese bloque ya comenzó. Elige uno posterior.');
+      return;
+    }
     setBloqueSeleccionado({
       diaClave: col.clave,
       nombreDia: col.nombreDia,
@@ -162,11 +164,17 @@ function DetalleTutor() {
   };
 
   const irSemanaAnterior = () => {
-    if (semanaIndice > 0) setSemanaIndice(semanaIndice - 1);
+    if (semanaIndice > 0) {
+      setSemanaIndice(semanaIndice - 1);
+      setBloqueSeleccionado(null);
+    }
   };
 
   const irSemanaSiguiente = () => {
-    if (semanaIndice < SEMANAS.length - 1) setSemanaIndice(semanaIndice + 1);
+    if (semanaIndice < semanas.length - 1) {
+      setSemanaIndice(semanaIndice + 1);
+      setBloqueSeleccionado(null);
+    }
   };
 
   return (
@@ -232,7 +240,7 @@ function DetalleTutor() {
                 type="button"
                 className="detalle-tutor__btn-semana"
                 onClick={irSemanaSiguiente}
-                disabled={semanaIndice === SEMANAS.length - 1}
+                disabled={semanaIndice === semanas.length - 1}
               >
                 Semana siguiente ›
               </button>
@@ -249,7 +257,7 @@ function DetalleTutor() {
                 No hay bloques libres esta semana
               </h3>
               <p className="detalle-tutor__sin-bloques-mensaje">
-                {primerNombre} registró una excepción del 21 al 26 de setiembre.
+                {primerNombre} no tiene bloques disponibles en este periodo ({semanaActual.rango}).
                 Puedes revisar la semana siguiente o ver otros tutores de{" "}
                 {primerCursoNombre}.
               </p>
@@ -258,9 +266,12 @@ function DetalleTutor() {
                 <button
                   type="button"
                   className="detalle-tutor__btn-accion-primario"
-                  onClick={() => setSemanaIndice(2)}
+                  onClick={() => {
+                    setSemanaIndice(2);
+                    setBloqueSeleccionado(null);
+                  }}
                 >
-                  Ver semana del 28/09/2026
+                  Ver semana del {semanaActual.fechaSiguiente}
                 </button>
                 <button
                   type="button"
@@ -292,6 +303,7 @@ function DetalleTutor() {
                         {semanaActual.dias.map((col) => {
                           const celdaKey = `${col.clave}-${fila.hora}`;
                           const estado = ESTADOS_SEMANA_1[celdaKey];
+                          const vencido = new Date(`${col.fechaISO}T${fila.hora}:00-05:00`) <= referencia;
                           const esElegido =
                             bloqueSeleccionado?.diaClave === col.clave &&
                             bloqueSeleccionado?.horaInicio === fila.hora;
@@ -312,9 +324,11 @@ function DetalleTutor() {
                                 <button
                                   type="button"
                                   className="detalle-tutor__slot detalle-tutor__slot--libre"
+                                  disabled={vencido || rol !== 'estudiante'}
+                                  title={vencido ? 'Este bloque ya pasó' : rol !== 'estudiante' ? 'Cambia a la vista de estudiante para solicitar' : undefined}
                                   onClick={() => handleSeleccionarBloque(col, fila)}
                                 >
-                                  Libre
+                                  {vencido ? 'Pasado' : 'Libre'}
                                 </button>
                               </td>
                             );
@@ -355,6 +369,7 @@ function DetalleTutor() {
                     type="button"
                     className="detalle-tutor__btn-continuar"
                     onClick={() => setSolicitando(true)}
+                    disabled={rol !== 'estudiante'}
                   >
                     Continuar con la solicitud
                   </button>
@@ -367,7 +382,7 @@ function DetalleTutor() {
 
       <Footer />
 
-      {solicitando && (
+      {solicitando && bloqueSeleccionado && rol === 'estudiante' && (
         <ModalSolicitud
           tutor={tutor}
           bloque={{

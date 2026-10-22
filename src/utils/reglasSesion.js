@@ -26,13 +26,12 @@ export const HORAS_LIMITE_CANCELACION = 12;
 export const HORAS_RESPUESTA_TUTOR = 48;
 export const HORAS_VENTANA_CIERRE = 72;
 
-export const AHORA = new Date(2026, 8, 12, 12, 0);
-
 const DIAS = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
 const DIAS_CORTOS = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
 
 export function aFecha(fecha, hora = "00:00") {
-  return new Date(`${fecha}T${hora}:00`);
+  // Los bloques del grupo se interpretan siempre en Lima, no en la zona del equipo.
+  return new Date(`${fecha}T${hora}:00-05:00`);
 }
 
 export function aMinutos(hora) {
@@ -53,7 +52,7 @@ export function formatearFecha(fecha) {
 }
 
 export function nombreDia(fecha) {
-  return DIAS[aFecha(fecha).getDay()];
+  return DIAS[aFecha(fecha).getUTCDay()];
 }
 
 export function formatearFechaLarga(fecha) {
@@ -61,7 +60,7 @@ export function formatearFechaLarga(fecha) {
 }
 
 export function formatearFechaCorta(fecha) {
-  return `${DIAS_CORTOS[aFecha(fecha).getDay()]} ${formatearFecha(fecha)}`;
+  return `${DIAS_CORTOS[aFecha(fecha).getUTCDay()]} ${formatearFecha(fecha)}`;
 }
 
 export function abreviarCarrera(carrera) {
@@ -73,16 +72,30 @@ export function capitalizar(texto) {
 }
 
 export function formatearFechaHora(fechaHora) {
-  const [fecha, hora] = fechaHora.split("T");
-  return `${formatearFecha(fecha)} · ${hora.slice(0, 5)}`;
+  const partes = {};
+  const formato = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Lima",
+    year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", hourCycle: "h23",
+  });
+  for (const parte of formato.formatToParts(fechaRegistro(fechaHora))) {
+    partes[parte.type] = parte.value;
+  }
+  return `${partes.day}/${partes.month}/${partes.year} · ${partes.hour}:${partes.minute}`;
+}
+
+function fechaRegistro(fechaHora) {
+  // La semilla antigua no traía zona; los registros nuevos sí usan ISO UTC.
+  const tieneZona = /(?:Z|[+-]\d{2}:\d{2})$/i.test(fechaHora);
+  return new Date(tieneZona ? fechaHora : `${fechaHora}-05:00`);
 }
 
 function horasEntre(desde, hasta) {
   return (hasta.getTime() - desde.getTime()) / 3600000;
 }
 
-export function hace(fechaHora, referencia = AHORA) {
-  const horas = horasEntre(new Date(fechaHora), referencia);
+export function hace(fechaHora, referencia = new Date()) {
+  const horas = horasEntre(fechaRegistro(fechaHora), referencia);
   if (horas < 1) return "hace menos de 1 hora";
   if (horas < 24) {
     const n = Math.floor(horas);
@@ -93,14 +106,14 @@ export function hace(fechaHora, referencia = AHORA) {
 }
 
 export function fechaSolicitud(sesion) {
-  return sesion.trazabilidad[0].fecha;
+  return sesion.trazabilidad?.[0]?.fecha ?? `${sesion.fecha}T${sesion.horaInicio}:00-05:00`;
 }
 
-export function horasDesdeSolicitud(sesion, referencia = AHORA) {
-  return horasEntre(new Date(fechaSolicitud(sesion)), referencia);
+export function horasDesdeSolicitud(sesion, referencia = new Date()) {
+  return horasEntre(fechaRegistro(fechaSolicitud(sesion)), referencia);
 }
 
-export function horasHastaInicio(sesion, referencia = AHORA) {
+export function horasHastaInicio(sesion, referencia = new Date()) {
   return horasEntre(referencia, aFecha(sesion.fecha, sesion.horaInicio));
 }
 
@@ -201,8 +214,11 @@ export function mensajeSolapamiento(cruce, rolActor, sufijo) {
   return `El estudiante ya tiene una sesión programada ${describirSesion(sesion, usuarioId)}. ${sufijo}`;
 }
 
-export function evaluarCancelacion(sesion, referencia = AHORA) {
+export function evaluarCancelacion(sesion, referencia = new Date()) {
   if (!esActiva(sesion)) return { permitido: false, motivo: "La sesión ya no está activa." };
+  if (!Number.isFinite(aFecha(sesion.fecha, sesion.horaInicio).getTime())) {
+    return { permitido: false, motivo: "La sesión no tiene un horario válido." };
+  }
   if (sesion.estado === ESTADOS.PROGRAMADA && horasHastaInicio(sesion, referencia) < HORAS_LIMITE_CANCELACION) {
     return {
       permitido: false,
@@ -212,10 +228,13 @@ export function evaluarCancelacion(sesion, referencia = AHORA) {
   return { permitido: true, motivo: null };
 }
 
-export function evaluarCierre(sesion, referencia = AHORA) {
+export function evaluarCierre(sesion, referencia = new Date()) {
   const fin = aFecha(sesion.fecha, sesion.horaFin);
   if (sesion.estado !== ESTADOS.PROGRAMADA) {
     return { permitido: false, motivo: "Solo se cierran las sesiones programadas." };
+  }
+  if (!Number.isFinite(fin.getTime()) || !Number.isFinite(referencia.getTime())) {
+    return { permitido: false, motivo: "La sesión no tiene un horario válido." };
   }
   if (referencia < fin) return { permitido: false, motivo: "El cierre se habilita al terminar el bloque." };
   if (referencia > new Date(fin.getTime() + HORAS_VENTANA_CIERRE * 3600000)) {
@@ -238,8 +257,7 @@ function exito(sesiones, sesion) {
 }
 
 function conEventos(sesion, cambios, eventos) {
-  const instante = new Date(AHORA.getTime() + 60000);
-  const iso = `${instante.getFullYear()}-${String(instante.getMonth() + 1).padStart(2, "0")}-${String(instante.getDate()).padStart(2, "0")}T${String(instante.getHours()).padStart(2, "0")}:${String(instante.getMinutes()).padStart(2, "0")}:00`;
+  const iso = new Date().toISOString();
   const nuevos = eventos.map(([texto, actorId, detalle]) => {
     const registro = {
       fecha: iso,
@@ -249,7 +267,7 @@ function conEventos(sesion, cambios, eventos) {
     if (detalle) registro.detalle = detalle;
     return registro;
   });
-  return { ...sesion, ...cambios, trazabilidad: [...sesion.trazabilidad, ...nuevos] };
+  return { ...sesion, ...cambios, trazabilidad: [...(sesion.trazabilidad ?? []), ...nuevos] };
 }
 
 function reemplazar(sesiones, codigo, nueva) {
@@ -271,7 +289,7 @@ function programar(sesion) {
 }
 
 function bloqueVigente(bloque) {
-  return aFecha(bloque.fecha, bloque.horaInicio) > AHORA;
+  return aFecha(bloque.fecha, bloque.horaInicio) > new Date();
 }
 
 export function crearSolicitud(sesiones, datos, estudianteId) {

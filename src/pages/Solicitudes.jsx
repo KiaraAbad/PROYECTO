@@ -9,13 +9,12 @@ import EsqueletoSesiones from "../components/EsqueletoSesiones";
 import Notificacion from "../components/Notificacion";
 import { useSesiones } from "../hooks/useSesiones";
 import { useAviso } from "../hooks/useAviso";
-import { USUARIOS_PRUEBA } from "../utils/usuariosPrueba";
 import { contarSolicitudes, solicitudesPendientes } from "../utils/reglasSesion";
 import "../styles/sesiones-comun.css";
 import "../styles/solicitudes.css";
 
 function Solicitudes() {
-  const tutor = USUARIOS_PRUEBA.tutor;
+  const { usuario: tutor, rol } = useSesiones();
   const { sesiones, todas, cargando, aceptar, rechazar, proponer, aceptarNuevoHorario, rechazarNuevoHorario } =
     useSesiones(tutor.id);
   const { aviso, avisar, cerrarAviso } = useAviso();
@@ -55,6 +54,7 @@ function Solicitudes() {
   }
 
   function renderListado() {
+    if (rol !== 'tutor') return <EstadoVacioAgenda titulo="Solicitudes del tutor" mensaje="Cambia a la vista de tutor para administrar tus solicitudes." textoAccion="Ir a mis sesiones" destino="/mis-sesiones" />;
     if (cargando) return <EsqueletoSesiones cantidad={3} mensaje="Cargando solicitudes..." />;
 
     if (pendientes.length === 0) {
@@ -63,9 +63,9 @@ function Solicitudes() {
           icono="✓"
           exito
           titulo="No tienes solicitudes pendientes"
-          mensaje="Amplía tu disponibilidad o agrega otro curso para recibir más solicitudes."
-          textoAccion="Editar disponibilidad"
-          destino="/disponibilidad"
+          mensaje="Las solicitudes de tus estudiantes aparecerán aquí."
+          textoAccion="Ir a mis sesiones"
+          destino="/mis-sesiones"
           contorno
         />
       );
@@ -101,7 +101,7 @@ function Solicitudes() {
 
   return (
     <div className="agenda-page">
-      <Header rolInicial="tutor" usuario={tutor} />
+      <Header />
 
       <main className="agenda-container">
         <div className="solicitudes__encabezado">
@@ -135,7 +135,7 @@ function Solicitudes() {
         {renderListado()}
       </main>
 
-      <Footer rol="tutor" />
+      <Footer rol={rol} />
 
       {rechazando && (
         <ModalRechazo
