@@ -1,0 +1,254 @@
+.mis-cursos-tutor {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-base);
+}
+
+.mis-cursos-tutor__contenedor {
+  width: min(100% - 40px, 1000px);
+  margin: 0 auto;
+  padding: 32px 0 48px;
+}
+
+.mis-cursos-tutor__migas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.mis-cursos-tutor__migas a,
+.mis-cursos-tutor__enlace {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.mis-cursos-tutor__encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.mis-cursos-tutor__etiqueta {
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+}
+
+.mis-cursos-tutor__encabezado h1 {
+  margin: 8px 0;
+  font-size: clamp(1.7rem, 4vw, 2.2rem);
+}
+
+.mis-cursos-tutor__encabezado p,
+.mis-cursos-tutor__panel p {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.mis-cursos-tutor__enlace {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  white-space: nowrap;
+}
+
+.mis-cursos-tutor__panel {
+  padding: 24px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.mis-cursos-tutor__panel h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.mis-cursos-tutor__rejilla {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.mis-cursos-tutor__campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mis-cursos-tutor__campo label {
+  font-weight: 600;
+}
+
+.mis-cursos-tutor__campo input,
+.mis-cursos-tutor__campo select,
+.mis-cursos-tutor__campo textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+}
+
+.mis-cursos-tutor__campo textarea {
+  resize: vertical;
+}
+
+.mis-cursos-tutor__acciones,
+.mis-cursos-tutor__curso-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.mis-cursos-tutor__boton {
+  padding: 10px 14px;
+  border: 0;
+  border-radius: var(--radius);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mis-cursos-tutor__boton.es-primario {
+  background: var(--primary);
+  color: white;
+}
+
+.mis-cursos-tutor__boton.es-secundario {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.mis-cursos-tutor__boton.es-peligro {
+  background: #fbe9e8;
+  color: var(--danger);
+}
+
+.mis-cursos-tutor__mensaje {
+  padding: 12px 14px;
+  margin: 18px 0 0;
+  border-radius: var(--radius);
+  background: var(--primary-soft);
+  color: var(--primary-dark) !important;
+}
+
+.mis-cursos-tutor__lista-encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.mis-cursos-tutor__lista-encabezado p {
+  margin-bottom: 0;
+}
+
+.mis-cursos-tutor__lista {
+  display: grid;
+  gap: 14px;
+}
+
+.mis-cursos-tutor__curso {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.mis-cursos-tutor__curso-info {
+  min-width: 0;
+}
+
+.mis-cursos-tutor__curso-titulo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.mis-cursos-tutor__curso-titulo h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.mis-cursos-tutor__codigo {
+  color: var(--primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.mis-cursos-tutor__nivel {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 5px 10px;
+  border-radius: var(--radius-chip);
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}
+
+.mis-cursos-tutor__curso-info p {
+  margin-bottom: 0;
+}
+
+.mis-cursos-tutor__curso-acciones {
+  flex-shrink: 0;
+  margin-top: 0;
+}
+
+.mis-cursos-tutor__vacio {
+  padding: 30px 16px;
+  text-align: center;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+}
+
+.mis-cursos-tutor__vacio h3 {
+  margin-top: 0;
+}
+
+.mis-cursos-tutor__nota {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 700px) {
+  .mis-cursos-tutor__encabezado,
+  .mis-cursos-tutor__curso {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .mis-cursos-tutor__rejilla {
+    grid-template-columns: 1fr;
+  }
+
+  .mis-cursos-tutor__curso-acciones {
+    margin-top: 8px;
+  }
+
+  .mis-cursos-tutor__panel {
+    padding: 18px;
+  }
+}

@@ -8,6 +8,9 @@ import NoEncontrada from "./pages/NoEncontrada";
 import MisCalificaciones from "./pages/MisCalificaciones";
 import CalificarSesion from "./pages/CalificarSesion";
 import FichaTutorReseñas from "./pages/FichaTutorReseñas";
+import MiPerfilTutor from "./pages/MiPerfilTutor";
+import MisCursosTutor from "./pages/MisCursosTutor.jsx";
+import DisponibilidadTutor from "./pages/DisponibilidadTutor.jsx";
 
 function App() {
   return (
@@ -23,6 +26,9 @@ function App() {
         <Route path="/mis-calificaciones" element={<MisCalificaciones />} />
         <Route path="/calificar" element={<CalificarSesion />} />
         <Route path="/tutor/:id" element={<FichaTutorReseñas />} />
+        <Route path="/mi-perfil-tutor/:id?" element={<MiPerfilTutor />} />
+        <Route path="/mis-cursos-tutor/:id?" element={<MisCursosTutor />} />
+        <Route path="/disponibilidad-tutor/:id?" element={<DisponibilidadTutor />} />
       </Routes>
     </BrowserRouter>
   );
