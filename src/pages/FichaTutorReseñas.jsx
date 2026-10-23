@@ -52,12 +52,31 @@ export default function FichaTutorReseñas() {
   const perfil = tutor.perfilTutor ?? {};
   const nombreCompleto = `${tutor.nombres ?? ''} ${tutor.apellidos ?? ''}`.trim();
   const cursos = (perfil.cursos ?? []).map((curso) => curso.codigo).filter(Boolean);
-  const comentarios = valoraciones
-    .filter((valoracion) => ID_TUTOR_POR_ID_VALORACION[valoracion.idTutor] === id)
+
+  const listaValoraciones = (() => {
+    try {
+      const guardadas = localStorage.getItem('tutorias_calificaciones');
+      if (guardadas) {
+        const parsed = JSON.parse(guardadas);
+        if (Array.isArray(parsed)) return parsed;
+      }
+    } catch (e) {
+      console.error(e);
+    }
+    return valoraciones;
+  })();
+
+  const comentarios = listaValoraciones
+    .filter(
+      (valoracion) =>
+        ID_TUTOR_POR_ID_VALORACION[valoracion.idTutor] === id ||
+        valoracion.idTutor === id ||
+        (valoracion.nombreTutor && nombreCompleto && valoracion.nombreTutor.toLowerCase().includes(nombreCompleto.toLowerCase()))
+    )
     .map((valoracion) => ({
       id: valoracion.idCalificacion,
       curso: valoracion.curso,
-      fecha: formatearFecha(valoracion.fecha),
+      fecha: valoracion.fecha ? formatearFecha(valoracion.fecha) : '',
       estrellas: valoracion.puntajeGeneral,
       texto: valoracion.comentario,
       aspectos: valoracion.aspectos,
@@ -79,12 +98,12 @@ export default function FichaTutorReseñas() {
     { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 }
   );
   const aspectos =
-    comentarios.length > 0
+    comentarios.length > 0 && comentarios[0]?.aspectos
       ? Object.keys(comentarios[0].aspectos).map((aspecto) => ({
           nombre: aspecto,
           promedio:
             comentarios.reduce(
-              (suma, comentario) => suma + comentario.aspectos[aspecto],
+              (suma, comentario) => suma + (comentario.aspectos?.[aspecto] || 0),
               0
             ) / comentarios.length,
         }))
@@ -96,7 +115,7 @@ export default function FichaTutorReseñas() {
 
   return (
     <div className="ficha-resenas-page">
-      <Header variante="publico" />
+      <Header />
       <main className="ficha-resenas">
         <nav className="ficha-resenas__breadcrumb" aria-label="Ruta de navegación">
           <Link to="/tutores">Directorio</Link>

@@ -31,8 +31,8 @@ import DetalleSesion from './pages/DetalleSesion';
 
 // Vistas de Tutor
 import MiPerfilTutor from './pages/MiPerfilTutor';
-import MisCursosTutor from './pages/MisCursosTutor.jsx';
-import DisponibilidadTutor from './pages/DisponibilidadTutor.jsx';
+import MisCursosTutor from './pages/MisCursosTutor';
+import DisponibilidadTutor from './pages/DisponibilidadTutor';
 
 function App() {
   return (

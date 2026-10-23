@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useTutores } from "../hooks/useTutores";
+import { useAutenticacion } from "../hooks/useAutenticacion";
 import "../styles/mis-cursos-tutor.css";
 
 const CURSO_VACIO = {
@@ -14,6 +15,7 @@ const CURSO_VACIO = {
 
 function MisCursosTutor() {
   const { id } = useParams();
+  const { usuario } = useAutenticacion();
   const { tutores, cargando, actualizarTutor } = useTutores();
 
   const [formulario, setFormulario] = useState(CURSO_VACIO);
@@ -21,7 +23,7 @@ function MisCursosTutor() {
   const [mensaje, setMensaje] = useState("");
 
   const tutor =
-    tutores.find((item) => item.id === (id || "u-001")) || null;
+    tutores.find((item) => item.id === (id || usuario?.id || "u-001")) || null;
 
   const cursos = tutor?.perfilTutor?.cursos || [];
 

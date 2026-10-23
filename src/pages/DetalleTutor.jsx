@@ -129,7 +129,6 @@ function DetalleTutor() {
   const { tutores, cargando } = useTutores();
   const { rol } = useSesiones();
   const [referencia] = useState(() => new Date());
-  const [semanas] = useState(() => crearSemanas(new Date()));
 
   const [semanaIndice, setSemanaIndice] = useState(0);
   const [solicitando, setSolicitando] = useState(false);
@@ -148,7 +147,10 @@ function DetalleTutor() {
     );
   }, [tutores, id]);
 
-  const disponibilidad = tutor?.disponibilidad || [];
+  const disponibilidad = useMemo(
+    () => tutor?.disponibilidad || [],
+    [tutor]
+  );
 
   const semanaActual = useMemo(
     () => crearSemana(semanaIndice),
@@ -161,16 +163,16 @@ function DetalleTutor() {
   );
 
   const semanaTieneBloquesLibres = horasFilas.some((fila) =>
-  semanaActual.dias.some((col) =>
-    hayDisponibilidad(
-      disponibilidad,
-      col.clave,
-      col.fechaISO,
-      fila.hora,
-      fila.fin
+    semanaActual.dias.some((col) =>
+      hayDisponibilidad(
+        disponibilidad,
+        col.clave,
+        col.fechaISO,
+        fila.hora,
+        fila.fin
+      )
     )
-  )
-);
+  );
 
   if (cargando) {
     return (
@@ -298,13 +300,12 @@ function DetalleTutor() {
           </div>
 
           <div className="detalle-tutor__perfil-der">
-            <button
-              type="button"
+            <Link
+              to={`/tutor/${tutor.id}`}
               className="detalle-tutor__btn-ver-resenas"
-              onClick={() => alert(`Reseñas de ${nombreCompleto}: promedio ${promedio} con 28 opiniones.`)}
             >
               Ver reseñas
-            </button>
+            </Link>
           </div>
         </section>
 
@@ -501,7 +502,7 @@ function DetalleTutor() {
                   type="button"
                   className="detalle-tutor__btn-semana"
                   onClick={() => {
-                    window.location.href = "/tutores";
+                    navigate("/tutores");
                   }}
                 >
                   Buscar otros tutores
@@ -595,6 +596,8 @@ function DetalleTutor() {
                             </td>
                           );
                         })}
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
@@ -630,7 +633,7 @@ function DetalleTutor() {
         <ModalSolicitud
           tutor={tutor}
           bloque={{
-            fecha: bloqueSeleccionado.fecha.split("/").reverse().join("-"),
+            fecha: bloqueSeleccionado.fecha,
             horaInicio: bloqueSeleccionado.horaInicio,
             horaFin: bloqueSeleccionado.horaFin,
           }}

@@ -1,49 +1,16 @@
 import { Link } from "react-router-dom";
+import { useTutores } from "../hooks/useTutores";
 import TarjetaTutor from "./TarjetaTutor";
 
 function TutoresDestacados() {
-  const tutores = [
-    {
-      id: "u-002",
-      nombre: "Camila Quispe Andrade",
-      carrera: "Ing. Industrial",
-      ciclo: 8,
-      cursos: ["MA101", "ES210"],
-      promedio: 4.8,
-      totalSesiones: 31,
-      modalidad: "ambas",
-    },
-    {
-      id: "u-rodrigo",
-      nombre: "Rodrigo Salazar Ferro",
-      carrera: "Economía",
-      ciclo: 9,
-      cursos: ["EC201"],
-      promedio: 4.6,
-      totalSesiones: 24,
-      modalidad: "remota",
-    },
-    {
-      id: "u-001",
-      nombre: "Ariana Flores Bustamante",
-      carrera: "Ing. de Sistemas",
-      ciclo: 7,
-      cursos: ["SI401", "MA101"],
-      promedio: 4.9,
-      totalSesiones: 40,
-      modalidad: "presencial",
-    },
-    {
-      id: "u-003",
-      nombre: "Sebastián Rojas Mendoza",
-      carrera: "Ing. Civil",
-      ciclo: 9,
-      cursos: ["MA101", "FI202"],
-      promedio: 4.7,
-      totalSesiones: 28,
-      modalidad: "remota",
-    },
-  ];
+  const { tutores } = useTutores();
+
+  const destacados = (tutores || [])
+    .filter((t) => t.rol?.includes("tutor") && t.perfilTutor?.activo)
+    .sort((a, b) => (b.perfilTutor?.promedio || 0) - (a.perfilTutor?.promedio || 0))
+    .slice(0, 4);
+
+  const lista = destacados.length > 0 ? destacados : (tutores || []).slice(0, 4);
 
   return (
     <section className="tutores-destacados">
@@ -55,21 +22,27 @@ function TutoresDestacados() {
       </div>
 
       <div className="lista-tutores">
-        {tutores.map((tutor) => (
-          <TarjetaTutor
-            key={tutor.id}
-            id={tutor.id}
-            nombre={tutor.nombre}
-            carrera={tutor.carrera}
-            ciclo={tutor.ciclo}
-            cursos={tutor.cursos}
-            promedio={tutor.promedio}
-            totalSesiones={tutor.totalSesiones}
-            modalidad={tutor.modalidad}
-            variante="destacado"
-            mostrarBoton={false}
-          />
-        ))}
+        {lista.map((tutor) => {
+          const nombre = `${tutor.nombres} ${tutor.apellidos}`.trim();
+          const perfil = tutor.perfilTutor || {};
+          const cursos = (perfil.cursos || []).map((c) => c.codigo || c);
+          return (
+            <TarjetaTutor
+              key={tutor.id}
+              id={tutor.id}
+              nombre={nombre}
+              carrera={tutor.carrera}
+              ciclo={tutor.ciclo}
+              cursos={cursos}
+              promedio={perfil.promedio ?? 4.8}
+              totalSesiones={perfil.totalResenas ?? 25}
+              modalidad={perfil.modalidad ?? "remota"}
+              variante="destacado"
+              mostrarBoton={true}
+              fotoUrl={tutor.fotoUrl}
+            />
+          );
+        })}
       </div>
     </section>
   );

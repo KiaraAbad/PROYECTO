@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useTutores } from "../hooks/useTutores";
+import { useAutenticacion } from "../hooks/useAutenticacion";
 import "../styles/disponibilidad-tutor.css";
 
 const DIAS = [
@@ -29,6 +30,7 @@ const EXCEPCION_VACIA = {
 
 function DisponibilidadTutor() {
   const { id } = useParams();
+  const { usuario } = useAutenticacion();
   const { tutores, cargando, actualizarTutor } = useTutores();
 
   const [bloque, setBloque] = useState(BLOQUE_VACIO);
@@ -37,7 +39,7 @@ function DisponibilidadTutor() {
   const [mensaje, setMensaje] = useState("");
 
   const tutor =
-    tutores.find((item) => item.id === (id || "u-001")) || null;
+    tutores.find((item) => item.id === (id || usuario?.id || "u-001")) || null;
 
   const disponibilidad = tutor?.disponibilidad || [];
 

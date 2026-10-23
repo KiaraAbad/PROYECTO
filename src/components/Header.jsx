@@ -15,7 +15,9 @@ function Header({ children, variante }) {
     ? [{ texto: 'Inicio', ruta: '/' }, { texto: 'Directorio', ruta: '/tutores' }]
     : [
       { texto: 'Directorio', ruta: '/tutores' },
-      ...(rol === 'tutor' ? [{ texto: 'Solicitudes', ruta: '/solicitudes' }] : []),
+      ...(rol === 'tutor'
+        ? [{ texto: 'Mi perfil', ruta: '/mi-perfil-tutor' }, { texto: 'Solicitudes', ruta: '/solicitudes' }]
+        : []),
       { texto: 'Mis sesiones', ruta: '/mis-sesiones' },
       { texto: 'Historial', ruta: '/sesiones/historial' },
       ...(rol === 'tutor'

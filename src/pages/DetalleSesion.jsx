@@ -30,14 +30,14 @@ function DetalleSesion() {
   const { usuario, rol } = useSesiones();
 
   const { sesiones, todas, cargando, cancelar, proponer, aceptarNuevoHorario, rechazarNuevoHorario } =
-    useSesiones(usuario.id);
+    useSesiones(usuario?.id);
   const { aviso, avisar, cerrarAviso } = useAviso();
 
   const [cancelando, setCancelando] = useState(false);
   const [reprogramando, setReprogramando] = useState(false);
 
-  const sesion = sesiones.find((item) => item.codigo === codigo
-    && (rol === 'tutor' ? item.tutorId : item.estudianteId) === usuario.id);
+  const sesion = usuario ? sesiones.find((item) => item.codigo === codigo
+    && (rol === 'tutor' ? item.tutorId : item.estudianteId) === usuario.id) : null;
 
   function pagina(contenido) {
     return (

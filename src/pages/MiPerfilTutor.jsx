@@ -1,38 +1,39 @@
-
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useTutores } from "../hooks/useTutores";
+import { useAutenticacion } from "../hooks/useAutenticacion";
 import "../styles/mi-perfil-tutor.css";
 
 function MiPerfilTutor() {
   const { id } = useParams();
+  const { usuario } = useAutenticacion();
   const { tutores, cargando, actualizarTutor } = useTutores();
   const [mensaje, setMensaje] = useState("");
-  const [formulario, setFormulario] = useState({
-    biografia: "",
-    modalidad: "ambas",
-    sedePreferencia: "",
-  });
 
-  // Para la demostración, si no se indica un ID,
-  // utilizamos el primer tutor registrado en los datos.
   const tutor =
-    tutores.find((item) => item.id === (id || "u-001")) || null;
+    tutores.find((item) => item.id === (id || usuario?.id || "u-001")) || null;
 
-  
-useEffect(() => {
-  if (!tutor) return;
-
-  const perfil = tutor.perfilTutor || {};
-
-  setFormulario({
-    biografia: perfil.biografia || "",
-    modalidad: perfil.modalidad || "ambas",
-    sedePreferencia: perfil.sedePreferencia || "",
+  const [prevTutorId, setPrevTutorId] = useState(tutor?.id);
+  const [formulario, setFormulario] = useState(() => {
+    const perfil = tutor?.perfilTutor || {};
+    return {
+      biografia: perfil.biografia || "",
+      modalidad: perfil.modalidad || "ambas",
+      sedePreferencia: perfil.sedePreferencia || "",
+    };
   });
-}, [tutor]);
+
+  if (tutor && tutor.id !== prevTutorId) {
+    setPrevTutorId(tutor.id);
+    const perfil = tutor.perfilTutor || {};
+    setFormulario({
+      biografia: perfil.biografia || "",
+      modalidad: perfil.modalidad || "ambas",
+      sedePreferencia: perfil.sedePreferencia || "",
+    });
+  }
 
 
   if (cargando) {
@@ -145,23 +146,23 @@ useEffect(() => {
 
           <div className="mi-perfil-tutor__navegacion">
             <Link
-                to={`/mis-cursos-tutor/${tutor.id}`}
-                className="mi-perfil-tutor__enlace"
+              to={`/mis-cursos-tutor/${tutor.id}`}
+              className="mi-perfil-tutor__enlace"
             >
-                Gestionar mis cursos
+              Gestionar mis cursos
             </Link>
 
             <Link
-                to={`/tutores/${tutor.id}`}
-                className="mi-perfil-tutor__enlace"
+              to={`/tutores/${tutor.id}`}
+              className="mi-perfil-tutor__enlace"
             >
-                Ver ficha pública
+              Ver ficha pública
             </Link>
             <Link
-                to={`/disponibilidad-tutor/${tutor.id}`}
-                className="mi-perfil-tutor__enlace"
-                >
-                Gestionar disponibilidad
+              to={`/disponibilidad-tutor/${tutor.id}`}
+              className="mi-perfil-tutor__enlace"
+            >
+              Gestionar disponibilidad
             </Link>
           </div>
         </header>
