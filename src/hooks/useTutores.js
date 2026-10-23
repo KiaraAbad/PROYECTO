@@ -1,6 +1,15 @@
+import { useState, useEffect, useContext } from "react";
+import { TutoresContext } from "../context/TutoresContext.js";
 
-import { useState, useEffect } from "react";
-import { useTutoresContext } from "../context/TutoresContext";
+export function useTutoresContext() {
+  const contexto = useContext(TutoresContext);
+  if (!contexto) {
+    throw new Error(
+      "useTutoresContext debe utilizarse dentro de TutoresProvider"
+    );
+  }
+  return contexto;
+}
 
 export function useTutores() {
   const { tutores, actualizarTutor } = useTutoresContext();

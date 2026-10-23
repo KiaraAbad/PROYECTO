@@ -7,7 +7,12 @@ function Presentacion() {
 
   const handleBuscar = (e) => {
     e.preventDefault();
-    navigate("/tutores");
+    const query = termino.trim();
+    if (query) {
+      navigate(`/tutores?busqueda=${encodeURIComponent(query)}`);
+    } else {
+      navigate("/tutores");
+    }
   };
 
   return (

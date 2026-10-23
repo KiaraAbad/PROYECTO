@@ -1,9 +1,19 @@
 import { useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useAutenticacion } from '../hooks/useAutenticacion';
+import valoracionesIniciales from '../data/ValoracionMock.json';
 import '../styles/calificaciones.css';
 
 export default function CalificarSesion() {
+  const navigate = useNavigate();
+  const [params] = useSearchParams();
+  const { usuario } = useAutenticacion();
+  const tutorId = params.get('tutorId') || 'u-001';
+  const nombreTutor = params.get('tutorNombre') || 'Tutor';
+  const curso = params.get('curso') || 'General';
+
   const [puntajeGeneral, setPuntajeGeneral] = useState(5);
   const [claridad, setClaridad] = useState(5);
   const [puntualidad, setPuntualidad] = useState(5);
@@ -12,14 +22,29 @@ export default function CalificarSesion() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const evaluacion = {
+    const nuevaResena = {
+      idCalificacion: Date.now(),
+      idTutor: tutorId,
+      nombreTutor,
+      estudianteId: usuario?.id || 'u-101',
+      curso,
+      fecha: new Date().toISOString().slice(0, 10),
       puntajeGeneral,
       aspectos: { claridad, puntualidad, dominio },
-      comentario,
-      fecha: new Date().toISOString()
+      comentario: comentario.trim(),
     };
-    console.log("Enviando calificación:", evaluacion);
-    alert("¡Calificación guardada con éxito!");
+
+    try {
+      const guardadas = localStorage.getItem('tutorias_calificaciones');
+      const lista = guardadas ? JSON.parse(guardadas) : [...valoracionesIniciales];
+      lista.unshift(nuevaResena);
+      localStorage.setItem('tutorias_calificaciones', JSON.stringify(lista));
+    } catch (err) {
+      console.error('Error al guardar calificación:', err);
+    }
+
+    alert('¡Calificación guardada con éxito!');
+    navigate('/mis-calificaciones');
   };
 
   return (

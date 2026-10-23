@@ -15,7 +15,7 @@ import "../styles/mis-sesiones.css";
 function MisSesiones() {
   const { usuario, rol } = useSesiones();
   const [parametros] = useSearchParams();
-  const { sesiones, cargando } = useSesiones(usuario.id);
+  const { sesiones, cargando } = useSesiones(usuario?.id);
   const { aviso, avisar, cerrarAviso } = useAviso();
 
   const [estado, setEstado] = useState("");
@@ -24,7 +24,7 @@ function MisSesiones() {
 
 
   const mostrarVacio = parametros.get("vacio") === "1";
-  const propias = mostrarVacio ? [] : sesiones.filter((sesion) =>
+  const propias = mostrarVacio || !usuario ? [] : sesiones.filter((sesion) =>
     (rol === 'tutor' ? sesion.tutorId : sesion.estudianteId) === usuario.id);
 
   const rangoInvalido = Boolean(desde && hasta && desde > hasta);

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import EstrellasRating from '../components/EstrellasRating';
@@ -6,6 +6,19 @@ import valoracionesIniciales from '../data/ValoracionMock.json';
 import '../styles/calificaciones.css';
 
 const DIAS_PARA_EDITAR = 7;
+
+function cargarCalificaciones() {
+  try {
+    const guardadas = localStorage.getItem('tutorias_calificaciones');
+    if (guardadas) {
+      const parsed = JSON.parse(guardadas);
+      if (Array.isArray(parsed)) return parsed;
+    }
+  } catch (err) {
+    console.error('Error al cargar calificaciones:', err);
+  }
+  return valoracionesIniciales;
+}
 
 function obtenerFecha(fecha) {
   return new Date(`${fecha}T00:00:00`);
@@ -32,7 +45,15 @@ function sePuedeEditar(fecha) {
 }
 
 export default function MisCalificaciones() {
-  const [misReseñas, setMisReseñas] = useState(valoracionesIniciales);
+  const [misReseñas, setMisReseñas] = useState(cargarCalificaciones);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('tutorias_calificaciones', JSON.stringify(misReseñas));
+    } catch (err) {
+      console.error('Error al guardar calificaciones:', err);
+    }
+  }, [misReseñas]);
   const [cursoSeleccionado, setCursoSeleccionado] = useState('todos');
   const [reseñaEditando, setReseñaEditando] = useState(null);
   const [borrador, setBorrador] = useState({ puntaje: 5, comentario: '' });

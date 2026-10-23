@@ -16,14 +16,6 @@ import "../styles/directorio.css";
 const POR_PAGINA = 8;
 const MINIMO_CALIFICACIONES_RANKING = 5;
 
-
-const FILTROS_INICIALES = {
-  carrera: "",
-  curso: "MA101",
-  modalidad: "remota",
-  dia: "lunes",
-};
-
 const FILTROS_VACIOS = {
   carrera: "",
   curso: "",
@@ -95,8 +87,15 @@ function Directorio() {
   const [cursoRanking, setCursoRanking] = useState("MA101");
   const [carreraRanking, setCarreraRanking] = useState("");
   const [orden, setOrden] = useState("promedio");
-  const [filtrosBorrador, setFiltrosBorrador] = useState(FILTROS_INICIALES);
-  const [filtrosAplicados, setFiltrosAplicados] = useState(FILTROS_INICIALES);
+  const cursoParam = searchParams.get("busqueda") || searchParams.get("curso") || "";
+  const filtrosIniciales = {
+    carrera: searchParams.get("carrera") || "",
+    curso: cursoParam,
+    modalidad: searchParams.get("modalidad") || "",
+    dia: searchParams.get("dia") || "",
+  };
+  const [filtrosBorrador, setFiltrosBorrador] = useState(filtrosIniciales);
+  const [filtrosAplicados, setFiltrosAplicados] = useState(filtrosIniciales);
   const [pagina, setPagina] = useState(1);
 
   // Perfiles activos con rol tutor
@@ -205,9 +204,10 @@ function Directorio() {
         !filtrosAplicados.curso ||
         cursosTutor.some(
           (curso) =>
-            curso.codigo === filtrosAplicados.curso ||
-            curso.nombre === filtrosAplicados.curso
-        );
+            curso.codigo?.toLowerCase().includes(filtrosAplicados.curso.toLowerCase()) ||
+            (curso.nombre && curso.nombre.toLowerCase().includes(filtrosAplicados.curso.toLowerCase()))
+        ) ||
+        nombreCompleto(tutor).toLowerCase().includes(filtrosAplicados.curso.toLowerCase());
 
       const coincideModalidad =
         !filtrosAplicados.modalidad ||

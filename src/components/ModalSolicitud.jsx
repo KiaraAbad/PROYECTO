@@ -14,7 +14,7 @@ const MAXIMO_TEMA = 200;
 
 function ModalSolicitud({ tutor, bloque, onCerrar, onEnviada }) {
   const { usuario } = useSesiones();
-  const estudianteId = usuario.id;
+  const estudianteId = usuario?.id;
   const { todas, cargando, solicitar } = useSesiones(estudianteId);
 
   const perfil = tutor.perfilTutor ?? {};

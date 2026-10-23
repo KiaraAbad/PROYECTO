@@ -87,7 +87,7 @@ function TarjetaTutor({
         <span className="tarjeta-tutor-mockup__modalidad">{modalidad}</span>
       </div>
 
-      {mostrarBoton && !esDestacado && (
+      {mostrarBoton && (
         <Link
           to={`/tutores/${id}`}
           className="tarjeta-tutor-mockup__btn-ficha"
@@ -100,4 +100,4 @@ function TarjetaTutor({
   );
 }
 
-export default TarjetaTutor;  
+export default TarjetaTutor;

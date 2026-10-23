@@ -16,19 +16,19 @@ import "../styles/solicitudes.css";
 function Solicitudes() {
   const { usuario: tutor, rol } = useSesiones();
   const { sesiones, todas, cargando, aceptar, rechazar, proponer, aceptarNuevoHorario, rechazarNuevoHorario } =
-    useSesiones(tutor.id);
+    useSesiones(tutor?.id);
   const { aviso, avisar, cerrarAviso } = useAviso();
 
   const [errores, setErrores] = useState({});
   const [rechazando, setRechazando] = useState(null);
   const [proponiendo, setProponiendo] = useState(null);
 
-  const delTutor = sesiones.filter((sesion) => sesion.tutorId === tutor.id);
+  const delTutor = tutor ? sesiones.filter((sesion) => sesion.tutorId === tutor.id) : [];
   const contadores = contarSolicitudes(delTutor);
   const pendientes = solicitudesPendientes(delTutor);
-  const programadasDelTutor = todas.filter(
+  const programadasDelTutor = tutor ? todas.filter(
     (sesion) => sesion.tutorId === tutor.id && sesion.estado === "programada"
-  );
+  ) : [];
 
 
   function responder(solicitud, accion, mensajeExito) {

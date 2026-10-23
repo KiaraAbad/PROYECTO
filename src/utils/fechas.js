@@ -1,13 +1,13 @@
-export const FECHA_BASE = new Date(2026, 9 ,19);
-export const DIA_MS = 24*3600*1000;
-export const SEMANA_MS = 7*DIA_MS;
+export const FECHA_BASE = new Date(2026, 9, 19);
+export const DIA_MS = 24 * 3600 * 1000;
+export const SEMANA_MS = 7 * DIA_MS;
 
 export const DIAS_ORDEN = ["lunes", "martes", "miercoles", "jueves", "viernes", "sabado"];
 
 export function lunesDeSemana(fecha) {
-    const lunes = new Date(fecha);
-    lunes.setDate(fecha.getDate() - (fecha.getDay()+6)%7);
-    return lunes;
+  const lunes = new Date(fecha);
+  lunes.setDate(fecha.getDate() - (fecha.getDay() + 6) % 7);
+  return lunes;
 }
 
 export function rangoSemana(lunes) {

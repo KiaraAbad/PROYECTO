@@ -475,19 +475,19 @@ Cada integrante es **dueño de sus entidades**; **nadie escribe sobre las entida
 ## 11. Plan de trabajo por entregas
 
 ### Fase 0 — Preparación (semanas 1–4)
-- [ ] Formación de grupo y asignación de historias (comunicar al docente, semana 4).
-- [ ] Crear repositorio, ramas y proteger `main`.
-- [ ] Redactar y **congelar el contrato de datos** (sección 10).
-- [ ] Elaborar el **JSON de datos semilla** con todos los escenarios y casos límite.
-- [ ] Configurar tokens CSS del sistema de diseño (sección 6.4).
+- [x] Formación de grupo y asignación de historias (comunicar al docente, semana 4).
+- [x] Crear repositorio, ramas y proteger `main`.
+- [x] Redactar y **congelar el contrato de datos** (sección 10).
+- [x] Elaborar el **JSON de datos semilla** con todos los escenarios y casos límite.
+- [x] Configurar tokens CSS del sistema de diseño (sección 6.4).
 
 ### Entrega 1 — Solo interfaz (semana 9)
-- [ ] Toda la navegación con React Router (rutas públicas; guards simulados con Context).
-- [ ] Componentes compartidos del módulo común.
-- [ ] Vistas de la sección 9 según la HU asignada, fieles a los mockups.
-- [ ] Datos 100% desde el JSON semilla en el front.
-- [ ] Validaciones de formularios en cliente, estados vacíos, carga, errores y confirmaciones.
-- [ ] CSS propio consistente con los tokens; interfaz en español.
+- [x] Toda la navegación con React Router (rutas públicas; guards simulados con Context).
+- [x] Componentes compartidos del módulo común.
+- [x] Vistas de la sección 9 según la HU asignada, fieles a los mockups.
+- [x] Datos 100% desde el JSON semilla en el front.
+- [x] Validaciones de formularios en cliente, estados vacíos, carga, errores y confirmaciones.
+- [x] CSS propio consistente con los tokens; interfaz en español.
 
 ### Entrega 2 — Sistema completo (semana 15)
 - [ ] Backend Express REST por capas (controllers → services → repositories).

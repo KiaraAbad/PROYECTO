@@ -1,13 +1,7 @@
-
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { useEffect, useState } from "react";
 import datosTutores from "../data/tutores.json";
+import { TutoresContext } from "./TutoresContext.js";
 
-const TutoresContext = createContext(null);
 const STORAGE_KEY = "tutorias_tutores";
 
 function cargarTutores() {
@@ -65,16 +59,4 @@ export function TutoresProvider({ children }) {
       {children}
     </TutoresContext.Provider>
   );
-}
-
-export function useTutoresContext() {
-  const contexto = useContext(TutoresContext);
-
-  if (!contexto) {
-    throw new Error(
-      "useTutoresContext debe utilizarse dentro de TutoresProvider"
-    );
-  }
-
-  return contexto;
 }
