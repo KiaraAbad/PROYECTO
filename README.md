@@ -15,3 +15,8 @@ npm create vite@latest . -- --template react
 ```
 - Se adaptaron los HTML a archivos .jsx
 - estilos.css sigue siendo el mismo
+
+## Para correr el programa y probrar funcionalidades
+1. abrir la carpeta del proyecto en el cmd.
+2. ejecutar npm install y seguidamente npm run dev
+3. Presionar "Iniciar sesión" y elegir una de las cuentas de prueba.
