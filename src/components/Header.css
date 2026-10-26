@@ -240,3 +240,14 @@
     max-width: 100%;
   }
 }
+
+/* Mantener todos los enlaces visibles cuando la cabecera de escritorio se estrecha. */
+@media (min-width: 901px) {
+  .app-header__izquierda {
+    flex-wrap: wrap;
+  }
+
+  .app-header__nav {
+    max-width: 100%;
+  }
+}

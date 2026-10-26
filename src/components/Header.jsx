@@ -6,6 +6,9 @@ function Header({ children, variante }) {
   const { usuario, rol, cambiarRol, salir } = useAutenticacion();
   const { pathname } = useLocation();
   const navegar = useNavigate();
+  const enDetalleSesiones = pathname === '/sesiones'
+    || (pathname.startsWith('/sesiones/')
+      && !['historial', 'resumen', 'guia', 'ayuda', 'pruebas'].includes(pathname.split('/')[2]));
   const esPublico = !usuario || variante === 'publico' || pathname === '/';
 
   // HU-5 conserva su encabezado compacto; la identidad sigue siendo compartida.
@@ -31,7 +34,8 @@ function Header({ children, variante }) {
         <Link to="/" className="app-header__logo">Tutorías entre pares</Link>
         <nav className="app-header__nav" aria-label="Navegación principal">
           {enlaces.map(enlace => {
-            const activo = pathname === enlace.ruta
+            const activo = (enlace.ruta === '/mis-sesiones' && enDetalleSesiones)
+              || pathname === enlace.ruta
               || (enlace.ruta !== '/' && pathname.startsWith(`${enlace.ruta}/`));
             return (
               <Link key={enlace.ruta} to={enlace.ruta}
