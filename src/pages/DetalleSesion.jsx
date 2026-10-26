@@ -217,7 +217,11 @@ function DetalleSesion() {
           <div className="detalle-sesion__bloque">
             <p className="detalle-sesion__etiqueta">Tutor</p>
             <div className="detalle-sesion__persona">
-              <div className="detalle-sesion__avatar" aria-hidden="true" />
+              <div className="detalle-sesion__avatar" aria-hidden="true">
+                {sesion.tutor.fotoUrl ? (
+                  <img src={sesion.tutor.fotoUrl} alt="" className="detalle-sesion__foto" />
+                ) : null}
+              </div>
               <div>
                 <p className="detalle-sesion__nombre">{sesion.tutor.nombreCompleto}</p>
                 <p className="detalle-sesion__persona-meta">
@@ -231,7 +235,11 @@ function DetalleSesion() {
           <div className="detalle-sesion__bloque">
             <p className="detalle-sesion__etiqueta">Estudiante</p>
             <div className="detalle-sesion__persona">
-              <div className="detalle-sesion__avatar" aria-hidden="true" />
+              <div className="detalle-sesion__avatar" aria-hidden="true">
+                {sesion.estudiante.fotoUrl ? (
+                  <img src={sesion.estudiante.fotoUrl} alt="" className="detalle-sesion__foto" />
+                ) : null}
+              </div>
               <div>
                 <p className="detalle-sesion__nombre">{sesion.estudiante.nombreCompleto}</p>
                 <p className="detalle-sesion__persona-meta">

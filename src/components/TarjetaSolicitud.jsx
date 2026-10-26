@@ -31,7 +31,11 @@ function TarjetaSolicitud({
     <article className="tarjeta-solicitud">
       <div className="tarjeta-solicitud__cabecera">
         <div className="tarjeta-solicitud__persona">
-          <div className="tarjeta-solicitud__avatar" aria-hidden="true" />
+          <div className="tarjeta-solicitud__avatar" aria-hidden="true">
+            {estudiante.fotoUrl ? (
+              <img src={estudiante.fotoUrl} alt="" className="tarjeta-solicitud__foto" />
+            ) : null}
+          </div>
           <div>
             <h3 className="tarjeta-solicitud__nombre">{estudiante.nombreCompleto}</h3>
             <p className="tarjeta-solicitud__meta">

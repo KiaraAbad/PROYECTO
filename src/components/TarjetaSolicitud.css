@@ -25,6 +25,14 @@
   flex-shrink: 0;
   border-radius: 50%;
   background-color: var(--primary-soft);
+  overflow: hidden;
+}
+
+.tarjeta-solicitud__foto {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .tarjeta-solicitud__nombre {

@@ -15,6 +15,7 @@ export function buscarPersona(id) {
       carrera: "",
       ciclo: null,
       promedio: null,
+      fotoUrl: null,
     };
   }
 
@@ -26,5 +27,6 @@ export function buscarPersona(id) {
     carrera: usuario.carrera,
     ciclo: usuario.ciclo,
     promedio: usuario.perfilTutor ? usuario.perfilTutor.promedio : null,
+    fotoUrl: usuario.fotoUrl || null,
   };
 }

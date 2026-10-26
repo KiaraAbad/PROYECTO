@@ -132,16 +132,25 @@ function MiPerfilTutor() {
         </nav>
 
         <header className="mi-perfil-tutor__encabezado">
-          <div>
-            <p className="mi-perfil-tutor__etiqueta">GESTIÓN DE TUTORÍAS</p>
-            <h1>Mi perfil de tutor</h1>
-            <p>
-              Administra la información que verán los estudiantes en tu ficha
-              pública.
-            </p>
-            <p className="mi-perfil-tutor__nombre">
-              Perfil de {tutor.nombres} {tutor.apellidos}
-            </p>
+          <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+            {tutor.fotoUrl ? (
+              <img
+                src={tutor.fotoUrl}
+                alt={`${tutor.nombres} ${tutor.apellidos}`}
+                style={{ width: "72px", height: "72px", borderRadius: "50%", objectFit: "cover", flexShrink: 0 }}
+              />
+            ) : null}
+            <div>
+              <p className="mi-perfil-tutor__etiqueta">GESTIÓN DE TUTORÍAS</p>
+              <h1>Mi perfil de tutor</h1>
+              <p>
+                Administra la información que verán los estudiantes en tu ficha
+                pública.
+              </p>
+              <p className="mi-perfil-tutor__nombre">
+                Perfil de {tutor.nombres} {tutor.apellidos}
+              </p>
+            </div>
           </div>
 
           <div className="mi-perfil-tutor__navegacion">

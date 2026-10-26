@@ -12,7 +12,18 @@ function cargarTutores() {
       const datos = JSON.parse(guardados);
 
       if (Array.isArray(datos)) {
-        return datos;
+        return datos.map((tutor) => {
+          const original = datosTutores.find((item) => item.id === tutor.id);
+          const foto = tutor.fotoUrl || original?.fotoUrl || "";
+          return {
+            ...tutor,
+            fotoUrl: foto,
+            perfilTutor: {
+              ...(tutor.perfilTutor || {}),
+              fotoUrl: tutor.perfilTutor?.fotoUrl || original?.perfilTutor?.fotoUrl || foto,
+            },
+          };
+        });
       }
     }
   } catch (error) {

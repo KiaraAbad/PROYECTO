@@ -39,7 +39,11 @@ function TarjetaSesion({ sesion, rol = "estudiante", compacta = false, onCalific
 
   return (
     <article className={`tarjeta-sesion ${compacta ? "tarjeta-sesion--compacta" : ""}`}>
-      <div className="tarjeta-sesion__avatar" aria-hidden="true" />
+      <div className="tarjeta-sesion__avatar" aria-hidden="true">
+        {persona.fotoUrl ? (
+          <img src={persona.fotoUrl} alt="" className="tarjeta-sesion__foto" />
+        ) : null}
+      </div>
 
       <div className="tarjeta-sesion__info">
         <h3 className="tarjeta-sesion__nombre">{persona.nombreCompleto}</h3>

@@ -127,8 +127,8 @@ export default function FichaTutorReseñas() {
 
         <section className="ficha-resenas__perfil">
           <div className="ficha-resenas__avatar">
-            {perfil.fotoUrl ? (
-              <img src={perfil.fotoUrl} alt="" />
+            {tutor.fotoUrl || perfil.fotoUrl ? (
+              <img src={tutor.fotoUrl || perfil.fotoUrl} alt={nombreCompleto} />
             ) : null}
           </div>
           <div className="ficha-resenas__datos-tutor">
