@@ -5,12 +5,12 @@ import "../styles/sesiones-comun.css";
 import "./ModalProponerHorario.css";
 
 const DIAS = [
-  { etiqueta: "Lun 14", fecha: "2026-09-14" },
-  { etiqueta: "Mar 15", fecha: "2026-09-15" },
-  { etiqueta: "Mié 16", fecha: "2026-09-16" },
-  { etiqueta: "Jue 17", fecha: "2026-09-17" },
-  { etiqueta: "Vie 18", fecha: "2026-09-18" },
-  { etiqueta: "Sáb 19", fecha: "2026-09-19" },
+  { etiqueta: "Lun 16", fecha: "2026-11-16" },
+  { etiqueta: "Mar 17", fecha: "2026-11-17" },
+  { etiqueta: "Mié 18", fecha: "2026-11-18" },
+  { etiqueta: "Jue 19", fecha: "2026-11-19" },
+  { etiqueta: "Vie 20", fecha: "2026-11-20" },
+  { etiqueta: "Sáb 21", fecha: "2026-11-21" },
 ];
 
 const DISPONIBILIDAD = {
