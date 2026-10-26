@@ -7,9 +7,9 @@ import '../styles/calificaciones.css';
 export default function RankingTutores() {
 
   const [tutoresRanked] = useState([
-    { id: 1, nombre: "Carlos Mendoza", curso: "Cálculo II", carrera: "Ingeniería de Sistemas", promedio: 4.9, totalReseñas: 15 },
-    { id: 2, nombre: "Ana Torres", curso: "Programación Web", carrera: "Ingeniería de Sistemas", promedio: 4.8, totalReseñas: 12 },
-    { id: 3, nombre: "Luis Silva", curso: "Estadística I", carrera: "Administración", promedio: 4.6, totalReseñas: 10 }
+    { id: 1, nombre: "Carlos Mendoza", curso: "Cálculo II", carrera: "Ingeniería de Sistemas", promedio: 4.9, totalReseñas: 15, fotoUrl: "/img/carlos-mendoza.jpg" },
+    { id: 2, nombre: "Ana Torres", curso: "Programación Web", carrera: "Ingeniería de Sistemas", promedio: 4.8, totalReseñas: 12, fotoUrl: "/img/ana-torres.jpg" },
+    { id: 3, nombre: "Luis Silva", curso: "Estadística I", carrera: "Administración", promedio: 4.6, totalReseñas: 10, fotoUrl: "/img/luis-silva.jpg" }
   ]);
 
   const [filtroCurso, setFiltroCurso] = useState('');
@@ -39,6 +39,11 @@ export default function RankingTutores() {
             {tutoresFiltrados.map((tutor, index) => (
               <div key={tutor.id} className="tarjeta-ranking-item">
                 <span className="posicion">#{index + 1}</span>
+                {tutor.fotoUrl ? (
+                  <div className="calificacion-avatar" aria-hidden="true" style={{ width: 44, height: 44, flex: "0 0 44px" }}>
+                    <img src={tutor.fotoUrl} alt="" className="calificacion-avatar__foto" />
+                  </div>
+                ) : null}
                 <div className="info-tutor-ranking">
                   <h3>{tutor.nombre}</h3>
                   <p><strong>Curso:</strong> {tutor.curso} | <strong>Carrera:</strong> {tutor.carrera}</p>

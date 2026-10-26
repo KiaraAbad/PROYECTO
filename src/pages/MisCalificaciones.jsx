@@ -12,7 +12,15 @@ function cargarCalificaciones() {
     const guardadas = localStorage.getItem('tutorias_calificaciones');
     if (guardadas) {
       const parsed = JSON.parse(guardadas);
-      if (Array.isArray(parsed)) return parsed;
+      if (Array.isArray(parsed)) {
+        return parsed.map((item) => {
+          const original = valoracionesIniciales.find((v) => v.idCalificacion === item.idCalificacion);
+          return {
+            ...item,
+            fotoUrl: item.fotoUrl || original?.fotoUrl || '',
+          };
+        });
+      }
     }
   } catch (err) {
     console.error('Error al cargar calificaciones:', err);
@@ -134,7 +142,11 @@ export default function MisCalificaciones() {
               return (
                 <article className="tarjeta-reseña-usuario" key={reseña.idCalificacion}>
                   <div className="calificacion-tutor">
-                    <div className="calificacion-avatar" aria-hidden="true" />
+                    <div className="calificacion-avatar" aria-hidden="true">
+                      {reseña.fotoUrl ? (
+                        <img src={reseña.fotoUrl} alt="" className="calificacion-avatar__foto" />
+                      ) : null}
+                    </div>
                     <div className="calificacion-tutor__datos">
                       <h2>{reseña.nombreTutor}</h2>
                       <p>{reseña.curso} · {formatearFecha(reseña.fecha)}</p>

@@ -12,7 +12,8 @@
       "dominio": 5
     },
     "comentario": "Excelente explicación, resolvió todas mis dudas para el parcial.",
-    "fecha": "2026-10-15"
+    "fecha": "2026-10-15",
+    "fotoUrl": "/img/carlos-mendoza.jpg"
   },
   {
     "idCalificacion": 2,
@@ -27,6 +28,7 @@
       "dominio": 4
     },
     "comentario": "Muy buena predisposición y paciencia.",
-    "fecha": "2026-10-18"
+    "fecha": "2026-10-18",
+    "fotoUrl": "/img/ana-torres.jpg"
   }
 ]

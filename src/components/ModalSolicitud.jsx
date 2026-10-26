@@ -68,7 +68,11 @@ function ModalSolicitud({ tutor, bloque, onCerrar, onEnviada }) {
     <Modal titulo="Solicitar sesión" onCerrar={onCerrar}>
       <form onSubmit={enviar} noValidate>
         <div className="modal-solicitud__resumen">
-          <div className="modal-solicitud__avatar" aria-hidden="true" />
+          <div className="modal-solicitud__avatar" aria-hidden="true">
+            {tutor.fotoUrl ? (
+              <img src={tutor.fotoUrl} alt="" className="modal-solicitud__foto" />
+            ) : null}
+          </div>
           <div>
             <p className="modal-solicitud__nombre">{nombreCompleto}</p>
             <p className="modal-solicitud__bloque">
