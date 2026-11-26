@@ -1,0 +1,7 @@
+### Verificar estado del servidor (Health Check)
+GET http://localhost:3001/api/health
+Content-Type: application/json
+
+### Verificar ruta raíz del servidor
+GET http://localhost:3001/
+Content-Type: application/json
