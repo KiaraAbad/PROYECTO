@@ -112,7 +112,7 @@ Cada integrante es dueño de sus entidades, vistas y servicios de principio a fi
 | **Interfaz** | React (Vite), enrutamiento con **React Router**, estado con **hooks + Context** |
 | **Estilos** | CSS propio o preprocesador (variables CSS de diseño) |
 | **Servicios web** | Node.js con **Express**, estilo REST |
-| **Base de datos** | Relacional o no relacional, con ORM o patrón Repository |
+| **Base de datos** | PostgreSQL con **Sequelize** y patrón Repository (`RepositoryBase`) |
 | **Control de versiones** | Git + repositorio remoto (GitHub) |
 | **Despliegue** | Nube de libre elección, capa gratuita |
 
@@ -126,15 +126,15 @@ Cada integrante es dueño de sus entidades, vistas y servicios de principio a fi
 | `express` | Backend REST | 📦 Entrega 2 |
 | `cors`, `dotenv` | Middleware básico + variables de entorno | 📦 Entrega 2 |
 | `bcrypt` | Hash de contraseñas | 📦 Entrega 2 |
-| `sequelize` o equivalente | ORM / capa de datos | 📦 Entrega 2 (según DB elegida) |
-| `jsonwebtoken` o sesiones | Autenticación | 📦 Entrega 2 |
+| `sequelize`, `pg`, `pg-hstore` | ORM y driver de PostgreSQL | 📦 Entrega 2 |
+| `jsonwebtoken` | Autenticación JWT | 📦 Entrega 2 |
 
 > ❌ **Prohibido:** plantillas de administración, temas comerciales, NestJS para el backend, Firebase como scaffolding de APIs. ✅ **Permitido:** librerías de componentes como Material UI (opcional; preferimos CSS propio con tokens).
 
 ### 5.3 Arquitectura y capas (Entrega 2)
 
 ```
-Interfaz (React)  →  Servicios web (Express REST)  →  Capa de datos (ORM/Repository)
+Interfaz (React)  →  routes → controllers → services → repositories → models (Sequelize / PostgreSQL)
 ```
 
 - **Sin acceso a datos en controladores ni consultas en componentes de interfaz.**
@@ -245,77 +245,90 @@ Se implementan **una sola vez** en un módulo compartido; nadie duplica componen
 ```
 proyecto/
 ├── docs/
-│   └── planificacion.md          ← este archivo (fuente única de verdad)
-├── public/
-│   ├── favicon.svg
-│   └── icons.svg
-├── src/
-│   ├── assets/                   # imágenes, hero, logos
-│   ├── components/               # COMPONENTES COMPARTIDOS (sección 7)
-│   │   ├── Header.jsx
-│   │   ├── Footer.jsx
-│   │   ├── Presentacion.jsx
-│   │   ├── TarjetaTutor.jsx
-│   │   ├── TutoresDestacados.jsx
-│   │   ├── GrillaDisponibilidad.jsx
-│   │   ├── BadgeEstadoSesion.jsx
-│   │   ├── FiltrosActivos.jsx
-│   │   ├── Paginacion.jsx
-│   │   ├── ModalConfirmacion.jsx
-│   │   ├── EstadoVacio.jsx
-│   │   ├── CampoFormulario.jsx
-│   │   ├── Notificacion.jsx
-│   │   └── EsqueletoCarga.jsx
-│   ├── pages/                    # vistas (mapeo en sección 9)
-│   │   ├── Home.jsx              # 1.1 landing pública
-│   │   ├── Login.jsx             # 1.2
-│   │   ├── Registro.jsx          # 1.3
-│   │   ├── RecuperarPassword.jsx # 1.4
-│   │   ├── MiCuenta.jsx          # 1.5
-│   │   ├── AccesoDenegado.jsx    # 1.6 (403)
-│   │   ├── NoEncontrada.jsx      # 1.6 (404)
-│   │   ├── PerfilTutor.jsx       # 2.1 activar/desactivar + estado de ficha
-│   │   ├── MisCursos.jsx         # 2.2
-│   │   ├── Disponibilidad.jsx    # 2.3
-│   │   ├── Excepciones.jsx       # 2.4
-│   │   ├── FichaPublicaTutor.jsx # 2.5 / 3.x / 6.2 (lectura pública)
-│   │   ├── Directorio.jsx        # 3.1
-│   │   ├── DetalleTutor.jsx      # 3.2 / 3.3 (selección de bloque)
-│   │   ├── MisSesiones.jsx       # 4.2 (estudiante) / 5.3 historial (tutor)
-│   │   ├── Solicitudes.jsx       # 4.3 (tutor)
-│   │   ├── DetalleSesion.jsx     # 4.5
-│   │   ├── CerrarSesion.jsx      # 5.1
-│   │   ├── MaterialCompartido.jsx# 5.2
-│   │   ├── ResumenHoras.jsx      # 5.4
-│   │   ├── Calificar.jsx         # 6.1 (modal)
-│   │   ├── MisCalificaciones.jsx # 6.3
-│   │   ├── Ranking.jsx           # 6.4
-│   │   ├── PanelTutores.jsx      # 7.1
-│   │   ├── PanelUsuarios.jsx     # 7.3
-│   │   └── PanelTablero.jsx      # 7.4
-│   ├── context/                  # AuthContext, SesionContext, NotificacionContext
-│   ├── hooks/                    # useAuth, useTutores, useSesiones, ...
-│   ├── data/                     # datos semilla JSON (Entrega 1)
-│   ├── services/                 # Entrega 2: cliente HTTP a la API
-│   ├── routes/                   # definición de rutas + guards por rol
-│   ├── utils/                    # helpers: fechas, formatos, validaciones compartidas
-│   ├── styles/                   # tokens, estilos por vista
-│   ├── App.jsx
-│   └── main.jsx
-├── server/                       # ENTREGA 2 (backend Express)
+│   ├── planificacion.md          ← este archivo (fuente única de verdad)
+│   └── creacionbackend.md        ← especificación base del backend (Entrega 2)
+├── frontend/                     # ENTREGA 1 (React + Vite)
+│   ├── public/
+│   │   ├── favicon.svg
+│   │   └── icons.svg
 │   ├── src/
-│   │   ├── controllers/
-│   │   ├── services/
-│   │   ├── repositories/
-│   │   ├── models/
-│   │   ├── routes/
-│   │   ├── middlewares/          # auth, validación, errores
-│   │   └── config/
-│   └── .env.example              # sin credenciales reales
+│   │   ├── assets/               # imágenes, hero, logos
+│   │   ├── components/           # COMPONENTES COMPARTIDOS (sección 7)
+│   │   │   ├── Header.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   ├── Presentacion.jsx
+│   │   │   ├── TarjetaTutor.jsx
+│   │   │   ├── TutoresDestacados.jsx
+│   │   │   ├── GrillaDisponibilidad.jsx
+│   │   │   ├── BadgeEstadoSesion.jsx
+│   │   │   ├── FiltrosActivos.jsx
+│   │   │   ├── Paginacion.jsx
+│   │   │   ├── ModalConfirmacion.jsx
+│   │   │   ├── EstadoVacio.jsx
+│   │   │   ├── CampoFormulario.jsx
+│   │   │   ├── Notificacion.jsx
+│   │   │   └── EsqueletoCarga.jsx
+│   │   ├── pages/                # vistas (mapeo en sección 9)
+│   │   │   ├── Home.jsx          # 1.1 landing pública
+│   │   │   ├── Login.jsx         # 1.2
+│   │   │   ├── Registro.jsx      # 1.3
+│   │   │   ├── RecuperarPassword.jsx # 1.4
+│   │   │   ├── MiCuenta.jsx      # 1.5
+│   │   │   ├── AccesoDenegado.jsx # 1.6 (403)
+│   │   │   ├── NoEncontrada.jsx  # 1.6 (404)
+│   │   │   ├── PerfilTutor.jsx   # 2.1 activar/desactivar + estado de ficha
+│   │   │   ├── MisCursos.jsx     # 2.2
+│   │   │   ├── Disponibilidad.jsx # 2.3
+│   │   │   ├── Excepciones.jsx   # 2.4
+│   │   │   ├── FichaPublicaTutor.jsx # 2.5 / 3.x / 6.2 (lectura pública)
+│   │   │   ├── Directorio.jsx    # 3.1
+│   │   │   ├── DetalleTutor.jsx  # 3.2 / 3.3 (selección de bloque)
+│   │   │   ├── MisSesiones.jsx   # 4.2 (estudiante) / 5.3 historial (tutor)
+│   │   │   ├── Solicitudes.jsx   # 4.3 (tutor)
+│   │   │   ├── DetalleSesion.jsx # 4.5
+│   │   │   ├── CerrarSesion.jsx  # 5.1
+│   │   │   ├── MaterialCompartido.jsx # 5.2
+│   │   │   ├── ResumenHoras.jsx  # 5.4
+│   │   │   ├── Calificar.jsx     # 6.1 (modal)
+│   │   │   ├── MisCalificaciones.jsx # 6.3
+│   │   │   ├── Ranking.jsx       # 6.4
+│   │   │   ├── PanelTutores.jsx  # 7.1
+│   │   │   ├── PanelUsuarios.jsx # 7.3
+│   │   │   └── PanelTablero.jsx  # 7.4
+│   │   ├── context/              # AuthContext, SesionContext, NotificacionContext
+│   │   ├── hooks/                # useAuth, useTutores, useSesiones, ...
+│   │   ├── data/                 # datos semilla JSON (Entrega 1)
+│   │   ├── services/             # Entrega 2: cliente HTTP a la API
+│   │   ├── routes/               # definición de rutas + guards por rol
+│   │   ├── utils/                # helpers: fechas, formatos, validaciones compartidas
+│   │   ├── styles/               # tokens, estilos por vista
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── package.json
+│   └── vite.config.js
+├── backend/                      # ENTREGA 2 (Node + Express + Sequelize + PostgreSQL)
+│   ├── .env                      # Variables locales (ignorado por Git)
+│   ├── .env.example              # Plantilla sin credenciales reales
+│   ├── app.js                    # Express, CORS, JSON, rutas y errorHandler
+│   ├── index.js                  # Arranque: BD, sync Sequelize y app.listen
+│   ├── package.json              # ES Modules ("type": "module")
+│   └── src/
+│       ├── config/
+│       │   └── database.js       # Instancia Sequelize (PostgreSQL)
+│       ├── controllers/
+│       ├── data/                 # Migración de JSON semilla a PostgreSQL
+│       ├── middlewares/
+│       │   └── errorHandler.js   # Manejador global de errores HTTP
+│       ├── models/
+│       │   └── relaciones.js     # Centralizador de modelos y asociaciones
+│       ├── repositories/
+│       │   └── RepositoryBase.js # Clase genérica CRUD
+│       ├── routes/
+│       ├── services/
+│       └── tests/
+│           └── pruebas.http      # Pruebas REST Client
 ├── .gitignore
-├── package.json
-├── README.md
-└── vite.config.js
+└── README.md
 ```
 
 ### Estrategia de ramas

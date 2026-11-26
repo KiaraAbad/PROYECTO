@@ -16,7 +16,16 @@ npm create vite@latest . -- --template react
 - Se adaptaron los HTML a archivos .jsx
 - estilos.css sigue siendo el mismo
 
-## Para correr el programa y probrar funcionalidades
-1. abrir la carpeta del proyecto en el cmd.
-2. ejecutar npm install y seguidamente npm run dev
-3. Presionar "Iniciar sesión" y elegir una de las cuentas de prueba.
+## Para correr el proyecto
+
+### Frontend
+1. `cd frontend && npm install && npm run dev`
+2. Presionar "Iniciar sesión" y elegir una cuenta de prueba.
+
+### Backend (Entrega 2)
+1. En **pgAdmin**, crear la BD vacía `tutorias_ulima` (`localhost:5432`).
+2. Copiar `backend/.env.example` a `backend/.env` y ajustar tus credenciales de PostgreSQL.
+3. Ejecutar `cd backend && npm install && npm run dev` y probar `GET http://localhost:3001/api/health`.
+
+> **Nota:** Si sale `database "tutorias_ulima" does not exist`, la configuración está bien y solo falta crear la BD en pgAdmin.
+> **Arquitectura:** `routes -> controllers -> services -> repositories -> models` (usando `RepositoryBase.js`; ver `docs/creacionbackend.md`).
